@@ -13,7 +13,10 @@ expression
     | setf_expression
     | push_expression
     | pop_expression
+    | condition_expression
+    | conses_expression
     ;
+
 
 // Operator Expressions
 operators_expression
@@ -59,6 +62,7 @@ bitwise_expression
       S_RPARAN
     ;
 
+
 // Defining Expressions
 defining_expressions
     : S_LPARAN (defvar | let | prog | setq_single_var | setq_multi_var | defconstant) S_RPARAN
@@ -88,6 +92,7 @@ defconstant
     : DEFCONSTANT tuple_without_paran
     ;
 
+
 // Tuple Rules
 tuple_with_paran
     : S_LPARAN tuple_without_paran S_RPARAN
@@ -101,7 +106,8 @@ real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
 
-// Setf Expression
+
+// Arrays Expression
 setf_expression
     :S_LPARAN SETF place value S_RPARAN
     ;
@@ -128,16 +134,16 @@ make_array_expression
     : S_LPARAN MAKE_ARRAY (index_list | S_LPARAN index_list S_RPARAN) S_RPARAN
     ;
 
+index_list
+    : real_number+
+    ;
+
 aref_expression
     : S_LPARAN AREF ATOM (real_number | ATOM)+ S_RPARAN
     ;
 
 list_expression
     : S_LPARAN LIST (value | operators_expression)+ S_RPARAN
-    ;
-
-index_list
-    : real_number+
     ;
 
 push_expression
@@ -147,3 +153,70 @@ push_expression
 pop_expression
     : S_LPARAN POP (list_expression | ATOM) S_RPARAN
     ;
+
+
+// Conditions Expressions
+condition_expression
+       : if_expression
+       | when_expression
+       | cond_expression
+       | progn_expression
+       | otherwise_expression
+       | unless_expression
+       ;
+
+condition_clause
+    : comparison_expression
+    | logical_expression
+    | bitwise_expression
+    ;
+
+if_expression
+    : S_LPARAN IF condition_clause expression expression? S_RPARAN
+    ;
+
+when_expression
+    : S_LPARAN WHEN condition_clause expression+ S_RPARAN
+    ;
+
+cond_expression
+    : S_LPARAN COND cond_clause+ S_RPARAN
+    ;
+
+cond_clause
+    : S_LPARAN condition_clause expression+ S_RPARAN
+    ;
+
+progn_expression
+    : S_LPARAN PROGN expression+ S_RPARAN
+    ;
+
+otherwise_expression
+    : OTHERWISE expression+
+    ;
+
+unless_expression
+    : S_LPARAN UNLESS condition_clause expression+ S_RPARAN
+    ;
+
+
+// Coses Expressions
+conses_expression
+       : cons_expression
+       | car_expression
+       | cdr_expression
+       ;
+
+cons_expression
+    : S_LPARAN CONS expression expression S_RPARAN
+    ;
+
+car_expression
+    : S_LPARAN CAR cons_expression S_RPARAN
+    ;
+
+cdr_expression
+    : S_LPARAN CDR cons_expression S_RPARAN
+    ;
+
+

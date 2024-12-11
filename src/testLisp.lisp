@@ -1,4 +1,5 @@
-(;; Test for arithmetic expression
+(
+;; Test for arithmetic expression
 (* 2 3)
 (+ 5 10)
 (- 8 2)
@@ -36,12 +37,11 @@
 ;; Test for prog expression
 (prog (x y) (+ x y) (* x y))
 
-;; Test for setf expression
-
 ;; Test for aref expression
 (aref myArray 0)
 (aref myArray 1)
 
+;; Test for setf expression
 (setf x 100)
 (setf (car x) 10)
 
@@ -57,11 +57,58 @@
 (make-array 10)
 (make-array (1 2 3))
 
-
 ;; Test for list expression
 (list 1 2 3 4)
 (list "a" "b" "c")
 
 ;; Test for nested expressions
 (+ (* 2 3) (- 10 5))
+
+;; Test for if expression
+(if (> 2 1)
+        (print "2 is greater than 1")
+        (print "2 is not greater than 1"))
+(if (and (> 3 2) (< 5 10))
+    (print "Both conditions are true")
+    (print "One or both conditions are false"))
+(if (> 3 2)
+    (progn
+      (print "Condition is true")
+      (print "Doing more work..."))
+    (progn
+      (print "Condition is false")
+      (print "Exiting...")))
+
+;; Test for when expression
+(when (> 3 2)
+  (when (and (> 3 2) (< 5 10))
+    (print "Both conditions are true")
+    (print "This will also execute if the condition is true")))
+(when (> 3 2)
+  (progn
+    (print "Condition is true")
+    (print "Executing multiple statements...")))
+
+;; Test for cond expression
+(cond
+  ((> 3 2)
+   (cond
+     ((> 5 4) (print "3 > 2 and 5 > 4"))
+     ((< 5 4) (print "3 > 2 and 5 < 4"))))
+  (t
+   (print "This is the default case")
+   (print "Executing multiple statements..."))
+  (otherwise (print "This is the default case")))
+
+;; Test for conses expression
+(cons 'x 'y)
+(cons 1 2)
+(cons 1 '(2 3 4))
+(cons 'a '(b c))
+(cons 'x (cons 'y 'z))
+(cons 1 (cons 2 (cons 3 4)))
+(car (cons 1 2))
+(cdr (cons 1 2))
+(cons 'a (append '(b c) '(d e)))
+
 )
