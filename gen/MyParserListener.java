@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -237,6 +237,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitMake_array_expression(MyParser.Make_array_expressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyParser#index_list}.
+	 * @param ctx the parse tree
+	 */
+	void enterIndex_list(MyParser.Index_listContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#index_list}.
+	 * @param ctx the parse tree
+	 */
+	void exitIndex_list(MyParser.Index_listContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyParser#aref_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -257,16 +267,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitList_expression(MyParser.List_expressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterIndex_list(MyParser.Index_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitIndex_list(MyParser.Index_listContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MyParser#push_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -286,4 +286,134 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPop_expression(MyParser.Pop_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#condition_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition_expression(MyParser.Condition_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#condition_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition_expression(MyParser.Condition_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#condition_clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition_clause(MyParser.Condition_clauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#condition_clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition_clause(MyParser.Condition_clauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#if_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_expression(MyParser.If_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#if_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_expression(MyParser.If_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#when_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhen_expression(MyParser.When_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#when_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhen_expression(MyParser.When_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#cond_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCond_expression(MyParser.Cond_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#cond_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCond_expression(MyParser.Cond_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#cond_clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterCond_clause(MyParser.Cond_clauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#cond_clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitCond_clause(MyParser.Cond_clauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#progn_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgn_expression(MyParser.Progn_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#progn_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgn_expression(MyParser.Progn_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#otherwise_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#otherwise_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#unless_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnless_expression(MyParser.Unless_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#unless_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnless_expression(MyParser.Unless_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#conses_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterConses_expression(MyParser.Conses_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#conses_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitConses_expression(MyParser.Conses_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#cons_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCons_expression(MyParser.Cons_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#cons_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCons_expression(MyParser.Cons_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#car_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCar_expression(MyParser.Car_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#car_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCar_expression(MyParser.Car_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#cdr_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCdr_expression(MyParser.Cdr_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#cdr_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCdr_expression(MyParser.Cdr_expressionContext ctx);
 }

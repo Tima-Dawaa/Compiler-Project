@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -148,6 +148,12 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMake_array_expression(MyParser.Make_array_expressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyParser#index_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIndex_list(MyParser.Index_listContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyParser#aref_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -160,12 +166,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitList_expression(MyParser.List_expressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIndex_list(MyParser.Index_listContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MyParser#push_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -177,4 +177,82 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPop_expression(MyParser.Pop_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#condition_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition_expression(MyParser.Condition_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#condition_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition_clause(MyParser.Condition_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#if_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_expression(MyParser.If_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#when_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhen_expression(MyParser.When_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#cond_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCond_expression(MyParser.Cond_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#cond_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCond_clause(MyParser.Cond_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#progn_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProgn_expression(MyParser.Progn_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#otherwise_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#unless_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnless_expression(MyParser.Unless_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#conses_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConses_expression(MyParser.Conses_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#cons_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCons_expression(MyParser.Cons_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#car_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCar_expression(MyParser.Car_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#cdr_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCdr_expression(MyParser.Cdr_expressionContext ctx);
 }
