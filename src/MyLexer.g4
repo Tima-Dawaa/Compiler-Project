@@ -14,6 +14,7 @@ RETURN: 'return';
 RETURN_FROM: 'return_from';
 FUNCALL: 'funcall';
 KEY_EQUAL: 'equal';
+NOT_EQUAL: 'not-equal';
 PROGN: 'progn';
 KEY: '&key';
 

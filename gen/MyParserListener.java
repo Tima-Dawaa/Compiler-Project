@@ -1,4 +1,4 @@
-// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -96,6 +96,56 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquality_expression(MyParser.Equality_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquality_expression(MyParser.Equality_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#eq_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEq_expression(MyParser.Eq_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#eq_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEq_expression(MyParser.Eq_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#eql_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEql_expression(MyParser.Eql_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#eql_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEql_expression(MyParser.Eql_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#equal_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqual_expression(MyParser.Equal_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#equal_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqual_expression(MyParser.Equal_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#not_equal_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNot_equal_expression(MyParser.Not_equal_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#not_equal_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNot_equal_expression(MyParser.Not_equal_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#defining_expressions}.
 	 * @param ctx the parse tree

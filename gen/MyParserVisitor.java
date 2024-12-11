@@ -1,4 +1,4 @@
-// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -63,6 +63,36 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquality_expression(MyParser.Equality_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#eq_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEq_expression(MyParser.Eq_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#eql_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEql_expression(MyParser.Eql_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#equal_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqual_expression(MyParser.Equal_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#not_equal_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNot_equal_expression(MyParser.Not_equal_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#defining_expressions}.
 	 * @param ctx the parse tree

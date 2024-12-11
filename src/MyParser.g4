@@ -15,6 +15,7 @@ expression
     | pop_expression
     | condition_expression
     | conses_expression
+    | equality_expression
     ;
 
 
@@ -62,6 +63,48 @@ bitwise_expression
       S_RPARAN
     ;
 
+equality_expression
+    : eq_expression
+    | eql_expression
+    | equal_expression
+    | not_equal_expression;
+
+
+eq_expression:
+    S_LPARAN
+        EQ
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+    S_RPARAN;
+
+eql_expression:
+    S_LPARAN
+        EQL
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+    S_RPARAN;
+
+equal_expression:
+    S_LPARAN
+        KEY_EQUAL
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+    S_RPARAN;
+
+not_equal_expression:
+    S_LPARAN
+        NOT_EQUAL
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+        SINGLE_QUOTE?
+        (ATOM | real_number | list_expression | STRING | T | NIL)
+    S_RPARAN;
 
 // Defining Expressions
 defining_expressions
@@ -143,7 +186,7 @@ aref_expression
     ;
 
 list_expression
-    : S_LPARAN LIST (value | operators_expression)+ S_RPARAN
+    : S_LPARAN LIST? (value | operators_expression)+ S_RPARAN
     ;
 
 push_expression
