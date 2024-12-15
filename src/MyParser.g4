@@ -124,17 +124,16 @@ setq_multi_var
     ;
 
 prog
-    : PROG S_LPARAN ATOM+ S_RPARAN operators_expression*
+    : PROG S_LPARAN ATOM* S_RPARAN expression*
     ;
 
 let
-    : LET S_LPARAN tuple_with_paran+ S_RPARAN operators_expression*
+    : LET S_LPARAN tuple_with_paran+ S_RPARAN expression*
     ;
 
 defconstant
     : DEFCONSTANT tuple_without_paran
     ;
-
 
 // Tuple Rules
 tuple_with_paran
@@ -142,13 +141,12 @@ tuple_with_paran
     ;
 
 tuple_without_paran
-    : ATOM (STRING | real_number | T | NIL | operators_expression | ATOM)
+    : ATOM (STRING | real_number | T | NIL | expression | ATOM)
     ;
 
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
-
 
 // Arrays Expression
 setf_expression
