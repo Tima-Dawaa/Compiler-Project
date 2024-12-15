@@ -111,4 +111,67 @@
 (cdr (cons 1 2))
 (cons 'a (append '(b c) '(d e)))
 
+    ; testing defvar
+        (defvar x 42)
+        (defvar y t)
+        (defvar z nil)
+        (defvar float_number 34.45)
+        (defvar e_number 13e18)
+        (defvar add_number (+ 5 8))
+        (defvar sub_number (- 5.5 8e10))
+        (defvar or_number (or 4 10))
+        (defvar mult_number (* 5 6))
+        (defvar log_num (logand 10 12))
+        (defvar greeting "Hello, World!")
+
+        ; testing setq_single_var
+        (setq my-string "Hello, World!")
+        (setq my-number 42)
+        (setq my-float 3.14)
+        (setq my-boolean t)
+        (setq my-null nil)
+        (setq my-constant 6.626e-34)
+        (setq z (+ 3 12))
+        (setq greet "Hello All")
+        (setq my-variable (+ my-variable 5))
+        (setq my-list (1 2 3 4 5))
+        (setq my-variable (* 2 3))
+
+        ; testing setq_multi_var
+        (setq x 42
+              y 10
+              z 18)
+        (setq greet "hello"
+                  how "good"
+                  end "bye")
+        (setq a 5
+              b 10
+              c (+ a b))
+        (setq first-name "John"
+              last-name "Doe"
+              full-name ("John Doe"))  ; full-name is "John Doe"
+
+        ; testing prog
+
+        ; testing let
+        (let ((x 10)
+              (y 20))
+          (+ x y))
+        (let ((a 3)) (+ a 1))
+        (let ((a 2))
+          (let ((b 3))
+            (+ a b)))
+        (let ((a 1)
+              (b 2)
+              (c 3))
+          (+ a b c))  ; This will return 6
+        (let ((x (+ 1 2))
+              (y (* 3 4)))
+          (* x y))  ; This will return 60
+
+        ; testing defconstant
+        (defconstant +pi+ 3.141592653589793)
+        (defconstant *max-connection-attempts* 5)
+        (defconstant *default-timeout* 30.0)
+        (defconstant *welcome-message* "Welcome to the application!")
 )
