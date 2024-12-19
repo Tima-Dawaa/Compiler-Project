@@ -16,6 +16,7 @@ expression
     | condition_expression
     | conses_expression
     | equality_expression
+    | special_form_expressions
     ;
 
 
@@ -260,4 +261,15 @@ cdr_expression
     : S_LPARAN CDR cons_expression S_RPARAN
     ;
 
+// Special form
+special_form_expressions
+        : quote_expression | single_quote_expression
+        ;
 
+quote_expression
+        : S_LPARAN QUOTE (ATOM | list_expression) S_RPARAN
+        ;
+
+single_quote_expression
+        : SINGLE_QUOTE (ATOM | list_expression)
+        ;

@@ -285,4 +285,22 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCdr_expression(MyParser.Cdr_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#special_form_expressions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSpecial_form_expressions(MyParser.Special_form_expressionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#quote_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQuote_expression(MyParser.Quote_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#single_quote_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx);
 }

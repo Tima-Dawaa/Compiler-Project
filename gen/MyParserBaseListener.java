@@ -563,6 +563,42 @@ public class MyParserBaseListener implements MyParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCdr_expression(MyParser.Cdr_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSpecial_form_expressions(MyParser.Special_form_expressionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSpecial_form_expressions(MyParser.Special_form_expressionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterQuote_expression(MyParser.Quote_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitQuote_expression(MyParser.Quote_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
