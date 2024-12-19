@@ -126,6 +126,9 @@ defining_expressions
     ) S_RPARAN
     ;
 
+
+
+
 defvar
     : DEFVAR tuple_without_paran
     ;
@@ -159,23 +162,45 @@ tuple_without_paran
     : ATOM (HASH SINGLE_QUOTE built_in_functions | STRING | real_number | T | NIL | expression | ATOM)
     ;
 
-defun_expression
-    :DEFUN ATOM parameter_list defun_body;
+
 
 lambda_expression
     : LAMBDA parameter_list defun_body;
 
+
 parameter_list
-:S_LPARAN ( parameter | parameter_marker )* S_RPARAN;
+    : S_LPARAN (parameter | parameter_marker)* S_RPARAN
+    ;
 
- parameter: ATOM;
+parameter
+    : ATOM
+    ;
 
- parameter_marker
- :OPTIONAL parameter*
- | KEY parameter*;
+parameter_marker
+    : optional_parameter
+    | rest_parameter
+    | key_parameter
+    ;
 
- defun_body
-:expression+;
+optional_parameter
+    : OPTIONAL (parameter | S_LPARAN parameter value S_RPARAN)*
+    ;
+
+rest_parameter
+    : REST parameter
+    ;
+
+key_parameter
+    : KEY (parameter | S_LPARAN parameter value S_RPARAN)+
+    ;
+
+defun_expression
+    : DEFUN ATOM parameter_list defun_body
+    ;
+
+defun_body
+    : expression+
+    ;
 
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)

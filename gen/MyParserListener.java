@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -237,16 +237,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyParser#defun_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDefun_expression(MyParser.Defun_expressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#defun_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDefun_expression(MyParser.Defun_expressionContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MyParser#lambda_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -286,6 +276,46 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParameter_marker(MyParser.Parameter_markerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#optional_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterOptional_parameter(MyParser.Optional_parameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#optional_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitOptional_parameter(MyParser.Optional_parameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#rest_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterRest_parameter(MyParser.Rest_parameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#rest_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitRest_parameter(MyParser.Rest_parameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#key_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterKey_parameter(MyParser.Key_parameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#key_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitKey_parameter(MyParser.Key_parameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefun_expression(MyParser.Defun_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#defun_body}.
 	 * @param ctx the parse tree
