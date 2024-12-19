@@ -466,4 +466,34 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCdr_expression(MyParser.Cdr_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#special_form_expressions}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpecial_form_expressions(MyParser.Special_form_expressionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#special_form_expressions}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpecial_form_expressions(MyParser.Special_form_expressionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#quote_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuote_expression(MyParser.Quote_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#quote_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuote_expression(MyParser.Quote_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#single_quote_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSingle_quote_expression(MyParser.Single_quote_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#single_quote_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx);
 }
