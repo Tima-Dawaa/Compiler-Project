@@ -109,7 +109,7 @@ not_equal_expression:
 
 // Defining Expressions
 defining_expressions
-    : S_LPARAN (defvar | let | prog | setq_single_var | setq_multi_var | defconstant) S_RPARAN
+    : S_LPARAN (defvar | let | prog | setq_single_var | setq_multi_var | defconstant|defun_expression) S_RPARAN
     ;
 
 defvar
@@ -144,6 +144,22 @@ tuple_with_paran
 tuple_without_paran
     : ATOM (STRING | real_number | T | NIL | expression | ATOM)
     ;
+
+defun_expression
+:DEFUN ATOM parameter_list? defun_body;
+
+parameter_list
+:S_LPARAN ( parameter |parameter_marker )* S_RPARAN;
+
+ parameter
+:ATOM;
+
+ parameter_marker
+ :OPTIONAL parameter*
+ | KEY parameter*;
+
+ defun_body
+:expression+;
 
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)

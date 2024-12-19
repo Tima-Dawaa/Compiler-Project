@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/antlr-intellij-plugin-v4-1.24-2023/antlr-intellij-plugin-v4/lib/antlr-runtime-3.5.3.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/antlr-intellij-plugin-v4/lib/antlr-runtime-3.5.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,7 +20,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/antlr-intellij-plugin-v4-1.24-2023/antlr-intellij-plugin-v4/lib/antlr4-4.13.2.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/antlr-intellij-plugin-v4/lib/antlr4-4.13.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -29,7 +29,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/antlr-intellij-plugin-v4-1.24-2023/antlr-intellij-plugin-v4/lib/antlr4-intellij-adaptor-0.1.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/antlr-intellij-plugin-v4/lib/antlr4-intellij-adaptor-0.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -38,7 +38,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/antlr-intellij-plugin-v4-1.24-2023/antlr-intellij-plugin-v4/lib/antlr4-runtime-4.13.2.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/antlr-intellij-plugin-v4/lib/antlr4-runtime-4.13.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,4 +1,4 @@
-// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -147,6 +147,36 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#parameter_list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter_list(MyParser.Parameter_listContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#parameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter(MyParser.ParameterContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#parameter_marker}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameter_marker(MyParser.Parameter_markerContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defun_body}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefun_body(MyParser.Defun_bodyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#real_number}.
 	 * @param ctx the parse tree
