@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -246,6 +246,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#lambda_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLambda_expression(MyParser.Lambda_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#lambda_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLambda_expression(MyParser.Lambda_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#parameter_list}.
 	 * @param ctx the parse tree
@@ -546,4 +556,74 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#funcall_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncall_expression(MyParser.Funcall_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#funcall_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncall_expression(MyParser.Funcall_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#apply_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterApply_expression(MyParser.Apply_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#apply_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitApply_expression(MyParser.Apply_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#mapcar_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMapcar_expression(MyParser.Mapcar_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#mapcar_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMapcar_expression(MyParser.Mapcar_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#function_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_name(MyParser.Function_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#function_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_name(MyParser.Function_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#function_call_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call_expression(MyParser.Function_call_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#function_call_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call_expression(MyParser.Function_call_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#function_call_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_call_parameter(MyParser.Function_call_parameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#function_call_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_call_parameter(MyParser.Function_call_parameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void enterBuilt_in_functions(MyParser.Built_in_functionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#built_in_functions}.
+	 * @param ctx the parse tree
+	 */
+	void exitBuilt_in_functions(MyParser.Built_in_functionsContext ctx);
 }

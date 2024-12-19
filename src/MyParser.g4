@@ -17,6 +17,10 @@ expression
     | conses_expression
     | equality_expression
     | special_form_expressions
+    | funcall_expression
+    | apply_expression
+    | mapcar_expression
+    | function_call_expression
     ;
 
 
@@ -109,7 +113,17 @@ not_equal_expression:
 
 // Defining Expressions
 defining_expressions
-    : S_LPARAN (defvar | let | prog | setq_single_var | setq_multi_var | defconstant|defun_expression) S_RPARAN
+    : S_LPARAN
+    (
+    defvar
+    | let
+    | prog
+    | setq_single_var
+    | setq_multi_var
+    | defconstant
+    | defun_expression
+    | lambda_expression
+    ) S_RPARAN
     ;
 
 defvar
@@ -142,17 +156,19 @@ tuple_with_paran
     ;
 
 tuple_without_paran
-    : ATOM (STRING | real_number | T | NIL | expression | ATOM)
+    : ATOM (HASH SINGLE_QUOTE built_in_functions | STRING | real_number | T | NIL | expression | ATOM)
     ;
 
 defun_expression
-:DEFUN ATOM parameter_list? defun_body;
+    :DEFUN ATOM parameter_list defun_body;
+
+lambda_expression
+    : LAMBDA parameter_list defun_body;
 
 parameter_list
-:S_LPARAN ( parameter |parameter_marker )* S_RPARAN;
+:S_LPARAN ( parameter | parameter_marker )* S_RPARAN;
 
- parameter
-:ATOM;
+ parameter: ATOM;
 
  parameter_marker
  :OPTIONAL parameter*
@@ -289,3 +305,41 @@ quote_expression
 single_quote_expression
         : SINGLE_QUOTE (ATOM | list_expression)
         ;
+
+// Funcall, Apply, Mapcar
+
+
+funcall_expression
+    : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN;
+
+apply_expression
+    : S_LPARAN APPLY function_name SINGLE_QUOTE list_expression S_RPARAN;
+
+mapcar_expression
+    : S_LPARAN MAPCAR function_name (SINGLE_QUOTE list_expression | function_call_parameter)+ S_RPARAN;
+
+function_name
+    : (
+    ATOM
+    | HASH SINGLE_QUOTE built_in_functions
+    | function_call_expression
+    | S_LPARAN lambda_expression S_RPARAN
+    );
+
+function_call_expression
+    : S_LPARAN ATOM function_call_parameter* S_RPARAN;
+
+function_call_parameter
+    : STRING
+    | real_number
+    | T
+    | NIL
+    | single_quote_expression
+    | S_LPARAN lambda_expression S_RPARAN
+    | COLON ATOM
+    | ATOM;
+
+
+built_in_functions
+    : ~(STRING | OPTIONAL | KEY | REST | HASH | SINGLE_QUOTE | QUOTE
+    | COMMA | T | NIL | S_LPARAN | S_RPARAN | INT_NUMBER | FLOAT_NUMBER | E_NUMBER);
