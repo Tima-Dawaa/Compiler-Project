@@ -1,88 +1,26 @@
 (
-(defun my-func (a b c)
- (+ a b c))
+(format t "The number is ~d." 42)  ; Outputs: The number is 42.
+(format t "Hello,~%World!")  ; Outputs: Hello, World!
+(format t "Hello, World!")  ; Outputs: Hello, World!
+(format t "Pi is approximately ~f." 3.14159)  ; Outputs: Pi is approximately 3.141590.
+(format t "The result is ~a." (* 3 14))  ; Outputs: The result is 42.
+(format t "Name: ~a, Age: ~d" "Alice" 30)  ; Outputs: Name: Alice, Age: 30
+(format t "Line 1~%Line 2~%Line 3")  ; Outputs:
+                                        ; Line 1
+                                        ; Line 2
+                                        ; Line 3
+(format t "The list is ~s." '(1 2 3))  ; Outputs: The list is (1 2 3).
+(format t "Hello,~TWorld!") ; Outputs: "Hello, World!"
+(format t "~A" 'example) ; Outputs: "example"
+(format t "~S" "example") ; Outputs: "\"example\""
+(format t "~D" 42) ; Outputs: "42"
+(format t "~F" 3.14159) ; Outputs: "3.141590"
+(format t "Line 1~%Line 2") ; Outputs: "Line 1" followed by "Line 2" on a new line.
+(format t "~E" 12345.6789) ; Outputs: "1.234568E+4"
+(format t "Hello,~&World!") ; Outputs: "Hello,World!"
+(format t "~10A" 'example) ; Outputs: "   example"
+(format t "Hello,~^ World!") ; Outputs: "Hello,"
+(format t "~10D" 42) ; Outputs: "        42"
+(format t "The value of ~A is ~D and ~F.~%" 'pi 3 3.14159); Outputs: "The value of pi is 3 and 3.141590."
 
-(defun my-func (a &optional b c)
- (+ a b c))
-
-(defun my-func (a &rest args)
- (apply '+ a args))
-
-(defun my-func (&key x y)
- (+ x y))
-(defparameter *basic-hash-table* (make-hash-table))
-
-(defparameter *sized-hash-table* (make-hash-table :size 100))
-
-(defparameter *eq-hash-table* (make-hash-table :test 'eq))
-
-(defun custom-test-func (x y)
-  (string= (symbol-name x) (symbol-name y)))
-
-(defun custom-hash-func (x)
-  (sxhash (symbol-name x)))
-
-(defparameter *custom-hash-table*
-  (make-hash-table :test #'custom-test-func :hash-function #'custom-hash-func))
-
-(setf (gethash 'key5 *custom-hash-table*) 'value5)
-(setf (gethash 'key4 *custom-hash-table*) 'value4)
-(format t "Key5: ~a~%" (gethash 'key5 *custom-hash-table*))
-
-(multiple-value-bind (value found) (gethash 'key5 *custom-hash-table*)
-  (if found
-      (format t "Key5 found with value: ~a~%" value)
-      (format t "Key5 not found~%")))
-
-(remhash 'key5 *custom-hash-table*)
-
-(maphash (lambda (key value)
-           (format t "Key: ~a, Value: ~a~%" key value))
-         *custom-hash-table*)
-
-(clrhash *custom-hash-table*)
-
-;; Getting All Keys and Values
-(defun hash-table-keys (hash-table)
-  (let ((keys '()))
-    (maphash (lambda (key value)
-               (push key keys))
-             hash-table)
-    keys))
-
-(defun hash-table-values (hash-table)
-  (let ((values '()))
-    (maphash (lambda (key value)
-               (push value values))
-             hash-table)
-    values))
-
-(format t "Keys: ~a~%" (hash-table-keys *sized-hash-table*))
-(format t "Values: ~a~%" (hash-table-values *sized-hash-table*))
-
-;; Create a hash table
-(defparameter *my-hash-table* (make-hash-table))
-
-;; Insert values
-(setf (gethash 'key1 *my-hash-table*) 'value1)
-(setf (gethash "string-key" *my-hash-table*) 'string-value)
-(setf (gethash 42 *my-hash-table*) 'numeric-value)
-
-;; Basic retrieval
-(gethash 'key1 *my-hash-table*) ;; Returns 'value1'
-
-;; Retrieval with default value
-(gethash 'key2 *my-hash-table* 'default-value) ;; Returns 'default-value'
-
-;; Check existence
-(multiple-value-bind (value found) (gethash 'key1 *my-hash-table*)
-  (if found
-      (format t "Key found with value: ~a~%" value)
-      (format t "Key not found~%")))
-
-;; Different key types
-(format t "String key: ~a~%" (gethash "string-key" *my-hash-table*))
-(format t "Numeric key: ~a~%" (gethash 42 *my-hash-table*))
-
-(defstruct person name age)
 )

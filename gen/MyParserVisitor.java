@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -106,6 +106,48 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefvar(MyParser.DefvarContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyParser#defconstant}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefconstant(MyParser.DefconstantContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defstruct_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefstruct_expression(MyParser.Defstruct_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defun_body}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefun_body(MyParser.Defun_bodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#setf_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetf_expression(MyParser.Setf_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#place}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlace(MyParser.PlaceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValue(MyParser.ValueContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyParser#setq_single_var}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -129,24 +171,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLet(MyParser.LetContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#defconstant}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefconstant(MyParser.DefconstantContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#tuple_with_paran}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#tuple_without_paran}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#lambda_expression}.
 	 * @param ctx the parse tree
@@ -189,42 +213,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitKey_parameter(MyParser.Key_parameterContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#defun_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefun_expression(MyParser.Defun_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#defun_body}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefun_body(MyParser.Defun_bodyContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#real_number}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitReal_number(MyParser.Real_numberContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#setf_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSetf_expression(MyParser.Setf_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#place}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPlace(MyParser.PlaceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#value}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitValue(MyParser.ValueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#make_array_expression}.
 	 * @param ctx the parse tree
@@ -399,4 +387,94 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBuilt_in_functions(MyParser.Built_in_functionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#hash_table_expressions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHash_table_expressions(MyParser.Hash_table_expressionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#make_hash_table_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMake_hash_table_expression(MyParser.Make_hash_table_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#key_argument}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKey_argument(MyParser.Key_argumentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#size_function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSize_function(MyParser.Size_functionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#test_function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTest_function(MyParser.Test_functionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#hash_function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHash_function(MyParser.Hash_functionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#gethash_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGethash_expression(MyParser.Gethash_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#remhash_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRemhash_expression(MyParser.Remhash_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#clrhash_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClrhash_expression(MyParser.Clrhash_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#maphash_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMaphash_expression(MyParser.Maphash_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#key}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKey(MyParser.KeyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#tuple_with_paran}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#tuple_without_paran}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#real_number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFormat_expression(MyParser.Format_expressionContext ctx);
 }

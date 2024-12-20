@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -167,6 +167,76 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitDefvar(MyParser.DefvarContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyParser#defconstant}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefconstant(MyParser.DefconstantContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defconstant}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefconstant(MyParser.DefconstantContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defstruct_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefstruct_expression(MyParser.Defstruct_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defstruct_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefstruct_expression(MyParser.Defstruct_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defun_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefun_expression(MyParser.Defun_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defun_body}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefun_body(MyParser.Defun_bodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defun_body}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefun_body(MyParser.Defun_bodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#setf_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetf_expression(MyParser.Setf_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#setf_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetf_expression(MyParser.Setf_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#place}.
+	 * @param ctx the parse tree
+	 */
+	void enterPlace(MyParser.PlaceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#place}.
+	 * @param ctx the parse tree
+	 */
+	void exitPlace(MyParser.PlaceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(MyParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(MyParser.ValueContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyParser#setq_single_var}.
 	 * @param ctx the parse tree
 	 */
@@ -206,36 +276,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLet(MyParser.LetContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#defconstant}.
-	 * @param ctx the parse tree
-	 */
-	void enterDefconstant(MyParser.DefconstantContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#defconstant}.
-	 * @param ctx the parse tree
-	 */
-	void exitDefconstant(MyParser.DefconstantContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#tuple_with_paran}.
-	 * @param ctx the parse tree
-	 */
-	void enterTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#tuple_with_paran}.
-	 * @param ctx the parse tree
-	 */
-	void exitTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#tuple_without_paran}.
-	 * @param ctx the parse tree
-	 */
-	void enterTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#tuple_without_paran}.
-	 * @param ctx the parse tree
-	 */
-	void exitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#lambda_expression}.
 	 * @param ctx the parse tree
@@ -306,66 +346,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitKey_parameter(MyParser.Key_parameterContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#defun_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterDefun_expression(MyParser.Defun_expressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#defun_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitDefun_expression(MyParser.Defun_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#defun_body}.
-	 * @param ctx the parse tree
-	 */
-	void enterDefun_body(MyParser.Defun_bodyContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#defun_body}.
-	 * @param ctx the parse tree
-	 */
-	void exitDefun_body(MyParser.Defun_bodyContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#real_number}.
-	 * @param ctx the parse tree
-	 */
-	void enterReal_number(MyParser.Real_numberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#real_number}.
-	 * @param ctx the parse tree
-	 */
-	void exitReal_number(MyParser.Real_numberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#setf_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSetf_expression(MyParser.Setf_expressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#setf_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSetf_expression(MyParser.Setf_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#place}.
-	 * @param ctx the parse tree
-	 */
-	void enterPlace(MyParser.PlaceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#place}.
-	 * @param ctx the parse tree
-	 */
-	void exitPlace(MyParser.PlaceContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void enterValue(MyParser.ValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#value}.
-	 * @param ctx the parse tree
-	 */
-	void exitValue(MyParser.ValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#make_array_expression}.
 	 * @param ctx the parse tree
@@ -656,4 +636,154 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBuilt_in_functions(MyParser.Built_in_functionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#hash_table_expressions}.
+	 * @param ctx the parse tree
+	 */
+	void enterHash_table_expressions(MyParser.Hash_table_expressionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#hash_table_expressions}.
+	 * @param ctx the parse tree
+	 */
+	void exitHash_table_expressions(MyParser.Hash_table_expressionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#make_hash_table_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMake_hash_table_expression(MyParser.Make_hash_table_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#make_hash_table_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMake_hash_table_expression(MyParser.Make_hash_table_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#key_argument}.
+	 * @param ctx the parse tree
+	 */
+	void enterKey_argument(MyParser.Key_argumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#key_argument}.
+	 * @param ctx the parse tree
+	 */
+	void exitKey_argument(MyParser.Key_argumentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#size_function}.
+	 * @param ctx the parse tree
+	 */
+	void enterSize_function(MyParser.Size_functionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#size_function}.
+	 * @param ctx the parse tree
+	 */
+	void exitSize_function(MyParser.Size_functionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#test_function}.
+	 * @param ctx the parse tree
+	 */
+	void enterTest_function(MyParser.Test_functionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#test_function}.
+	 * @param ctx the parse tree
+	 */
+	void exitTest_function(MyParser.Test_functionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#hash_function}.
+	 * @param ctx the parse tree
+	 */
+	void enterHash_function(MyParser.Hash_functionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#hash_function}.
+	 * @param ctx the parse tree
+	 */
+	void exitHash_function(MyParser.Hash_functionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#gethash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGethash_expression(MyParser.Gethash_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#gethash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGethash_expression(MyParser.Gethash_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#remhash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterRemhash_expression(MyParser.Remhash_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#remhash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitRemhash_expression(MyParser.Remhash_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#clrhash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterClrhash_expression(MyParser.Clrhash_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#clrhash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitClrhash_expression(MyParser.Clrhash_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#maphash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMaphash_expression(MyParser.Maphash_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#maphash_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMaphash_expression(MyParser.Maphash_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#key}.
+	 * @param ctx the parse tree
+	 */
+	void enterKey(MyParser.KeyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#key}.
+	 * @param ctx the parse tree
+	 */
+	void exitKey(MyParser.KeyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#tuple_with_paran}.
+	 * @param ctx the parse tree
+	 */
+	void enterTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#tuple_with_paran}.
+	 * @param ctx the parse tree
+	 */
+	void exitTuple_with_paran(MyParser.Tuple_with_paranContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#tuple_without_paran}.
+	 * @param ctx the parse tree
+	 */
+	void enterTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#tuple_without_paran}.
+	 * @param ctx the parse tree
+	 */
+	void exitTuple_without_paran(MyParser.Tuple_without_paranContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#real_number}.
+	 * @param ctx the parse tree
+	 */
+	void enterReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#real_number}.
+	 * @param ctx the parse tree
+	 */
+	void exitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormat_expression(MyParser.Format_expressionContext ctx);
 }

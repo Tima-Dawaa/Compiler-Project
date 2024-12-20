@@ -146,12 +146,14 @@ LEXER_ERROR: . -> channel(HIDDEN);
 
 // Format
 FORMAT: 'format' -> pushMode(FORMAT_MODE);
+
 mode FORMAT_MODE;
 FORMAT_DESTINATION: (T | NIL);
 FORMAT_STRING_BEGIN: '"' -> pushMode(FORMAT_STRING_MODE);
 FORMAT_WS: WS -> skip;
+
 mode FORMAT_STRING_MODE;
-FORMAT_OPTION: '~'[asdfe%&n];
+FORMAT_OPTION: '~'[0-9]*[aAsSdDfFeE%&nNtT^];
 FORMAT_STRING: (ESCAPE | ~["\\~])+;
 FORMAT_STRING_END: '"' -> popMode, popMode;
 FORMAT_STRING_WS: WS -> skip;

@@ -24,6 +24,7 @@ expression
     | mapcar_expression
     | function_call_expression
     | hash_table_expressions
+    | format_expression
     ;
 
 
@@ -171,6 +172,7 @@ value
     | operators_expression
     | real_number
     | list_expression
+    | single_quote_expression
     ;
 
 setq_single_var
@@ -422,3 +424,10 @@ tuple_without_paran
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
+
+// Format expression
+format_expression
+        : S_LPARAN
+            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
+          S_RPARAN
+        ;
