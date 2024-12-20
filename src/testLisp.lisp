@@ -151,8 +151,6 @@
               last-name "Doe"
               full-name ("John Doe"))  ; full-name is "John Doe"
 
-        ; testing prog
-
         ; testing let
         (let ((x 10)
               (y 20))

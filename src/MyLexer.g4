@@ -1,145 +1,155 @@
 lexer grammar MyLexer;
 
-OPTIONAL   : '&optional';
-REST       : '&rest';
-OTHERWISE  : 'otherwise';
-BLOCK      : 'block';
-ERROR	   : 'error';
-MAPCAR     : 'mapcar';
-HASH       : '#';
-EQL        : 'eql';
-DEFPARAMETER: 'defparameter';
-//
-RETURN: 'return';
-RETURN_FROM: 'return_from';
-FUNCALL: 'funcall';
-KEY_EQUAL: 'equal';
-NOT_EQUAL: 'not-equal';
-PROGN: 'progn';
-KEY: '&key';
+// Basics
+STRING: '"' (ESCAPE | ~["\\] )* '"';
+ATOM: (ALPHA | DIGIT | SYMBOL)+;
+WS: [ \t\r\n]+ -> skip;
+SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
+MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
 
-//
-CAR: 'car';
-CDR: 'cdr';
-SETF: 'setf';
-INCF: 'incf';
-DECF: 'decf';
+// Numbers
+NORMAL_NUMBER : POSITIVE;
+INT_NUMBER: NUMBER;
+E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
+FLOAT_NUMBER: NUMBER'.'[0-9]+;
+Complex: '#c';
+//'(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
+
+// Defining
+DEFUN   : 'defun';
+DEFVAR  : 'defvar';
+DEFCONSTANT: 'defconstant';
+DEFSTRUCT : 'defstruct';
 DEFMACRO: 'defmacro';
-MAKE_HASH_TABLE: 'make-hash-table';
-GETHASH:'gethash';
+DEFPARAMETER: 'defparameter';
+SETQ    : 'setq';
+SETF: 'setf';
+LET     : 'let';
 
-//
-EXP     : 'exp';
-EXPT    : 'expt';
-CONS    : 'cons';
-PUSH    : 'push';
-POP     : 'pop';
-AREF    : 'aref';
-APPLY   : 'apply';
-UNLESS  : 'unless';
-
-//
-SORT: 'sort';
-FUNCTION: 'function';
-QUOTE: 'quote';
-COLON: ':';
-EQ: 'eq';
-DOLIST: 'dolist';
-MAKE_ARRAY: 'make-array';
-FORMAT: 'format' -> pushMode(FORMAT_MODE);
-//Keywords and operators
-DO                    : 'do';
-DOTimes               : 'dotimes';
+// Symbols
+S_LPARAN: '(';
+S_RPARAN: ')';
+SINGLE_QUOTE: ['];
+COMMA : [,];
 EQUAL                 : '=';
 NOTEQUAL              : '/=';
 GREATER_THAN          : '>';
 LESS_THAN             : '<';
 GREATER_THAN_OR_EQUAL : '>=';
 LESS_THAN_OR_EQUAL    : '<=';
-MAX                   : 'max';
-MIN                   : 'min';
-
 ADD: '+';
 SUBTRACT: '-';
 MULTIPLY: '*';
 DIVIDE: '/';
+HASH       : '#';
+COLON: ':';
 
+// Conditions
 IF      : 'if';
 WHEN    : 'when';
 COND    : 'cond';
+OTHERWISE  : 'otherwise';
+PROGN: 'progn';
+UNLESS  : 'unless';
+
+// Logical
 AND     : 'and';
 OR      : 'or';
 NOT     : 'not';
 T       : 't';
 NIL     : 'nil';
 
-DEFUN   : 'defun';
-DEFVAR  : 'defvar';
-SETQ    : 'setq';
-LET     : 'let';
-LOOP    : 'loop';
-PROG    : 'prog';
-FOR     : 'for';
-DEFCONSTANT: 'defconstant';
-LAMBDA  : 'lambda';
-LIST:'list';
-
-//keyword gor for loop work
-FROM    : 'from';
-TO      : 'to';
+// Loops
+FROM : 'from';
+TO : 'to';
 COLLECT : 'collect';
+DO : 'do';
+DOTimes : 'dotimes';
+DOLIST : 'dolist';
+LOOP  : 'loop';
+PROG : 'prog';
+FOR : 'for';
 
-S_LPARAN: '(';
-S_RPARAN: ')';
-SINGLE_QUOTE: ['];
-COMMA : [,];
+// Keywords
+BLOCK : 'block';
+ERROR : 'error';
+EXP : 'exp';
+EXPT  : 'expt';
+MAX : 'max';
+MIN  : 'min';
+MOD : 'mod';
+REM : 'rem';
+QUOTE: 'quote';
 
-MOD: 'mod';
-REM: 'rem';
+// Equality
+EQ : 'eq';
+EQL : 'eql';
+KEY_EQUAL : 'equal';
+NOT_EQUAL : 'not-equal';
 
+// Arrays
+MAKE_ARRAY: 'make-array';
+AREF    : 'aref';
+LIST:'list';
+PUSH    : 'push';
+POP     : 'pop';
+SORT: 'sort';
+INCF: 'incf';
+DECF: 'decf';
 
+// Hash Table
+MAKE_HASH_TABLE: 'make-hash-table';
+HASH_FUNCTION : 'hash-function';
+TEST : 'test';
+SIZE : 'size';
+GETHASH:'gethash';
+MAPHASH : 'maphash';
+REMHASH : 'remhash';
+CLRHASH : 'clrhash';
+
+// Gates
 LOGNOR: 'lognor';
 LOGXOR: 'logxor';
 LOGAND: 'logand';
 LOGEQV: 'logeqv';
 LOGIOR: 'logior';
 
-//Number
-INT_NUMBER: NUMBER;
-E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
-FLOAT_NUMBER: NUMBER'.'[0-9]+;
+// Args
+OPTIONAL   : '&optional';
+REST       : '&rest';
+KEY: '&key';
 
-//Complex: '#c' '(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
-Complex: '#c';
+// Functions
+FUNCTION: 'function';
+RETURN: 'return';
+RETURN_FROM: 'return_from';
+LAMBDA  : 'lambda';
+MAPCAR     : 'mapcar';
+APPLY   : 'apply';
+FUNCALL: 'funcall';
 
-//Comments
-SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
-MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
+// Conses
+CONS    : 'cons';
+CAR: 'car';
+CDR: 'cdr';
 
-//Identifiers
-//String literals
-STRING: '"' (ESCAPE | ~["\\] )* '"';
-
-ATOM: (ALPHA | DIGIT | SYMBOL)+;
-//WhiteSpace
-WS: [ \t\r\n]+ -> skip;
-
-//Fragment
+// Fragment
 fragment NUMBER: [-+]?[0-9]+;
 fragment DIGIT: [0-9];
+fragment POSITIVE : [1-9];
 fragment ALPHA: [a-zA-Z];
-fragment SYMBOL: [!#$%&*+/=?^_`{|}~.-];
+fragment SYMBOL: [!#$%&*+/=?^_`'{|}~.-];
 fragment ESCAPE: '\\' [bfnrt"'\\];
 
-//Identifiers
-
+// Error
 LEXER_ERROR: . -> channel(HIDDEN);
 
+// Format
+FORMAT: 'format' -> pushMode(FORMAT_MODE);
 mode FORMAT_MODE;
 FORMAT_DESTINATION: (T | NIL);
 FORMAT_STRING_BEGIN: '"' -> pushMode(FORMAT_STRING_MODE);
 FORMAT_WS: WS -> skip;
-
 mode FORMAT_STRING_MODE;
 FORMAT_OPTION: '~'[asdfe%&n];
 FORMAT_STRING: (ESCAPE | ~["\\~])+;
