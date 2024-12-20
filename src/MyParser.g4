@@ -1,12 +1,14 @@
 parser grammar MyParser;
-
 options { tokenVocab=MyLexer; }
 
+
+// Code
 program
     : S_LPARAN expression+ S_RPARAN <EOF>
     ;
 
-// Expressions
+
+// All Expressions
 expression
     : operators_expression
     | defining_expressions
@@ -21,6 +23,7 @@ expression
     | apply_expression
     | mapcar_expression
     | function_call_expression
+    | hash_table_expressions
     ;
 
 
@@ -68,12 +71,13 @@ bitwise_expression
       S_RPARAN
     ;
 
+
+// Comparing Expressions
 equality_expression
     : eq_expression
     | eql_expression
     | equal_expression
     | not_equal_expression;
-
 
 eq_expression:
     S_LPARAN
@@ -111,6 +115,7 @@ not_equal_expression:
         (ATOM | real_number | list_expression | STRING | T | NIL)
     S_RPARAN;
 
+
 // Defining Expressions
 defining_expressions
     : S_LPARAN
@@ -123,14 +128,49 @@ defining_expressions
     | defconstant
     | defun_expression
     | lambda_expression
+    | defstruct_expression
     ) S_RPARAN
     ;
 
-
-
-
 defvar
     : DEFVAR tuple_without_paran
+    ;
+
+defconstant
+    : DEFCONSTANT tuple_without_paran
+    ;
+
+defstruct_expression
+    : DEFSTRUCT ATOM+ S_RPARAN ;
+
+defun_expression
+    : DEFUN ATOM parameter_list defun_body
+    ;
+
+defun_body
+    : expression+
+    ;
+
+setf_expression
+    :S_LPARAN SETF place value S_RPARAN
+    ;
+
+place
+    : ATOM
+    | S_LPARAN CAR ATOM S_RPARAN
+    | S_LPARAN CDR ATOM S_RPARAN
+    | aref_expression
+    | gethash_expression
+    ;
+
+value
+    : STRING
+    | ATOM
+    | T
+    | NIL
+    | operators_expression
+    | real_number
+    | list_expression
     ;
 
 setq_single_var
@@ -149,24 +189,10 @@ let
     : LET S_LPARAN tuple_with_paran+ S_RPARAN expression*
     ;
 
-defconstant
-    : DEFCONSTANT tuple_without_paran
-    ;
 
-// Tuple Rules
-tuple_with_paran
-    : S_LPARAN tuple_without_paran S_RPARAN
-    ;
-
-tuple_without_paran
-    : ATOM (HASH SINGLE_QUOTE built_in_functions | STRING | real_number | T | NIL | expression | ATOM)
-    ;
-
-
-
+// Functions Expressions
 lambda_expression
-    : LAMBDA parameter_list defun_body;
-
+    : LAMBDA parameter_list defun_body ;
 
 parameter_list
     : S_LPARAN (parameter | parameter_marker)* S_RPARAN
@@ -194,41 +220,8 @@ key_parameter
     : KEY (parameter | S_LPARAN parameter value S_RPARAN)+
     ;
 
-defun_expression
-    : DEFUN ATOM parameter_list defun_body
-    ;
-
-defun_body
-    : expression+
-    ;
-
-real_number
-    : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
-    ;
 
 // Arrays Expression
-setf_expression
-    :S_LPARAN SETF place value S_RPARAN
-    ;
-
-place
-    : ATOM
-    | S_LPARAN CAR ATOM S_RPARAN
-    | S_LPARAN CDR ATOM S_RPARAN
-    | S_LPARAN AREF ATOM (real_number | ATOM)+ S_RPARAN
-    | S_LPARAN GETHASH ATOM ATOM S_RPARAN
-    ;
-
-value
-    : STRING
-    | real_number
-    | T
-    | NIL
-    | operators_expression
-    | ATOM
-    | list_expression
-    ;
-
 make_array_expression
     : S_LPARAN MAKE_ARRAY (index_list | S_LPARAN index_list S_RPARAN) S_RPARAN
     ;
@@ -318,7 +311,8 @@ cdr_expression
     : S_LPARAN CDR cons_expression S_RPARAN
     ;
 
-// Special form
+
+// Special form Expressions
 special_form_expressions
         : quote_expression | single_quote_expression
         ;
@@ -331,9 +325,8 @@ single_quote_expression
         : SINGLE_QUOTE (ATOM | list_expression)
         ;
 
-// Funcall, Apply, Mapcar
 
-
+// Funcall, Apply, Mapcar Expressions
 funcall_expression
     : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN;
 
@@ -356,15 +349,76 @@ function_call_expression
 
 function_call_parameter
     : STRING
-    | real_number
+    | COLON ATOM
+    | ATOM
     | T
     | NIL
     | single_quote_expression
     | S_LPARAN lambda_expression S_RPARAN
-    | COLON ATOM
-    | ATOM;
-
+    | real_number
+    ;
 
 built_in_functions
     : ~(STRING | OPTIONAL | KEY | REST | HASH | SINGLE_QUOTE | QUOTE
     | COMMA | T | NIL | S_LPARAN | S_RPARAN | INT_NUMBER | FLOAT_NUMBER | E_NUMBER);
+
+
+// Hash Table Experssions
+hash_table_expressions
+    : make_hash_table_expression
+    | gethash_expression
+    | remhash_expression
+    | clrhash_expression
+    | maphash_expression
+    ;
+
+make_hash_table_expression
+    : S_LPARAN MAKE_HASH_TABLE key_argument? size_function? test_function? hash_function? S_RPARAN
+    ;
+
+key_argument
+     : KEY key value ;
+
+size_function
+     : COLON SIZE NORMAL_NUMBER+ ;
+
+test_function
+    : COLON TEST (SINGLE_QUOTE EQ | SINGLE_QUOTE EQL | SINGLE_QUOTE EQUAL | S_LPARAN lambda_expression S_RPARAN)
+    ;
+
+hash_function
+    : COLON HASH_FUNCTION S_LPARAN lambda_expression S_RPARAN
+    ;
+
+gethash_expression
+    : S_LPARAN GETHASH key ATOM S_RPARAN
+    ;
+
+remhash_expression
+    : S_LPARAN REMHASH key ATOM S_RPARAN
+    ;
+
+clrhash_expression
+    : S_LPARAN CLRHASH ATOM S_RPARAN
+    ;
+
+maphash_expression
+    : S_LPARAN MAPHASH S_LPARAN lambda_expression S_RPARAN ATOM S_RPARAN
+    ;
+
+key
+    : ATOM | STRING | real_number | operators_expression ;
+
+
+// Helpers
+tuple_with_paran
+    : S_LPARAN tuple_without_paran S_RPARAN
+    ;
+
+tuple_without_paran
+    : ATOM (HASH SINGLE_QUOTE built_in_functions | STRING | real_number | T | NIL | expression | ATOM)
+    ;
+
+real_number
+    : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
+    ;
