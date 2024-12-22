@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyLexer.g4 by ANTLR 4.13.1
+// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyLexer.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

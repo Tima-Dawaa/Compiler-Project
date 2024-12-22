@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -129,6 +129,12 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDefun_body(MyParser.Defun_bodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defparameter_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefparameter_expression(MyParser.Defparameter_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#setf_expression}.
 	 * @param ctx the parse tree
@@ -454,6 +460,12 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitKey(MyParser.KeyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyParser#tuple_with_paran}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -471,16 +483,4 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReal_number(MyParser.Real_numberContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#format_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFormat_expression(MyParser.Format_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#defparameter_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefparameter_expression(MyParser.Defparameter_expressionContext ctx);
 }

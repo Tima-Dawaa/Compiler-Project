@@ -12,7 +12,6 @@ program
 expression
     : operators_expression
     | defining_expressions
-    | setf_expression
     | push_expression
     | pop_expression
     | condition_expression
@@ -25,7 +24,6 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
-    | defparameter_expression
     ;
 
 
@@ -127,10 +125,12 @@ defining_expressions
     | prog
     | setq_single_var
     | setq_multi_var
+    | setf_expression
     | defconstant
     | defun_expression
     | lambda_expression
     | defstruct_expression
+    | defparameter_expression
     ) S_RPARAN
     ;
 
@@ -152,6 +152,9 @@ defun_expression
 defun_body
     : expression+
     ;
+
+defparameter_expression
+    : S_LPARAN DEFPARAMETER ATOM (expression | .) STRING? S_RPARAN;
 
 setf_expression
     :S_LPARAN SETF place value S_RPARAN
@@ -264,10 +267,12 @@ condition_clause
     : comparison_expression
     | logical_expression
     | bitwise_expression
+    | STRING
+    | ATOM
     ;
 
 if_expression
-    : S_LPARAN IF condition_clause expression expression? S_RPARAN
+    : S_LPARAN IF condition_clause (ATOM | expression) (ATOM | expression)? S_RPARAN
     ;
 
 when_expression
@@ -376,14 +381,13 @@ hash_table_expressions
     ;
 
 make_hash_table_expression
-    : S_LPARAN MAKE_HASH_TABLE key_argument? size_function? test_function? hash_function? S_RPARAN
-    ;
+    : S_LPARAN MAKE_HASH_TABLE (key_argument | size_function | test_function | hash_function)* S_RPARAN ;
 
 key_argument
-     : KEY key value ;
+    : KEY key value ;
 
 size_function
-     : COLON SIZE NORMAL_NUMBER+ ;
+    : COLON SIZE real_number ;
 
 test_function
     : COLON TEST (SINGLE_QUOTE EQ | SINGLE_QUOTE EQL | SINGLE_QUOTE EQUAL | S_LPARAN lambda_expression S_RPARAN)
@@ -413,6 +417,14 @@ key
     : ATOM | STRING | real_number | operators_expression ;
 
 
+// Format expression
+format_expression
+        : S_LPARAN
+            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
+          S_RPARAN
+        ;
+
+
 // Helpers
 tuple_with_paran
     : S_LPARAN tuple_without_paran S_RPARAN
@@ -426,15 +438,3 @@ real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
 
-// Format expression
-format_expression
-        : S_LPARAN
-            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
-          S_RPARAN
-        ;
-
-defparameter_expression
-        : S_LPARAN
-            DEFPARAMETER
-            ATOM (expression | .) STRING?
-          S_RPARAN;
