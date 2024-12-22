@@ -1,4 +1,4 @@
-// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -477,4 +477,10 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defparameter_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefparameter_expression(MyParser.Defparameter_expressionContext ctx);
 }

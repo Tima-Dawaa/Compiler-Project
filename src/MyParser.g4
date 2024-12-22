@@ -25,6 +25,7 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
+    | defparameter_expression
     ;
 
 
@@ -324,7 +325,7 @@ quote_expression
         ;
 
 single_quote_expression
-        : SINGLE_QUOTE (ATOM | list_expression)
+        : SINGLE_QUOTE (ATOM | list_expression |  S_LPARAN lambda_expression S_RPARAN)
         ;
 
 
@@ -431,3 +432,9 @@ format_expression
             FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
           S_RPARAN
         ;
+
+defparameter_expression
+        : S_LPARAN
+            DEFPARAMETER
+            ATOM (expression | .) STRING?
+          S_RPARAN;
