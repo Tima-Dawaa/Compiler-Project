@@ -24,6 +24,7 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
+    | defclass_expression
     ;
 
 
@@ -423,6 +424,29 @@ format_expression
             FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
           S_RPARAN
         ;
+
+
+// Class Expression
+defclass_expression
+    : S_LPARAN DEFCLASS class_name parameters* S_RPARAN ;
+
+class_name
+    : ATOM S_LPARAN ATOM* S_RPARAN ;
+
+parameters
+    : S_LPARAN parameters_options+ S_RPARAN ;
+
+parameters_options
+    : S_LPARAN ATOM initarg_expression? initform_expression? accessor_expression? S_RPARAN
+    ;
+initform_expression
+    : COLON INITFORM (STRING|real_number) ;
+
+initarg_expression
+    : COLON INITARG COLON ATOM ;
+
+accessor_expression
+    : COLON ACCESSOR ATOM ;
 
 
 // Helpers
