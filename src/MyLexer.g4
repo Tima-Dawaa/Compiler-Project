@@ -21,6 +21,7 @@ DEFVAR  : 'defvar';
 DEFCONSTANT: 'defconstant';
 DEFSTRUCT : 'defstruct';
 DEFMACRO: 'defmacro';
+DEFCLASS : 'defclass';
 DEFPARAMETER: 'defparameter';
 SETQ    : 'setq';
 SETF: 'setf';
@@ -80,6 +81,9 @@ MIN  : 'min';
 MOD : 'mod';
 REM : 'rem';
 QUOTE: 'quote';
+INITARG : 'initarg';
+INITFORM : 'initform' ;
+ACCESSOR : 'accessor' ;
 
 // Equality
 EQ : 'eq';
