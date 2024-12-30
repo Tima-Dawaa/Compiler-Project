@@ -1,4 +1,4 @@
-// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -465,6 +465,48 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defclass_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefclass_expression(MyParser.Defclass_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#class_name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#parameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameters(MyParser.ParametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#parameters_options}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameters_options(MyParser.Parameters_optionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#initform_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitform_expression(MyParser.Initform_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#initarg_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitarg_expression(MyParser.Initarg_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#accessor_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAccessor_expression(MyParser.Accessor_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#tuple_with_paran}.
 	 * @param ctx the parse tree

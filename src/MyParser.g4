@@ -25,6 +25,7 @@ expression
     | hash_table_expressions
     | format_expression
     | defclass_expression
+    | make_instance_expression
     ;
 
 
@@ -461,4 +462,14 @@ tuple_without_paran
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
+
+
+make_instance_expression
+     : S_LPARAN MAKE_INSTANCE ATOM (initialization_argument)* S_RPARAN
+     ;
+
+
+ initialization_argument
+     : COLON ATOM value
+     ;
 
