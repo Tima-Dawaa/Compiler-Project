@@ -100,6 +100,7 @@ POP     : 'pop';
 SORT: 'sort';
 INCF: 'incf';
 DECF: 'decf';
+MAKE_INSTANCE : 'make-instance';
 
 // Hash Table
 MAKE_HASH_TABLE: 'make-hash-table';

@@ -1,4 +1,4 @@
-// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -766,6 +766,76 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defclass_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefclass_expression(MyParser.Defclass_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defclass_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefclass_expression(MyParser.Defclass_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters(MyParser.ParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters(MyParser.ParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#parameters_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters_options(MyParser.Parameters_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#parameters_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters_options(MyParser.Parameters_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initform_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitform_expression(MyParser.Initform_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initform_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitform_expression(MyParser.Initform_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initarg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitarg_expression(MyParser.Initarg_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initarg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitarg_expression(MyParser.Initarg_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#accessor_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAccessor_expression(MyParser.Accessor_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#accessor_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAccessor_expression(MyParser.Accessor_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#tuple_with_paran}.
 	 * @param ctx the parse tree
