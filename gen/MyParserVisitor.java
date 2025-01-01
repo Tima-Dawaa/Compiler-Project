@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -525,4 +525,16 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#make_instance_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMake_instance_expression(MyParser.Make_instance_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#initialization_argument}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitialization_argument(MyParser.Initialization_argumentContext ctx);
 }

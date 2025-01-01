@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -866,4 +866,24 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#make_instance_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMake_instance_expression(MyParser.Make_instance_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#make_instance_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMake_instance_expression(MyParser.Make_instance_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initialization_argument}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitialization_argument(MyParser.Initialization_argumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initialization_argument}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitialization_argument(MyParser.Initialization_argumentContext ctx);
 }

@@ -1,20 +1,5 @@
 lexer grammar MyLexer;
 
-// Basics
-STRING: '"' (ESCAPE | ~["\\] )* '"';
-ATOM: (ALPHA | DIGIT | SYMBOL)+;
-WS: [ \t\r\n]+ -> skip;
-SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
-MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
-
-// Numbers
-NORMAL_NUMBER : POSITIVE;
-INT_NUMBER: NUMBER;
-E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
-FLOAT_NUMBER: NUMBER'.'[0-9]+;
-Complex: '#c';
-//'(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
-
 // Defining
 DEFUN   : 'defun';
 DEFVAR  : 'defvar';
@@ -162,3 +147,18 @@ FORMAT_OPTION: '~'[0-9]*[aAsSdDfFeE%&nNtT^];
 FORMAT_STRING: (ESCAPE | ~["\\~])+;
 FORMAT_STRING_END: '"' -> popMode, popMode;
 FORMAT_STRING_WS: WS -> skip;
+
+// Basics
+STRING: '"' (ESCAPE | ~["\\] )* '"';
+ATOM: (ALPHA | DIGIT | SYMBOL)+;
+WS: [ \t\r\n]+ -> skip;
+SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
+MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
+
+// Numbers
+NORMAL_NUMBER : POSITIVE;
+INT_NUMBER: NUMBER;
+E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
+FLOAT_NUMBER: NUMBER'.'[0-9]+;
+Complex: '#c';
+//'(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
