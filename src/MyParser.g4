@@ -1,6 +1,6 @@
 parser grammar MyParser;
-options { tokenVocab=MyLexer; }
 
+options { tokenVocab=MyLexer; }
 
 // Code
 program
