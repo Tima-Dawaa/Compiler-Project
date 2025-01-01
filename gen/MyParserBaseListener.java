@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -1043,6 +1043,30 @@ public class MyParserBaseListener implements MyParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReal_number(MyParser.Real_numberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMake_instance_expression(MyParser.Make_instance_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMake_instance_expression(MyParser.Make_instance_expressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInitialization_argument(MyParser.Initialization_argumentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInitialization_argument(MyParser.Initialization_argumentContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
