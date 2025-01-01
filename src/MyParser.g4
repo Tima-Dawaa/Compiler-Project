@@ -432,13 +432,13 @@ defclass_expression
     : S_LPARAN DEFCLASS class_name parameters* S_RPARAN ;
 
 class_name
-    : ATOM S_LPARAN ATOM* S_RPARAN ;
+    : ATOM S_LPARAN (ATOM)* S_RPARAN ;
 
 parameters
     : S_LPARAN parameters_options+ S_RPARAN ;
 
 parameters_options
-    : S_LPARAN ATOM initarg_expression? initform_expression? accessor_expression? S_RPARAN
+    : S_LPARAN ATOM (initarg_expression)? (initform_expression)? (accessor_expression)? S_RPARAN
     ;
 initform_expression
     : COLON INITFORM (STRING|real_number) ;
@@ -448,6 +448,16 @@ initarg_expression
 
 accessor_expression
     : COLON ACCESSOR ATOM ;
+
+
+// Make-Instance Expression
+make_instance_expression
+     : S_LPARAN MAKE_INSTANCE ATOM (initialization_argument)* S_RPARAN
+     ;
+
+ initialization_argument
+     : COLON ATOM value
+     ;
 
 
 // Helpers
@@ -462,14 +472,3 @@ tuple_without_paran
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
-
-
-make_instance_expression
-     : S_LPARAN MAKE_INSTANCE ATOM (initialization_argument)* S_RPARAN
-     ;
-
-
- initialization_argument
-     : COLON ATOM value
-     ;
-
