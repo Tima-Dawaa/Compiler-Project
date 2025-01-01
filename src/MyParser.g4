@@ -434,6 +434,18 @@ defclass_expression
 class_name
     : ATOM S_LPARAN (ATOM)* S_RPARAN ;
 
+defmethod_expression
+    : S_LPARAN
+      DEFMETHOD ATOM
+      defmethod_parameters+
+      S_LPARAN expression S_RPARAN
+      S_RPARAN;
+
+defmethod_parameters
+    : S_LPARAN
+      (ATOM ATOM | )
+      S_RPARAN;
+
 parameters
     : S_LPARAN parameters_options+ S_RPARAN ;
 

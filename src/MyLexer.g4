@@ -8,6 +8,7 @@ DEFSTRUCT : 'defstruct';
 DEFMACRO: 'defmacro';
 DEFCLASS : 'defclass';
 DEFPARAMETER: 'defparameter';
+DEFMETHOD: 'defmethod';
 SETQ    : 'setq';
 SETF: 'setf';
 LET     : 'let';

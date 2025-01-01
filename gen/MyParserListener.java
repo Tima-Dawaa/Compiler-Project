@@ -1,4 +1,4 @@
-// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/khalid/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -786,6 +786,26 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defmethod_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defmethod_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defmethod_parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defmethod_parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#parameters}.
 	 * @param ctx the parse tree
