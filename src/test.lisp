@@ -1,29 +1,35 @@
 (
-    (defun even(num) (= (mod num 2) 0))
-    (filter '(6 4 3 5 2) #'even)
-    (6 4 2)
+(defparameter *my_hash_table* (make-hash-table))
+(setf (gethash 'key1 *my_hash_table*) 'value1)
+(setf (gethash "string_key" *my_hash_table*) 'string_value)
+(setf (gethash 42 *my_hash_table*) 'numeric_value)
 
-    (defun triple (X)
-      (* 3 X))                  ; be placed here.
+(gethash 'key1 *my_hash_table*)
+(defparameter *basic_hash_table* (make-hash-table))
+(defparameter *sized_hash_table* (make-hash-table : size 100))
+(defparameter *eq_hash_table* (make-hash-table : test 'eq))
 
-    (defun negate (X)
-      (- X))
+(defun custom_test_func (x y)
+  (string= (symbol_name x) (symbol_name y)))
+(defun custom_hash_func (x)
+  (sxhash (symbol_name x)))
+(defparameter *custom_hash_table*
+  (make-hash-table : test #'custom_test_func : hash-function #'custom_hash_func))
 
-      (defun factorial (N)
-        (if (= N 1)
-          (* N (factorial (- N 1)))))
+(setf (gethash 'key1 *basic_hash_table*) 'value1)
+(setf (gethash 'key2 *basic_hash_table*) 'value2)
+(setf (gethash 'key3 *sized_hash_table*) 'value3)
+(setf (gethash 'key4 *eq_hash_table*) 'value4)
+(setf (gethash 'key5 *custom_hash_table*) 'value5)
 
-    (defun fibonacci (N)
-      (if (or (zerop N) (= N 1))
-        (+ (fibonacci (- N 1)) (fibonacci (- N 2)))))
+(format t "Key1: ~a~%" (gethash 'key1 *basic_hash_table*))
+(format t "Key4: ~a~%" (gethash 'key4 *eq_hash_table*))
 
-    (let
-    	((F1 (fibonacci (- N 1)))
-    	 (F2 (fibonacci (- N 2))))
-          (+ F1 F2))
+(remhash 'key1 *basic_hash_table*)
 
-    (let
-        ((x 1)
-         (y (* x 2)))
-      (+ x y))
+(maphash (lambda (key value)
+           (format t "Key: ~a, Value: ~a~%" key value))
+         *basic_hash_table*)
+
+(clrhash *basic_hash_table*)
 )

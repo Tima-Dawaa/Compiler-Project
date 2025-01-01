@@ -66,9 +66,12 @@ MIN  : 'min';
 MOD : 'mod';
 REM : 'rem';
 QUOTE: 'quote';
+
+// Classes
 INITARG : 'initarg';
 INITFORM : 'initform' ;
 ACCESSOR : 'accessor' ;
+MAKE_INSTANCE : 'make-instance';
 
 // Equality
 EQ : 'eq';
@@ -85,7 +88,6 @@ POP     : 'pop';
 SORT: 'sort';
 INCF: 'incf';
 DECF: 'decf';
-MAKE_INSTANCE : 'make-instance';
 
 // Hash Table
 MAKE_HASH_TABLE: 'make-hash-table';
