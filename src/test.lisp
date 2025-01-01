@@ -1,15 +1,29 @@
 (
-(make-instance 'my-class :slot1 "value1" :slot2 42)
-;; Example: Create an instance of the class 'person' with specific initialization arguments
-(make-instance 'person :name "John Doe" :age 30 :address "123 Elm Street")
+    (defun even(num) (= (mod num 2) 0))
+    (filter '(6 4 3 5 2) #'even)
+    (6 4 2)
 
-;; Another example: Create an instance of the class 'vehicle' with fewer arguments
-(make-instance 'vehicle :type "Car" :model "Toyota")
+    (defun triple (X)
+      (* 3 X))                  ; be placed here.
 
-;; Example with no initialization arguments
-(make-instance 'empty-class)
+    (defun negate (X)
+      (- X))
 
-;; Example: Nested values within an initialization argument
-(make-instance 'robot :name "Robo" :specs (list :height 6 :weight 200))
+      (defun factorial (N)
+        (if (= N 1)
+          (* N (factorial (- N 1)))))
 
+    (defun fibonacci (N)
+      (if (or (zerop N) (= N 1))
+        (+ (fibonacci (- N 1)) (fibonacci (- N 2)))))
+
+    (let
+    	((F1 (fibonacci (- N 1)))
+    	 (F2 (fibonacci (- N 2))))
+          (+ F1 F2))
+
+    (let
+        ((x 1)
+         (y (* x 2)))
+      (+ x y))
 )
