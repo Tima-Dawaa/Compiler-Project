@@ -456,7 +456,7 @@ defmethod_expression
     : S_LPARAN
       DEFMETHOD ATOM
       defmethod_parameters+
-      S_LPARAN expression S_RPARAN
+      expression
       S_RPARAN;
 
 defmethod_parameters
