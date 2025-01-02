@@ -196,7 +196,7 @@ prog
     ;
 
 let
-    : LET S_LPARAN tuple_with_paran+ S_RPARAN expression*
+    : LET S_LPARAN tuple_with_paran+ S_RPARAN (expression | ATOM)*
     ;
 
 
@@ -245,7 +245,7 @@ aref_expression
     ;
 
 list_expression
-    : S_LPARAN LIST? (value | operators_expression)+ S_RPARAN
+    : S_LPARAN LIST? (value | operators_expression)* S_RPARAN
     ;
 
 push_expression
