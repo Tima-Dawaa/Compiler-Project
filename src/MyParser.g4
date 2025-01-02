@@ -455,7 +455,7 @@ accessor_expression
 defmethod_expression
     : S_LPARAN
       DEFMETHOD ATOM
-      defmethod_parameters+
+      S_LPARAN defmethod_parameters+ S_RPARAN
       expression
       S_RPARAN;
 
