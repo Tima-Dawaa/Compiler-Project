@@ -1,51 +1,14 @@
 (
-    ;; cond
-        (cond
-          ((> 3 2)
-           (cond
-             ((> 5 4) (print "3 > 2 and 5 > 4"))
-             ((< 5 4) (print "3 > 2 and 5 < 4"))))
-          (t
-           (print "This is the default case")
-           (print "Executing multiple statements..."))
-          (otherwise (print "This is the default case")))
+;;format
+(format t "Key5: ~a~%" (gethash 'key5 *custom-hash-table*))
 
-    (format t "Key5: ~a~%" (gethash 'key5 *custom-hash-table*))
+;;defmethod
+(defmethod describe-item ((i drink))
+(format t "Drink with ~a ml." (drink-volume i)))
 
-    ;;
-    (defparameter *custom-hash-table*
-        (make-hash-table :test #'custom-test-func :hash-function #'custom-hash-func))
+;;make-instance
+(make-instance 'robot :name "Robo" :specs (list :height 6 :weight 200))
 
-    ;; gethash
-    (multiple-value-bind (value found) (gethash 'key5 *custom-hash-table*)
-          (if found
-              (format t "Key5 found with value: ~a~%" value)
-              (format t "Key5 not found~%")))
-
-    (multiple-value-bind (value found) (gethash 'key1 *my-hash-table*)
-          (if found
-              (format t "Key found with value: ~a~%" value)
-              (format t "Key not found~%")))
-
-    ;; Retrieval with default value
-        (gethash 'key2 *my-hash-table* 'default-value) ;; Returns 'default-value'
-
-    (format t "String key: ~a~%" (gethash "string-key" *my-hash-table*))
-        (format t "Numeric key: ~a~%" (gethash 42 *my-hash-table*))
-
-
-    ;; defmethod
-    (defmethod describe-item ((i drink))
-              (format t "Drink with ~a ml." (drink-volume i)))
-
-    ;; make-instance
-        (make-instance 'robot :name "Robo" :specs (list :height 6 :weight 200))
-
-    ;; defclass
-    (defclass car ()
-          ((make : initarg : make : initform "Unknown" : accessor car-make)
-           (year : initarg : year : initform 2000 : accessor car-year)))
-
-    ;; apply
-          (apply '+ a args)
+;; apply
+(apply '+ a args)
 )

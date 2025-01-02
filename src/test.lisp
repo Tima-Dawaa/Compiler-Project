@@ -85,6 +85,17 @@
         (print "Condition is true")
         (print "Executing multiple statements...")))
 
+;; Test for cond expression
+   (cond
+     ((> 3 2)
+       (cond
+         ((> 5 4) (print "3 > 2 and 5 > 4"))
+         ((< 5 4) (print "3 > 2 and 5 < 4"))))
+     (T
+       (print "This is the default case")
+       (print "Executing multiple statements..."))
+     (otherwise (print "This is the default case"))
+   )
 
 
     (aref myArray 0)
@@ -182,49 +193,40 @@
     (defun my-func (&key x y)
       (+ x y))
 
-    (defparameter *basic-hash-table* (make-hash-table))
+;; Test Hash
+(defparameter *my-hash-table* (make-hash-table))
+(setf (gethash 'key1 *my-hash-table*) 'value1)
+(setf (gethash "string-key" *my-hash-table*) 'string-value)
+(setf (gethash 42 *my-hash-table*) 'numeric-value)
+(gethash 'key1 *my-hash-table*)
 
-    (defparameter *sized-hash-table* (make-hash-table :size 100))
+(defparameter *basic-hash-table* (make-hash-table))
+(defparameter *sized-hash-table* (make-hash-table : size 100))
+(defparameter *eq-hash-table* (make-hash-table : test 'eq))
 
-    ;; (defparameter *eq-hash-table* (make-hash-table :test 'eq))
+(setf (gethash 'key1 *basic-hash-table*) 'value1)
+(setf (gethash 'key2 *basic-hash-table*) 'value2)
+(setf (gethash 'key3 *sized-hash-table*) 'value3)
+(setf (gethash 'key4 *eq-hash-table*) 'value4)
 
-    (defun custom-test-func (x y)
-      (string= (symbol-name x) (symbol-name y)))
+(remhash 'key1 *basic-hash-table*)
+(maphash (lambda (key value)
+           (format t "Key: ~a, Value: ~a~%" key value))
+         *basic-hash-table*)
+(clrhash *basic-hash-table*)
 
-    (defun custom-hash-func (x)
-      (sxhash (symbol-name x)))
+(defun custom-test-func (x y)
+  (string= (symbol-name x) (symbol-name y)))
+(defun custom-hash-func (x)
+  (sxhash (symbol-name x)))
 
+(setf (gethash 'key5 *custom-hash-table*) 'value5)
+(setf (gethash 'key4 *custom-hash-table*) 'value4)
 
+(format t "Keys: ~a~%" (hash-table-keys *sized-hash-table*))
+(format t "Values: ~a~%" (hash-table-values *sized-hash-table*))
 
-    (setf (gethash 'key5 *custom-hash-table*) 'value5)
-    (setf (gethash 'key4 *custom-hash-table*) 'value4)
-
-
-    (remhash 'key5 *custom-hash-table*)
-
-    (maphash (lambda (key value)
-               (format t "Key: ~a, Value: ~a~%" key value))
-             *custom-hash-table*)
-
-    (clrhash *custom-hash-table*)
-
-
-    (format t "Keys: ~a~%" (hash-table-keys *sized-hash-table*))
-    (format t "Values: ~a~%" (hash-table-values *sized-hash-table*))
-
-    ;; Create a hash table
-    (defparameter *my-hash-table* (make-hash-table))
-
-    ;; Insert values
-    (setf (gethash 'key1 *my-hash-table*) 'value1)
-    (setf (gethash "string-key" *my-hash-table*) 'string-value)
-    (setf (gethash 42 *my-hash-table*) 'numeric-value)
-
-    ;; Basic retrieval
-    (gethash 'key1 *my-hash-table*) ;; Returns 'value1'
-
-    ;; Check existence
-    (defstruct person name age)
+(defstruct person name age)
 
     (make-instance 'my-class :slot1 "value1" :slot2 42)
     ;; Example: Create an instance of the class 'person' with specific initialization arguments

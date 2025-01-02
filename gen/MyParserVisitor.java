@@ -1,4 +1,4 @@
-// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from P:/ITE Projects/4th/Compiler/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -298,12 +298,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProgn_expression(MyParser.Progn_expressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyParser#otherwise_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MyParser#unless_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -478,18 +472,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitClass_name(MyParser.Class_nameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyParser#defmethod_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#defmethod_parameters}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MyParser#parameters}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -519,6 +501,18 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAccessor_expression(MyParser.Accessor_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defmethod_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#defmethod_parameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#make_instance_expression}.
 	 * @param ctx the parse tree
