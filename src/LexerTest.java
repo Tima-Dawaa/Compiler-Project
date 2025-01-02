@@ -1,9 +1,5 @@
-
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.TokenSource;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.runtime.tree.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -34,9 +30,22 @@ public class LexerTest {
 
         try {
             MyLexer lexer = new MyLexer(CharStreams.fromString(input));
-            CommonTokenStream tokens = new CommonTokenStream((TokenSource) lexer);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-            MyParser parser = new MyParser((TokenStream) tokens);
+            MyParser parser = new MyParser(tokens);
+
+            parser.removeErrorListeners();
+            parser.addErrorListener(new BaseErrorListener() {
+                @Override
+                public void syntaxError(Recognizer<?, ?> recognizer,
+                                        Object offendingSymbol,
+                                        int line,
+                                        int charPositionInLine,
+                                        String msg,
+                                        RecognitionException e) {
+                    System.err.println("Syntax error at line " + line + ":" + charPositionInLine + " - " + msg);
+                }
+            });
 
             ParseTree tree = parser.program();
 
@@ -44,9 +53,24 @@ public class LexerTest {
             System.out.println("Formatted Parse Tree:");
             TreePrinter.print(tree);
 
+            // Walking through the tree with the custom listener
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.walk(new MyCustomListener(), tree);
+
         } catch (Exception e) {
             System.err.println("Error during parsing: " + e.getMessage());
         }
     }
 }
 
+class MyCustomListener extends MyParserBaseListener {
+    @Override
+    public void enterArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
+        System.out.println("Entering arithmetic expression: " + ctx.getText());
+    }
+
+    @Override
+    public void exitArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
+        System.out.println("Exiting arithmetic expression: " + ctx.getText());
+    }
+}
