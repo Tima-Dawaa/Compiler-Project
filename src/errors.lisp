@@ -33,19 +33,6 @@
     (format t "String key: ~a~%" (gethash "string-key" *my-hash-table*))
         (format t "Numeric key: ~a~%" (gethash 42 *my-hash-table*))
 
-    ;; Let
-    (let ((keys '()))
-            (maphash (lambda (key value)
-                       (push key keys))
-                     hash-table)
-            keys)
-
-    (defun hash-table-values (hash-table)
-          (let ((values '()))
-            (maphash (lambda (key value)
-                       (push value values))
-                     hash-table)
-            values))
 
     ;; defmethod
     (defmethod describe-item ((i drink))

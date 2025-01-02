@@ -270,4 +270,18 @@
     (format t "Hello,~^ World!") ; Outputs: "Hello,"
     (format t "~10D" 42) ; Outputs: "        42"
     (format t "The value of ~A is ~D and ~F.~%" 'pi 3 3.14159); Outputs: "The value of pi is 3 and 3.141590."
+
+    ;; Let
+        (let ((keys '()))
+                (maphash (lambda (key value)
+                           (push key keys))
+                         hash-table)
+                keys)
+
+        (defun hash-table-values (hash-table)
+              (let ((values '()))
+                (maphash (lambda (key value)
+                           (push value values))
+                         hash-table)
+                values))
 )
