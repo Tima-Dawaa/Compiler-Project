@@ -339,7 +339,7 @@ funcall_expression
     : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN;
 
 apply_expression
-    : S_LPARAN APPLY function_name SINGLE_QUOTE list_expression S_RPARAN;
+    : S_LPARAN APPLY function_name (SINGLE_QUOTE list_expression | ATOM+) S_RPARAN;
 
 mapcar_expression
     : S_LPARAN MAPCAR function_name (SINGLE_QUOTE list_expression | function_call_parameter)+ S_RPARAN;
