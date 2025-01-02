@@ -26,6 +26,7 @@ expression
     | format_expression
     | defclass_expression
     | make_instance_expression
+    | defmethod_expression
     ;
 
 
@@ -145,7 +146,7 @@ defconstant
     ;
 
 defstruct_expression
-    : DEFSTRUCT ATOM+ S_RPARAN ;
+    : DEFSTRUCT ATOM+ ;
 
 defun_expression
     : DEFUN ATOM parameter_list defun_body
@@ -156,10 +157,11 @@ defun_body
     ;
 
 defparameter_expression
-    : S_LPARAN DEFPARAMETER ATOM (expression | .) STRING? S_RPARAN;
+    : DEFPARAMETER ATOM (expression | .) STRING?
+    ;
 
 setf_expression
-    :S_LPARAN SETF place value S_RPARAN
+    : SETF place value
     ;
 
 place
