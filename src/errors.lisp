@@ -58,4 +58,7 @@
     (defclass car ()
           ((make : initarg : make : initform "Unknown" : accessor car-make)
            (year : initarg : year : initform 2000 : accessor car-year)))
+
+    ;; apply
+          (apply '+ a args)
 )
