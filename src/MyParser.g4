@@ -425,7 +425,7 @@ key
 // Format expression
 format_expression
         : S_LPARAN
-            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
+            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END (value | expression)*
           S_RPARAN
         ;
 

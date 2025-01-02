@@ -1,7 +1,4 @@
 (
-;;format
-(format t "Key5: ~a~%" (gethash 'key5 *custom-hash-table*))
-
 ;;defmethod
 (defmethod describe-item ((i drink))
 (format t "Drink with ~a ml." (drink-volume i)))

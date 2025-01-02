@@ -138,7 +138,6 @@ Complex: '#c';
 
 // Basics
 STRING: '"' (ESCAPE | ~["\\] )* '"';
-ATOM: (ALPHA | DIGIT | SYMBOL)+;
 WS: [ \t\r\n]+ -> skip;
 SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
 MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
@@ -151,11 +150,12 @@ fragment ALPHA: [a-zA-Z];
 fragment SYMBOL: [!#$%&*+/=?^_`'{|}~.-];
 fragment ESCAPE: '\\' [bfnrt"'\\];
 
-// Error
-LEXER_ERROR: . -> channel(HIDDEN);
-
 // Format
 FORMAT: 'format' -> pushMode(FORMAT_MODE);
+ATOM: (ALPHA | DIGIT | SYMBOL)+;
+
+// Error
+LEXER_ERROR: . -> channel(HIDDEN);
 
 mode FORMAT_MODE;
 FORMAT_DESTINATION: (T | NIL);
