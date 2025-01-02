@@ -22,7 +22,7 @@ public class LexerTest {
     }
 
     public static void main(String[] args) {
-        String input = readLispFile("src/test.lisp");
+        String input = readLispFile("src/errors.lisp");
         if (input == null) {
             System.err.println("No input to process.");
             return;

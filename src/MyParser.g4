@@ -263,7 +263,6 @@ condition_expression
        | when_expression
        | cond_expression
        | progn_expression
-       | otherwise_expression
        | unless_expression
        ;
 
@@ -271,6 +270,7 @@ condition_clause
     : comparison_expression
     | logical_expression
     | bitwise_expression
+    | OTHERWISE
     | STRING
     | ATOM
     ;
@@ -293,10 +293,6 @@ cond_clause
 
 progn_expression
     : S_LPARAN PROGN expression+ S_RPARAN
-    ;
-
-otherwise_expression
-    : OTHERWISE expression+
     ;
 
 unless_expression
@@ -394,11 +390,16 @@ size_function
     : COLON SIZE real_number ;
 
 test_function
-    : COLON TEST (SINGLE_QUOTE EQ | SINGLE_QUOTE EQL | SINGLE_QUOTE EQUAL | S_LPARAN lambda_expression S_RPARAN)
+    : COLON TEST
+    ( QUOTE_EQ
+    | QUOTE_EQL
+    | QUOTE_EQUAL
+    | S_LPARAN lambda_expression S_RPARAN
+    | ATOM )
     ;
 
 hash_function
-    : COLON HASH_FUNCTION S_LPARAN lambda_expression S_RPARAN
+    : COLON HASH_FUNCTION (S_LPARAN lambda_expression S_RPARAN | ATOM)
     ;
 
 gethash_expression
@@ -436,18 +437,6 @@ defclass_expression
 class_name
     : ATOM S_LPARAN (ATOM)* S_RPARAN ;
 
-defmethod_expression
-    : S_LPARAN
-      DEFMETHOD ATOM
-      defmethod_parameters+
-      S_LPARAN expression S_RPARAN
-      S_RPARAN;
-
-defmethod_parameters
-    : S_LPARAN
-      (ATOM ATOM | )
-      S_RPARAN;
-
 parameters
     : S_LPARAN parameters_options+ S_RPARAN ;
 
@@ -462,6 +451,18 @@ initarg_expression
 
 accessor_expression
     : COLON ACCESSOR ATOM ;
+
+defmethod_expression
+    : S_LPARAN
+      DEFMETHOD ATOM
+      defmethod_parameters+
+      S_LPARAN expression S_RPARAN
+      S_RPARAN;
+
+defmethod_parameters
+    : S_LPARAN
+      (ATOM ATOM | )
+      S_RPARAN;
 
 
 // Make-Instance Expression
