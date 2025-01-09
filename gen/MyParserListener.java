@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -246,6 +246,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValue(MyParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void enterKeyword(MyParser.KeywordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void exitKeyword(MyParser.KeywordContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#setq_single_var}.
 	 * @param ctx the parse tree
