@@ -289,4 +289,5 @@
 
     ;;format
     (format t "Key5: ~a~%" (gethash 'key5 *custom-hash-table*))
+    (list :height 6 :weight 200)
 )
