@@ -177,12 +177,17 @@ value
     | ATOM
     | T
     | NIL
+    |keyword
     | operators_expression
     | real_number
     | list_expression
     | single_quote_expression
     ;
 
+
+
+
+keyword      : ':' ATOM ;
 setq_single_var
     : SETQ tuple_without_paran
     ;

@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -153,6 +153,12 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitValue(MyParser.ValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#keyword}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitKeyword(MyParser.KeywordContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#setq_single_var}.
 	 * @param ctx the parse tree
