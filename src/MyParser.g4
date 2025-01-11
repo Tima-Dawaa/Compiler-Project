@@ -475,7 +475,7 @@ make_instance_expression
      : S_LPARAN MAKE_INSTANCE ATOM (initialization_argument)* S_RPARAN
      ;
 
- initialization_argument
+initialization_argument
      : COLON ATOM value
      ;
 
