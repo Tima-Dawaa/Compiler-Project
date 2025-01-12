@@ -213,7 +213,6 @@ parameter_list
     : S_LPARAN (ATOM | parameter_marker)* S_RPARAN
     ;
 
-
 parameter_marker
     : optional_parameter
     | rest_parameter
