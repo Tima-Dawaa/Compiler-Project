@@ -1,10 +1,10 @@
 package expression;
 
-public class ENumber extends ASTNode {
+public class ENumberNode extends ASTNode {
     private final float base;
     private final int exponent;
 
-    public ENumber(float base, int exponent) {
+    public ENumberNode(float base, int exponent) {
         this.base = base;
         this.exponent = exponent;
     }
@@ -18,10 +18,7 @@ public class ENumber extends ASTNode {
     }
 
     @Override
-    public String prettyPrint(String indent) {
-        return "ENumber{" +
-                "base=" + base +
-                ", exponent=" + exponent +
-                '}';
+    public String prettyPrint() {
+        return base + "e" + exponent;
     }
 }

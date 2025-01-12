@@ -10,12 +10,12 @@ public class Program extends ASTNode {
     }
 
     @Override
-    public String prettyPrint(String indent) {
+    public String prettyPrint() {
         // TODO Auto-generated method stub
         StringBuilder sb = new StringBuilder();
-        sb.append(indent).append("Program:\n");
+        sb.append("Program:\n");
         for (ASTNode child : children) {
-            sb.append(child.prettyPrint(indent + "	")).append("\n");
+            sb.append(child.prettyPrint()).append("\n");
         }
         return sb.toString().trim();
     }

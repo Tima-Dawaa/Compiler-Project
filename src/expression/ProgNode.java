@@ -2,11 +2,11 @@ package expression;
 
 import java.util.List;
 
-public class Prog extends ASTNode {
+public class ProgNode extends ASTNode {
     private final ASTNode tuple;
     private final List<ASTNode> expression;  // expression | ATOM
 
-    public Prog(ASTNode tuple, List<ASTNode> expression) {
+    public ProgNode(ASTNode tuple, List<ASTNode> expression) {
         this.tuple = tuple;
         this.expression = expression;
     }
