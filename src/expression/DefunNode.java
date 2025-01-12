@@ -3,7 +3,7 @@ package expression;
 import java.util.List;
 
 public class DefunNode extends ASTNode{
-    private  final  AtomNode atom;
+    private  final AtomNode atom;
     private  final List<ASTNode> listparameters;
     private  final List<ASTNode> listbody;
 
@@ -11,7 +11,6 @@ public class DefunNode extends ASTNode{
     public DefunNode(AtomNode atom, List<ASTNode> listparameters, List<ASTNode> listbody) {
         this.atom = atom;
         this.listparameters = listparameters;
-
         this.listbody = listbody;
     }
 
