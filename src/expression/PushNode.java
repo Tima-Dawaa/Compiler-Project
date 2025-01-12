@@ -18,8 +18,6 @@ private final List<ASTNode> listexpression;
             parameters.append(param.prettyPrint()).append(" ");
         }
 
-
-
         return "Push{" +
                 "value=" + value.prettyPrint() +
                 ", parameters=[" + parameters.toString().trim() + "]" +

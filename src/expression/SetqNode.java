@@ -3,18 +3,25 @@ package expression;
 import java.util.List;
 
 public class SetqNode extends ASTNode{
-    private final List<ASTNode> tuple_without_paran;
+    private final List<TupleNode> tuple_without_paran;
 
-    public SetqNode(List<ASTNode> tupleWithoutParan) {
+    public SetqNode(List<TupleNode> tupleWithoutParan) {
         tuple_without_paran = tupleWithoutParan;
     }
 
-    public List<ASTNode> getTuple_without_paran() {
+    public List<TupleNode> getTuple_without_paran() {
         return tuple_without_paran;
     }
 
     @Override
     public String prettyPrint() {
-        return "";
+        StringBuilder tuplesString = new StringBuilder();
+        for (ASTNode param : tuple_without_paran) {
+            tuplesString.append(param.prettyPrint()).append(", ");
+        }
+
+        return "Setq{" +
+                "tuples=" + tuplesString.toString().trim() +
+                "}";
     }
 }

@@ -3,24 +3,37 @@ package expression;
 import java.util.List;
 
 public class LetNode extends ASTNode {
-    private final ASTNode tuple;
-    private final List<ASTNode> expression;  // expression | ATOM
+    private final List<TupleWithParanNode> tuples;
+    private final List<ASTNode> expressions;  // expression | ATOM
 
-    public LetNode(ASTNode tuple, ASTNode expression, List<ASTNode> expression1) {
-        this.tuple = tuple;
-        this.expression = expression1;
+    public LetNode(List<TupleWithParanNode> tuples, List<ASTNode> expressions) {
+        this.tuples = tuples;
+        this.expressions = expressions;
     }
 
-    public ASTNode getTuple() {
-        return tuple;
+    public List<TupleWithParanNode> getTuple() {
+        return tuples;
     }
 
     public List<ASTNode> getExpression() {
-        return expression;
+        return expressions;
     }
 
     @Override
     public String prettyPrint() {
-        return "";
+        StringBuilder tuplesString = new StringBuilder();
+        for (ASTNode param : tuples) {
+            tuplesString.append(param.prettyPrint()).append(" ");
+        }
+
+        StringBuilder body = new StringBuilder();
+        for (ASTNode expr : expressions) {
+            body.append(expr.prettyPrint()).append(" ");
+        }
+
+        return "Let{" +
+                "tuples=" + tuplesString.toString().trim() +
+                ", body=[" + body.toString().trim() + "]" +
+                "}";
     }
 }
