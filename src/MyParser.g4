@@ -204,7 +204,6 @@ let
     : LET S_LPARAN tuple_with_paran+ S_RPARAN (expression | ATOM)*
     ;
 
-
 // Functions Expressions
 lambda_expression
     : LAMBDA parameter_list defun_body ;
