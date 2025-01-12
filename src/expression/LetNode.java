@@ -2,13 +2,13 @@ package expression;
 
 import java.util.List;
 
-public class Prog extends ASTNode {
+public class LetNode extends ASTNode {
     private final ASTNode tuple;
     private final List<ASTNode> expression;  // expression | ATOM
 
-    public Prog(ASTNode tuple, List<ASTNode> expression) {
+    public LetNode(ASTNode tuple, ASTNode expression, List<ASTNode> expression1) {
         this.tuple = tuple;
-        this.expression = expression;
+        this.expression = expression1;
     }
 
     public ASTNode getTuple() {
@@ -20,8 +20,7 @@ public class Prog extends ASTNode {
     }
 
     @Override
-    public String prettyPrint(String indent) {
+    public String prettyPrint() {
         return "";
     }
 }
-

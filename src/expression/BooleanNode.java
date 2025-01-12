@@ -1,18 +1,18 @@
 package expression;
 
 public class BooleanNode extends ASTNode {
-    private boolean value;
+    private String value;
 
-    public BooleanNode(boolean value) {
+    public BooleanNode(String value) {
         this.value = value;
     }
 
-    public void setValue(boolean value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
     @Override
     public String prettyPrint() {
-        return "";
+        return value;
     }
 }

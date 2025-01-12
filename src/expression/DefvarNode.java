@@ -1,9 +1,9 @@
 package expression;
 
-public class Defconstant extends ASTNode {
+public class DefvarNode extends ASTNode {
     private final ASTNode tuple_without_paran;
 
-    public Defconstant(ASTNode tuple_without_paran) {
+    public DefvarNode(ASTNode tuple_without_paran) {
         this.tuple_without_paran = tuple_without_paran;
     }
 
@@ -12,7 +12,7 @@ public class Defconstant extends ASTNode {
     }
 
     @Override
-    public String prettyPrint(String indent) {
-        return "";
+    public String prettyPrint() {
+        return "defvar " + tuple_without_paran.prettyPrint();
     }
 }

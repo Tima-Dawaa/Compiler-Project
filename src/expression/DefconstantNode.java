@@ -1,9 +1,9 @@
 package expression;
 
-public class Defvar extends ASTNode {
+public class DefconstantNode extends ASTNode {
     private final ASTNode tuple_without_paran;
 
-    public Defvar(ASTNode tuple_without_paran) {
+    public DefconstantNode(ASTNode tuple_without_paran) {
         this.tuple_without_paran = tuple_without_paran;
     }
 

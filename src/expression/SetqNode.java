@@ -2,10 +2,10 @@ package expression;
 
 import java.util.List;
 
-public class Setq extends ASTNode{
+public class SetqNode extends ASTNode{
     private final List<ASTNode> tuple_without_paran;
 
-    public Setq(List<ASTNode> tupleWithoutParan) {
+    public SetqNode(List<ASTNode> tupleWithoutParan) {
         tuple_without_paran = tupleWithoutParan;
     }
 
@@ -14,7 +14,7 @@ public class Setq extends ASTNode{
     }
 
     @Override
-    public String prettyPrint(String indent) {
+    public String prettyPrint() {
         return "";
     }
 }
