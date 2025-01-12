@@ -3,25 +3,38 @@ package expression;
 import java.util.List;
 
 public class ProgNode extends ASTNode {
-    private final ASTNode tuple;
-    private final List<ASTNode> expression;  // expression | ATOM
+    private final List<AtomNode> atoms;
+    private final List<ASTNode> expressions;  // expression | ATOM
 
-    public ProgNode(ASTNode tuple, List<ASTNode> expression) {
-        this.tuple = tuple;
-        this.expression = expression;
+    public ProgNode(List<AtomNode> atoms, List<ASTNode> expressions) {
+        this.atoms = atoms;
+        this.expressions = expressions;
     }
 
-    public ASTNode getTuple() {
-        return tuple;
+    public List<AtomNode> getAtoms() {
+        return atoms;
     }
 
     public List<ASTNode> getExpression() {
-        return expression;
+        return expressions;
     }
 
     @Override
     public String prettyPrint() {
-        return "";
+        StringBuilder atomsString = new StringBuilder();
+        for (ASTNode param : atoms) {
+            atomsString.append(param.prettyPrint()).append(" ");
+        }
+
+        StringBuilder body = new StringBuilder();
+        for (ASTNode expr : expressions) {
+            body.append(expr.prettyPrint()).append(" ");
+        }
+
+        return "Prog{" +
+                "atoms=" + atoms.toString().trim() +
+                ", body=[" + body.toString().trim() + "]" +
+                "}";
     }
 }
 
