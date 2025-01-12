@@ -317,16 +317,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitParameter_list(MyParser.Parameter_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameter(MyParser.ParameterContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameter(MyParser.ParameterContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MyParser#parameter_marker}.
 	 * @param ctx the parse tree
 	 */
@@ -376,16 +366,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMake_array_expression(MyParser.Make_array_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterIndex_list(MyParser.Index_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitIndex_list(MyParser.Index_listContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#aref_expression}.
 	 * @param ctx the parse tree

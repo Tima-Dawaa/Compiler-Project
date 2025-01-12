@@ -196,12 +196,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParameter_list(MyParser.Parameter_listContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyParser#parameter}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParameter(MyParser.ParameterContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link MyParser#parameter_marker}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -231,12 +225,6 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMake_array_expression(MyParser.Make_array_expressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIndex_list(MyParser.Index_listContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#aref_expression}.
 	 * @param ctx the parse tree

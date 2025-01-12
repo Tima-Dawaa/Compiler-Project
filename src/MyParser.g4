@@ -213,7 +213,6 @@ parameter_list
     : S_LPARAN (ATOM | parameter_marker)* S_RPARAN
     ;
 
-
 parameter_marker
     : optional_parameter
     | rest_parameter
@@ -235,12 +234,9 @@ key_parameter
 
 // Arrays Expression
 make_array_expression
-    : S_LPARAN MAKE_ARRAY (index_list | S_LPARAN index_list S_RPARAN) S_RPARAN
+    : S_LPARAN MAKE_ARRAY ( (real_number)+ | S_LPARAN (real_number)+ S_RPARAN) S_RPARAN
     ;
 
-index_list
-    : real_number+
-    ;
 
 aref_expression
     : S_LPARAN AREF ATOM (real_number | ATOM)+ S_RPARAN
