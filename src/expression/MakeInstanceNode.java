@@ -14,6 +14,14 @@ public class MakeInstanceNode extends ASTNode{
 
     @Override
     public String prettyPrint() {
-        return null;
+        StringBuilder parameters = new StringBuilder();
+        for (ASTNode param : argument) {
+            parameters.append(param.prettyPrint()).append(" ");
+        }
+
+
+        return "MakeInstanceNode{" +
+                ", parameters=[" + parameters.toString().trim() + "]" +
+                "}";
     }
 }
