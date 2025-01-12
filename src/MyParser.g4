@@ -184,10 +184,10 @@ value
     | single_quote_expression
     ;
 
+keyword
+    : COLON ATOM
+    ;
 
-
-
-keyword      : ':' ATOM ;
 setq_single_var
     : SETQ tuple_without_paran
     ;
