@@ -479,7 +479,6 @@ initialization_argument
      : COLON ATOM value
      ;
 
-
 // Helpers
 tuple_with_paran
     : S_LPARAN tuple_without_paran S_RPARAN
