@@ -1,9 +1,9 @@
 package expression;
 
-public class StringNode extends ASTNode {
+public class AtomNode extends ASTNode {
     private final String value;
 
-    public StringNode(String value) {
+    public AtomNode(String value) {
         this.value = value;
     }
 
