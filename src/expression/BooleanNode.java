@@ -12,7 +12,7 @@ public class BooleanNode extends ASTNode {
     }
 
     @Override
-    public String prettyPrint(String indent) {
+    public String prettyPrint() {
         return "";
     }
 }

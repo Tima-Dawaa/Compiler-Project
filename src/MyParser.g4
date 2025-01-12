@@ -210,11 +210,7 @@ lambda_expression
     : LAMBDA parameter_list defun_body ;
 
 parameter_list
-    : S_LPARAN (parameter | parameter_marker)* S_RPARAN
-    ;
-
-parameter
-    : ATOM
+    : S_LPARAN (ATOM | parameter_marker)* S_RPARAN
     ;
 
 parameter_marker
@@ -224,15 +220,15 @@ parameter_marker
     ;
 
 optional_parameter
-    : OPTIONAL (parameter | S_LPARAN parameter value S_RPARAN)*
+    : OPTIONAL (ATOM | S_LPARAN ATOM value S_RPARAN)*
     ;
 
 rest_parameter
-    : REST parameter
+    : REST ATOM
     ;
 
 key_parameter
-    : KEY (parameter | S_LPARAN parameter value S_RPARAN)+
+    : KEY (ATOM | S_LPARAN ATOM value S_RPARAN)+
     ;
 
 

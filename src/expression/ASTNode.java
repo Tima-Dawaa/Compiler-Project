@@ -1,5 +1,5 @@
 package expression;
 
 public abstract class ASTNode {
-    public abstract String prettyPrint(String indent);
+    public abstract String prettyPrint();
 }
