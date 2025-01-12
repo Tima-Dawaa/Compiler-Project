@@ -20,7 +20,8 @@ public class MakeInstanceArgumentNode extends ASTNode {
         return "MakeInstanceArgumentNode{" +
                 "atom=" + atom.prettyPrint() +
                 "colon=" + colon.prettyPrint() +
-                "value=" + value.prettyPrint();
+                "value=" + value.prettyPrint()+
+                "}";
 
     }
 }
