@@ -1,0 +1,22 @@
+package expression;
+
+import java.util.List;
+
+public class CondNode extends ASTNode {
+    private final List<CondClause> clauses;
+
+    public CondNode(List<CondClause> clauses) {
+        this.clauses = clauses;
+    }
+
+    public List<CondClause> getClauses() {
+        return clauses;
+    }
+
+    @Override
+    public String prettyPrint() {
+        return "CondExpression{" +
+                "clauses=" + clauses +
+                '}';
+    }
+}
