@@ -1,6 +1,6 @@
 parser grammar MyParser;
-options { tokenVocab=MyLexer; }
 
+options { tokenVocab=MyLexer; }
 
 // Code
 program
@@ -12,7 +12,6 @@ program
 expression
     : operators_expression
     | defining_expressions
-    | setf_expression
     | push_expression
     | pop_expression
     | condition_expression
@@ -25,7 +24,13 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
+<<<<<<< HEAD
+    | defclass_expression
+    | make_instance_expression
+    | defmethod_expression
+=======
     | loop_expression
+>>>>>>> hamza
     ;
 
 
@@ -202,10 +207,12 @@ defining_expressions
     | prog
     | setq_single_var
     | setq_multi_var
+    | setf_expression
     | defconstant
     | defun_expression
     | lambda_expression
     | defstruct_expression
+    | defparameter_expression
     ) S_RPARAN
     ;
 
@@ -218,7 +225,7 @@ defconstant
     ;
 
 defstruct_expression
-    : DEFSTRUCT ATOM+ S_RPARAN ;
+    : DEFSTRUCT ATOM+ ;
 
 defun_expression
     : DEFUN ATOM parameter_list defun_body
@@ -228,8 +235,12 @@ defun_body
     : expression+
     ;
 
+defparameter_expression
+    : DEFPARAMETER ATOM (expression | .) STRING?
+    ;
+
 setf_expression
-    :S_LPARAN SETF place value S_RPARAN
+    : SETF place value
     ;
 
 place
@@ -245,10 +256,15 @@ value
     | ATOM
     | T
     | NIL
+    |keyword
     | operators_expression
     | real_number
     | list_expression
     | single_quote_expression
+    ;
+
+keyword
+    : COLON ATOM
     ;
 
 setq_single_var
@@ -264,20 +280,15 @@ prog
     ;
 
 let
-    : LET S_LPARAN tuple_with_paran+ S_RPARAN expression*
+    : LET S_LPARAN tuple_with_paran+ S_RPARAN (expression | ATOM)*
     ;
-
 
 // Functions Expressions
 lambda_expression
     : LAMBDA parameter_list defun_body ;
 
 parameter_list
-    : S_LPARAN (parameter | parameter_marker)* S_RPARAN
-    ;
-
-parameter
-    : ATOM
+    : S_LPARAN (ATOM | parameter_marker)* S_RPARAN
     ;
 
 parameter_marker
@@ -287,33 +298,30 @@ parameter_marker
     ;
 
 optional_parameter
-    : OPTIONAL (parameter | S_LPARAN parameter value S_RPARAN)*
+    : OPTIONAL (ATOM | S_LPARAN ATOM value S_RPARAN)*
     ;
 
 rest_parameter
-    : REST parameter
+    : REST ATOM
     ;
 
 key_parameter
-    : KEY (parameter | S_LPARAN parameter value S_RPARAN)+
+    : KEY (ATOM | S_LPARAN ATOM value S_RPARAN)+
     ;
 
 
 // Arrays Expression
 make_array_expression
-    : S_LPARAN MAKE_ARRAY (index_list | S_LPARAN index_list S_RPARAN) S_RPARAN
+    : S_LPARAN MAKE_ARRAY ( (real_number)+ | S_LPARAN (real_number)+ S_RPARAN) S_RPARAN
     ;
 
-index_list
-    : real_number+
-    ;
 
 aref_expression
     : S_LPARAN AREF ATOM (real_number | ATOM)+ S_RPARAN
     ;
 
 list_expression
-    : S_LPARAN LIST? (value | operators_expression)+ S_RPARAN
+    : S_LPARAN LIST? (value | operators_expression)* S_RPARAN
     ;
 
 push_expression
@@ -331,7 +339,6 @@ condition_expression
        | when_expression
        | cond_expression
        | progn_expression
-       | otherwise_expression
        | unless_expression
        ;
 
@@ -339,10 +346,13 @@ condition_clause
     : comparison_expression
     | logical_expression
     | bitwise_expression
+    | OTHERWISE
+    | STRING
+    | ATOM
     ;
 
 if_expression
-    : S_LPARAN IF condition_clause expression expression? S_RPARAN
+    : S_LPARAN IF condition_clause (ATOM | expression) (ATOM | expression)? S_RPARAN
     ;
 
 when_expression
@@ -359,10 +369,6 @@ cond_clause
 
 progn_expression
     : S_LPARAN PROGN expression+ S_RPARAN
-    ;
-
-otherwise_expression
-    : OTHERWISE expression+
     ;
 
 unless_expression
@@ -400,7 +406,7 @@ quote_expression
         ;
 
 single_quote_expression
-        : SINGLE_QUOTE (ATOM | list_expression)
+        : SINGLE_QUOTE (ATOM | list_expression |  S_LPARAN lambda_expression S_RPARAN)
         ;
 
 
@@ -409,7 +415,7 @@ funcall_expression
     : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN;
 
 apply_expression
-    : S_LPARAN APPLY function_name SINGLE_QUOTE list_expression S_RPARAN;
+    : S_LPARAN APPLY function_name (SINGLE_QUOTE list_expression | ATOM+) S_RPARAN;
 
 mapcar_expression
     : S_LPARAN MAPCAR function_name (SINGLE_QUOTE list_expression | function_call_parameter)+ S_RPARAN;
@@ -451,21 +457,25 @@ hash_table_expressions
     ;
 
 make_hash_table_expression
-    : S_LPARAN MAKE_HASH_TABLE key_argument? size_function? test_function? hash_function? S_RPARAN
-    ;
+    : S_LPARAN MAKE_HASH_TABLE (key_argument | size_function | test_function | hash_function)* S_RPARAN ;
 
 key_argument
-     : KEY key value ;
+    : KEY key value ;
 
 size_function
-     : COLON SIZE NORMAL_NUMBER+ ;
+    : COLON SIZE real_number ;
 
 test_function
-    : COLON TEST (SINGLE_QUOTE EQ | SINGLE_QUOTE EQL | SINGLE_QUOTE EQUAL | S_LPARAN lambda_expression S_RPARAN)
+    : COLON TEST
+    ( QUOTE_EQ
+    | QUOTE_EQL
+    | QUOTE_EQUAL
+    | S_LPARAN lambda_expression S_RPARAN
+    | ATOM )
     ;
 
 hash_function
-    : COLON HASH_FUNCTION S_LPARAN lambda_expression S_RPARAN
+    : COLON HASH_FUNCTION (S_LPARAN lambda_expression S_RPARAN | ATOM)
     ;
 
 gethash_expression
@@ -488,6 +498,58 @@ key
     : ATOM | STRING | real_number | operators_expression ;
 
 
+// Format expression
+format_expression
+        : S_LPARAN
+            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END (value | expression)*
+          S_RPARAN
+        ;
+
+
+// Class Expression
+defclass_expression
+    : S_LPARAN DEFCLASS class_name parameters* S_RPARAN ;
+
+class_name
+    : ATOM S_LPARAN (ATOM)* S_RPARAN ;
+
+parameters
+    : S_LPARAN parameters_options+ S_RPARAN ;
+
+parameters_options
+    : S_LPARAN ATOM (initarg_expression)? (initform_expression)? (accessor_expression)? S_RPARAN
+    ;
+initform_expression
+    : COLON INITFORM (STRING|real_number) ;
+
+initarg_expression
+    : COLON INITARG COLON ATOM ;
+
+accessor_expression
+    : COLON ACCESSOR ATOM ;
+
+defmethod_expression
+    : S_LPARAN
+      DEFMETHOD ATOM
+      S_LPARAN defmethod_parameters+ S_RPARAN
+      expression
+      S_RPARAN;
+
+defmethod_parameters
+    : S_LPARAN
+      (ATOM ATOM | )
+      S_RPARAN;
+
+
+// Make-Instance Expression
+make_instance_expression
+     : S_LPARAN MAKE_INSTANCE ATOM (initialization_argument)* S_RPARAN
+     ;
+
+initialization_argument
+     : COLON ATOM value
+     ;
+
 // Helpers
 tuple_with_paran
     : S_LPARAN tuple_without_paran S_RPARAN
@@ -500,10 +562,3 @@ tuple_without_paran
 real_number
     : (INT_NUMBER | FLOAT_NUMBER | E_NUMBER)
     ;
-
-// Format expression
-format_expression
-        : S_LPARAN
-            FORMAT FORMAT_DESTINATION FORMAT_STRING_BEGIN (FORMAT_STRING | FORMAT_OPTION)* FORMAT_STRING_END value*
-          S_RPARAN
-        ;

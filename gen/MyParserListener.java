@@ -1,4 +1,4 @@
-// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -207,6 +207,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitDefun_body(MyParser.Defun_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyParser#defparameter_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefparameter_expression(MyParser.Defparameter_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defparameter_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefparameter_expression(MyParser.Defparameter_expressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyParser#setf_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -236,6 +246,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitValue(MyParser.ValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void enterKeyword(MyParser.KeywordContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#keyword}.
+	 * @param ctx the parse tree
+	 */
+	void exitKeyword(MyParser.KeywordContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#setq_single_var}.
 	 * @param ctx the parse tree
@@ -297,16 +317,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitParameter_list(MyParser.Parameter_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void enterParameter(MyParser.ParameterContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#parameter}.
-	 * @param ctx the parse tree
-	 */
-	void exitParameter(MyParser.ParameterContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MyParser#parameter_marker}.
 	 * @param ctx the parse tree
 	 */
@@ -356,16 +366,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMake_array_expression(MyParser.Make_array_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void enterIndex_list(MyParser.Index_listContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#index_list}.
-	 * @param ctx the parse tree
-	 */
-	void exitIndex_list(MyParser.Index_listContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#aref_expression}.
 	 * @param ctx the parse tree
@@ -476,16 +476,6 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitProgn_expression(MyParser.Progn_expressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#otherwise_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#otherwise_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitOtherwise_expression(MyParser.Otherwise_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#unless_expression}.
 	 * @param ctx the parse tree
@@ -747,6 +737,126 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitKey(MyParser.KeyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#format_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormat_expression(MyParser.Format_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defclass_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefclass_expression(MyParser.Defclass_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defclass_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefclass_expression(MyParser.Defclass_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void enterClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#class_name}.
+	 * @param ctx the parse tree
+	 */
+	void exitClass_name(MyParser.Class_nameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters(MyParser.ParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters(MyParser.ParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#parameters_options}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters_options(MyParser.Parameters_optionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#parameters_options}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters_options(MyParser.Parameters_optionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initform_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitform_expression(MyParser.Initform_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initform_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitform_expression(MyParser.Initform_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initarg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitarg_expression(MyParser.Initarg_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initarg_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitarg_expression(MyParser.Initarg_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#accessor_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAccessor_expression(MyParser.Accessor_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#accessor_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAccessor_expression(MyParser.Accessor_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defmethod_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defmethod_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefmethod_expression(MyParser.Defmethod_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#defmethod_parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#defmethod_parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#make_instance_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMake_instance_expression(MyParser.Make_instance_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#make_instance_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMake_instance_expression(MyParser.Make_instance_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#initialization_argument}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitialization_argument(MyParser.Initialization_argumentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#initialization_argument}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitialization_argument(MyParser.Initialization_argumentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyParser#tuple_with_paran}.
 	 * @param ctx the parse tree
 	 */
@@ -776,14 +886,4 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReal_number(MyParser.Real_numberContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyParser#format_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterFormat_expression(MyParser.Format_expressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyParser#format_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitFormat_expression(MyParser.Format_expressionContext ctx);
 }

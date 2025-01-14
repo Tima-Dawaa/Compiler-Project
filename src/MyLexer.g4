@@ -1,27 +1,14 @@
 lexer grammar MyLexer;
 
-// Basics
-STRING: '"' (ESCAPE | ~["\\] )* '"';
-ATOM: (ALPHA | DIGIT | SYMBOL)+;
-WS: [ \t\r\n]+ -> skip;
-SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
-MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
-
-// Numbers
-NORMAL_NUMBER : POSITIVE;
-INT_NUMBER: NUMBER;
-E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
-FLOAT_NUMBER: NUMBER'.'[0-9]+;
-Complex: '#c';
-//'(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
-
 // Defining
 DEFUN   : 'defun';
 DEFVAR  : 'defvar';
 DEFCONSTANT: 'defconstant';
 DEFSTRUCT : 'defstruct';
 DEFMACRO: 'defmacro';
+DEFCLASS : 'defclass';
 DEFPARAMETER: 'defparameter';
+DEFMETHOD: 'defmethod';
 SETQ    : 'setq';
 SETF: 'setf';
 LET     : 'let';
@@ -81,6 +68,12 @@ MOD : 'mod';
 REM : 'rem';
 QUOTE: 'quote';
 
+// Classes
+INITARG : 'initarg';
+INITFORM : 'initform' ;
+ACCESSOR : 'accessor' ;
+MAKE_INSTANCE : 'make-instance';
+
 // Equality
 EQ : 'eq';
 EQL : 'eql';
@@ -101,6 +94,9 @@ DECF: 'decf';
 MAKE_HASH_TABLE: 'make-hash-table';
 HASH_FUNCTION : 'hash-function';
 TEST : 'test';
+QUOTE_EQ : SINGLE_QUOTE'eq';
+QUOTE_EQL : SINGLE_QUOTE'eql';
+QUOTE_EQUAL : SINGLE_QUOTE'equal';
 SIZE : 'size';
 GETHASH:'gethash';
 MAPHASH : 'maphash';
@@ -129,9 +125,22 @@ APPLY   : 'apply';
 FUNCALL: 'funcall';
 
 // Conses
-CONS    : 'cons';
+CONS : 'cons';
 CAR: 'car';
 CDR: 'cdr';
+
+// Numbers
+INT_NUMBER: NUMBER;
+E_NUMBER: (INT_NUMBER | FLOAT_NUMBER) 'e' NUMBER;
+FLOAT_NUMBER: NUMBER'.'[0-9]+;
+Complex: '#c';
+//'(' WS? (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS+ (E_NUMBER | FLOAT_NUMBER | INT_NUMBER) WS? ')';
+
+// Basics
+STRING: '"' (ESCAPE | ~["\\] )* '"';
+WS: [ \t\r\n]+ -> skip;
+SINGLE_LINE_COMMENT: ';'.*?[\r\n] -> skip;
+MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
 
 // Fragment
 fragment NUMBER: [-+]?[0-9]+;
@@ -141,11 +150,12 @@ fragment ALPHA: [a-zA-Z];
 fragment SYMBOL: [!#$%&*+/=?^_`'{|}~.-];
 fragment ESCAPE: '\\' [bfnrt"'\\];
 
-// Error
-LEXER_ERROR: . -> channel(HIDDEN);
-
 // Format
 FORMAT: 'format' -> pushMode(FORMAT_MODE);
+ATOM: (ALPHA | DIGIT | SYMBOL)+;
+
+// Error
+LEXER_ERROR: . -> channel(HIDDEN);
 
 mode FORMAT_MODE;
 FORMAT_DESTINATION: (T | NIL);
