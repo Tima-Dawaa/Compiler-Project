@@ -51,7 +51,7 @@ FROM : 'from';
 TO : 'to';
 COLLECT : 'collect';
 DO : 'do';
-DOTimes : 'dotimes';
+DOTIMES : 'dotimes';
 DOLIST : 'dolist';
 LOOP  : 'loop';
 PROG : 'prog';
