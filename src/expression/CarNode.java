@@ -13,8 +13,8 @@ public class CarNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "CarExpression{" +
-                "consExpression=" + consExpression +
+        return "Car Expression{" +
+                consExpression.prettyPrint() +
                 '}';
     }
 }

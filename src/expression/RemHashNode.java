@@ -2,26 +2,26 @@ package expression;
 
 public class RemHashNode extends ASTNode {
     private final ASTNode key;
-    private final ASTNode hashTable;
+    private final AtomNode tableName;
 
-    public RemHashNode(ASTNode key, ASTNode hashTable) {
+    public RemHashNode(ASTNode key, AtomNode tableName) {
         this.key = key;
-        this.hashTable = hashTable;
+        this.tableName = tableName;
     }
 
     public ASTNode getKey() {
         return key;
     }
 
-    public ASTNode getHashTable() {
-        return hashTable;
+    public AtomNode getHashTable() {
+        return tableName;
     }
 
     @Override
     public String prettyPrint() {
-        return "RemHashExpression{" +
-                "key=" + key +
-                ", hashTable=" + hashTable +
+        return "Remhash Expression{" +
+                "key =" + key.prettyPrint() +
+                ", hash table =" + tableName.prettyPrint() +
                 '}';
     }
 }

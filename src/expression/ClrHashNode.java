@@ -1,20 +1,20 @@
 package expression;
 
 public class ClrHashNode extends ASTNode {
-    private final ASTNode hashTable;
+    private final AtomNode tableName;
 
-    public ClrHashNode(ASTNode hashTable) {
-        this.hashTable = hashTable;
+    public ClrHashNode(AtomNode hashTable) {
+        this.tableName = hashTable;
     }
 
     public ASTNode getHashTable() {
-        return hashTable;
+        return tableName;
     }
 
     @Override
     public String prettyPrint() {
-        return "ClrHashExpression{" +
-                "hashTable=" + hashTable +
+        return "Clrhash Expression{" +
+                "hash table =" + tableName.prettyPrint() +
                 '}';
     }
 }

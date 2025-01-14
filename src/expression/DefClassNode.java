@@ -2,27 +2,31 @@ package expression;
 import java.util.List;
 
 public class DefClassNode extends ASTNode {
-    private final ClassName className;
-    private final List<ParametersOptions> parameters;
+    private final AtomNode className;
+    private final List<ASTNode> parameters;
 
-    public DefClassNode(ClassName className, List<ParametersOptions> parameters) {
+    public DefClassNode(AtomNode className, List<ASTNode> parameters) {
         this.className = className;
         this.parameters = parameters;
     }
 
-    public ClassName getClassName() {
+    public AtomNode getClassName() {
         return className;
     }
 
-    public List<ParametersOptions> getParameters() {
+    public List<ASTNode> getParameters() {
         return parameters;
     }
 
     @Override
     public String prettyPrint() {
-        return "DefClassExpression{" +
-                "className=" + className +
-                ", parameters=" + parameters +
+        StringBuilder parametersString = new StringBuilder();
+        for (ASTNode exp : parameters) {
+            parametersString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Defclass Expression{" +
+                "class name =" + className.prettyPrint() +
+                ", parameters =" + parametersString +
                 '}';
     }
 }

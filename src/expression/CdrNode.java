@@ -13,8 +13,8 @@ public class CdrNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "CdrExpression{" +
-                "consExpression=" + consExpression +
+        return "Cdr Expression{" +
+                consExpression.prettyPrint() +
                 '}';
     }
 }

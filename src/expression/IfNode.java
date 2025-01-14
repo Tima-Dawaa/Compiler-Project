@@ -3,22 +3,22 @@ package expression;
 import java.util.Optional;
 
 public class IfNode extends ASTNode {
-    private final ConditionClause condition;
-    private final ASTNode thenPart;
+    private final ASTNode condition;
+    private final ASTNode action;
     private final Optional<ASTNode> elsePart;
 
-    public IfNode(ConditionClause condition, ASTNode thenPart, Optional<ASTNode> elsePart) {
+    public IfNode(ASTNode condition, ASTNode action, Optional<ASTNode> elsePart) {
         this.condition = condition;
-        this.thenPart = thenPart;
+        this.action = action;
         this.elsePart = elsePart;
     }
 
-    public ConditionClause getCondition() {
+    public ASTNode getCondition() {
         return condition;
     }
 
     public ASTNode getThenPart() {
-        return thenPart;
+        return action;
     }
 
     public Optional<ASTNode> getElsePart() {
@@ -27,10 +27,13 @@ public class IfNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "IfExpression{" +
-                "condition=" + condition +
-                ", thenPart=" + thenPart +
-                ", elsePart=" + elsePart +
+        String elseSection = "None";
+        if(elsePart.isPresent())
+            elseSection=elsePart.get().prettyPrint();
+        return "If Expression{" +
+                "condition =" + condition.prettyPrint() +
+                ", action =" + action.prettyPrint() +
+                ", else =" + elseSection +
                 '}';
     }
 }

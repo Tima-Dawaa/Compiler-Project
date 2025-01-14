@@ -2,20 +2,24 @@ package expression;
 import java.util.List;
 
 public class DefStructNode extends ASTNode {
-    private final List<String> atoms;
+    private final List<ASTNode> parameters;
 
-    public DefStructNode(List<String> atoms) {
-        this.atoms = atoms;
+    public DefStructNode(List<ASTNode> parameters) {
+        this.parameters = parameters;
     }
 
-    public List<String> getAtoms() {
-        return atoms;
+    public List<ASTNode> getAtoms() {
+        return parameters;
     }
 
     @Override
     public String prettyPrint() {
-        return "DefStructExpression{" +
-                "atoms=" + atoms +
+        StringBuilder parametersString = new StringBuilder();
+        for (ASTNode exp : parameters) {
+            parametersString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Defstruct Expression{" +
+                "parameters =" + parametersString +
                 '}';
     }
 }

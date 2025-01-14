@@ -3,15 +3,15 @@ package expression;
 import java.util.List;
 
 public class UnlessNode extends ASTNode {
-    private final ConditionClause condition;
+    private final ASTNode condition;
     private final List<ASTNode> expressions;
 
-    public UnlessNode(ConditionClause condition, List<ASTNode> expressions) {
+    public UnlessNode(ASTNode condition, List<ASTNode> expressions) {
         this.condition = condition;
         this.expressions = expressions;
     }
 
-    public ConditionClause getCondition() {
+    public ASTNode getCondition() {
         return condition;
     }
 
@@ -21,9 +21,13 @@ public class UnlessNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "UnlessExpression{" +
-                "condition=" + condition +
-                ", expressions=" + expressions +
+        StringBuilder expressionsString = new StringBuilder();
+        for (ASTNode exp : expressions) {
+            expressionsString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Unless Expression{" +
+                "condition =" + condition.prettyPrint() +
+                ", expressions =" + expressionsString +
                 '}';
     }
 }

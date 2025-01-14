@@ -2,26 +2,26 @@ package expression;
 
 public class GetHashNode extends ASTNode {
     private final ASTNode key;
-    private final ASTNode hashTable;
+    private final AtomNode tableName;
 
-    public GetHashNode(ASTNode key, ASTNode hashTable) {
+    public GetHashNode(ASTNode key, AtomNode tableName) {
         this.key = key;
-        this.hashTable = hashTable;
+        this.tableName = tableName;
     }
 
     public ASTNode getKey() {
         return key;
     }
 
-    public ASTNode getHashTable() {
-        return hashTable;
+    public AtomNode getHashTable() {
+        return tableName;
     }
 
     @Override
     public String prettyPrint() {
-        return "GetHashExpression{" +
-                "key=" + key +
-                ", hashTable=" + hashTable +
+        return "Gethash Expression{" +
+                "key =" + key.prettyPrint() +
+                ", hash table =" + tableName.prettyPrint() +
                 '}';
     }
 }

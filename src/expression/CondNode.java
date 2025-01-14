@@ -15,8 +15,12 @@ public class CondNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "CondExpression{" +
-                "clauses=" + clauses +
+        StringBuilder clausesString = new StringBuilder();
+        for (CondClause exp : clauses) {
+            clausesString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Cond Expression{" +
+                "clauses =" + clausesString +
                 '}';
     }
 }

@@ -2,26 +2,26 @@ package expression;
 
 public class MapHashNode extends ASTNode {
     private final LambdaNode function;
-    private final ASTNode hashTable;
+    private final AtomNode tableName;
 
-    public MapHashNode(LambdaNode function, ASTNode hashTable) {
+    public MapHashNode(LambdaNode function, AtomNode tableName) {
         this.function = function;
-        this.hashTable = hashTable;
+        this.tableName = tableName;
     }
 
     public LambdaNode getFunction() {
         return function;
     }
 
-    public ASTNode getHashTable() {
-        return hashTable;
+    public AtomNode getHashTable() {
+        return tableName;
     }
 
     @Override
     public String prettyPrint() {
-        return "MapHashExpression{" +
-                "function=" + function +
-                ", hashTable=" + hashTable +
+        return "Maphash Expression{" +
+                "function =" + function.prettyPrint() +
+                ", hash table =" + tableName.prettyPrint() +
                 '}';
     }
 }

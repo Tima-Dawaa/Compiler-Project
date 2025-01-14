@@ -19,9 +19,9 @@ public class ConsNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "ConsExpression{" +
-                "firstExpression=" + firstExpression +
-                ", secondExpression=" + secondExpression +
+        return "Cons Expression{" +
+                "first Expression =" + firstExpression.prettyPrint() +
+                ", second Expression =" + secondExpression.prettyPrint() +
                 '}';
     }
 }

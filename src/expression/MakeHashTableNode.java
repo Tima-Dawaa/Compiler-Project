@@ -15,8 +15,12 @@ public class MakeHashTableNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "MakeHashTableExpression{" +
-                "arguments=" + arguments +
+        StringBuilder argumentsString = new StringBuilder();
+        for (ASTNode exp : arguments) {
+            argumentsString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Make-hash-table Expression{" +
+                "arguments =" + argumentsString +
                 '}';
     }
 }
