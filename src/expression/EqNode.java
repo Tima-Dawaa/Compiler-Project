@@ -14,8 +14,13 @@ public class EqNode extends ASTNode{
         this.eq2 = eq2;
     }
 
+//    @Override
+//    public String prettyPrint(String indent) {
+//        return null;
+//    }
+
     @Override
-    public String prettyPrint(String indent) {
+    public String prettyPrint() {
         return null;
     }
 }
