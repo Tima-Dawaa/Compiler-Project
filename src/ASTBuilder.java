@@ -297,6 +297,28 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new DefunNode(atom, listParameters, listBody);
     }
 
+    @Override
+    public ASTNode visitAref_expression(MyParser.Aref_expressionContext ctx) {
+        ASTNode atomNode = visit(ctx.ATOM(0));
+
+        List<ASTNode> parameterNodes = new ArrayList<>();
+
+        for (int i = 1; i < ctx.children.size() - 1; i++) {
+            ParseTree child = ctx.getChild(i);
+
+            if (child instanceof MyParser.Real_numberContext) {
+                parameterNodes.add(visit(child));
+            } else if (child != null) {
+                parameterNodes.add(new AtomNode(child.getText()));
+            }
+        }
+
+        return new ArefNode((AtomNode) atomNode, parameterNodes);
+    }
+
+
+
+
 
 
 
