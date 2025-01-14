@@ -1,5 +1,6 @@
 import expression.*;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -275,6 +276,26 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
 
 
+    @Override
+    public ASTNode visitDefun_expression(MyParser.Defun_expressionContext ctx) {
+        AtomNode atom = new AtomNode(ctx.ATOM().getText());
+
+        List<ASTNode> listParameters = new ArrayList<>();
+        if (ctx.parameter_list() != null) {
+            for (TerminalNode param : ctx.parameter_list().ATOM()) {
+                listParameters.add(new AtomNode(param.getText()));
+            }
+        }
+
+        List<ASTNode> listBody = new ArrayList<>();
+        if (ctx.defun_body() != null) {
+            for (MyParser.ExpressionContext exprCtx : ctx.defun_body().expression()) {
+                listBody.add(visit(exprCtx));
+            }
+        }
+
+        return new DefunNode(atom, listParameters, listBody);
+    }
 
 
 
