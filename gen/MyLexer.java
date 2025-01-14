@@ -1,4 +1,4 @@
-// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyLexer.g4 by ANTLR 4.13.2
+// Generated from C:/Users/Hamza.Tinawi/IdeaProjects/Compiler-Project/src/MyLexer.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class MyLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.13.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.13.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -24,7 +24,7 @@ public class MyLexer extends Lexer {
 		LESS_THAN_OR_EQUAL=29, ADD=30, SUBTRACT=31, MULTIPLY=32, DIVIDE=33, HASH=34, 
 		COLON=35, IF=36, WHEN=37, COND=38, OTHERWISE=39, PROGN=40, UNLESS=41, 
 		AND=42, OR=43, NOT=44, T=45, NIL=46, FROM=47, TO=48, COLLECT=49, DO=50, 
-		DOTimes=51, DOLIST=52, LOOP=53, PROG=54, FOR=55, BLOCK=56, ERROR=57, EXP=58, 
+		DOTIMES=51, DOLIST=52, LOOP=53, PROG=54, FOR=55, BLOCK=56, ERROR=57, EXP=58, 
 		EXPT=59, MAX=60, MIN=61, MOD=62, REM=63, QUOTE=64, EQ=65, EQL=66, KEY_EQUAL=67, 
 		NOT_EQUAL=68, MAKE_ARRAY=69, AREF=70, LIST=71, PUSH=72, POP=73, SORT=74, 
 		INCF=75, DECF=76, MAKE_HASH_TABLE=77, HASH_FUNCTION=78, TEST=79, SIZE=80, 
@@ -53,7 +53,7 @@ public class MyLexer extends Lexer {
 			"EQUAL", "NOTEQUAL", "GREATER_THAN", "LESS_THAN", "GREATER_THAN_OR_EQUAL", 
 			"LESS_THAN_OR_EQUAL", "ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "HASH", 
 			"COLON", "IF", "WHEN", "COND", "OTHERWISE", "PROGN", "UNLESS", "AND", 
-			"OR", "NOT", "T", "NIL", "FROM", "TO", "COLLECT", "DO", "DOTimes", "DOLIST", 
+			"OR", "NOT", "T", "NIL", "FROM", "TO", "COLLECT", "DO", "DOTIMES", "DOLIST", 
 			"LOOP", "PROG", "FOR", "BLOCK", "ERROR", "EXP", "EXPT", "MAX", "MIN", 
 			"MOD", "REM", "QUOTE", "EQ", "EQL", "KEY_EQUAL", "NOT_EQUAL", "MAKE_ARRAY", 
 			"AREF", "LIST", "PUSH", "POP", "SORT", "INCF", "DECF", "MAKE_HASH_TABLE", 
@@ -96,7 +96,7 @@ public class MyLexer extends Lexer {
 			"EQUAL", "NOTEQUAL", "GREATER_THAN", "LESS_THAN", "GREATER_THAN_OR_EQUAL", 
 			"LESS_THAN_OR_EQUAL", "ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "HASH", 
 			"COLON", "IF", "WHEN", "COND", "OTHERWISE", "PROGN", "UNLESS", "AND", 
-			"OR", "NOT", "T", "NIL", "FROM", "TO", "COLLECT", "DO", "DOTimes", "DOLIST", 
+			"OR", "NOT", "T", "NIL", "FROM", "TO", "COLLECT", "DO", "DOTIMES", "DOLIST", 
 			"LOOP", "PROG", "FOR", "BLOCK", "ERROR", "EXP", "EXPT", "MAX", "MIN", 
 			"MOD", "REM", "QUOTE", "EQ", "EQL", "KEY_EQUAL", "NOT_EQUAL", "MAKE_ARRAY", 
 			"AREF", "LIST", "PUSH", "POP", "SORT", "INCF", "DECF", "MAKE_HASH_TABLE", 

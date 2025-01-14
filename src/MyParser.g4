@@ -25,8 +25,84 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
+    | loop_expression
     ;
 
+
+// Loop Expressions
+loop_expression
+    : loop_simple
+    | loop_for
+    | do_expression
+    | dotimes_expression
+    | dolist_expression
+    ;
+
+loop_simple
+    : S_LPARAN LOOP (loop_body)? S_RPARAN
+    ;
+
+loop_for
+    : S_LPARAN LOOP FOR variable from_to_clause (loop_body)? S_RPARAN
+    ;
+
+do_expression
+    : S_LPARAN DO S_LPARAN variable_definitions S_RPARAN condition_clause loop_body? S_RPARAN
+    ;
+
+dotimes_expression
+    : S_LPARAN DOTIMES S_LPARAN variable real_number S_RPARAN loop_body? S_RPARAN
+    ;
+
+dolist_expression
+    : S_LPARAN DOLIST S_LPARAN variable list_expression S_RPARAN loop_body? S_RPARAN
+    ;
+
+variable
+    : ATOM
+    ;
+
+variable_definitions
+    : (S_LPARAN variable init_value? step_value? S_RPARAN)+
+    ;
+
+from_to_clause
+    : FROM init_value TO limit_value
+    ;
+
+init_value
+    : STRING
+    | ATOM
+    | T
+    | NIL
+    | real_number
+    | operators_expression
+    | single_quote_expression
+    ;
+
+step_value
+    : STRING
+    | ATOM
+    | T
+    | NIL
+    | real_number
+    | operators_expression
+    | single_quote_expression
+    ;
+
+limit_value
+    : STRING
+    | ATOM
+    | T
+    | NIL
+    | real_number
+    | operators_expression
+    | single_quote_expression
+    ;
+
+loop_body
+    : expression+
+    ;
 
 // Operator Expressions
 operators_expression
