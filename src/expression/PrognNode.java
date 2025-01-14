@@ -15,8 +15,12 @@ public class PrognNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "PrognExpression{" +
-                "expressions=" + expressions +
+        StringBuilder expressionsString = new StringBuilder();
+        for (ASTNode exp : expressions) {
+            expressionsString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Progn Expression{" +
+                "expressions =" + expressionsString +
                 '}';
     }
 }

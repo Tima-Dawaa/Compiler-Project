@@ -3,15 +3,15 @@ package expression;
 import java.util.List;
 
 public class CondClause extends ASTNode {
-    private final ConditionClause condition;
+    private final ASTNode condition;
     private final List<ASTNode> expressions;
 
-    public CondClause(ConditionClause condition, List<ASTNode> expressions) {
+    public CondClause(ASTNode condition, List<ASTNode> expressions) {
         this.condition = condition;
         this.expressions = expressions;
     }
 
-    public ConditionClause getCondition() {
+    public ASTNode getCondition() {
         return condition;
     }
 
@@ -21,9 +21,13 @@ public class CondClause extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return "CondClause{" +
-                "condition=" + condition +
-                ", expressions=" + expressions +
+        StringBuilder expressionsString = new StringBuilder();
+        for (ASTNode exp : expressions) {
+            expressionsString.append(exp.prettyPrint()).append(" ");
+        }
+        return "Cond Clause{" +
+                "condition =" + condition.prettyPrint() +
+                ", expressions =" + expressionsString +
                 '}';
     }
 }
