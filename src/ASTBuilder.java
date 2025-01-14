@@ -252,6 +252,26 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new PopNode(listPop);
     }
 
+    @Override
+    public ASTNode visitMake_instance_expression(MyParser.Make_instance_expressionContext ctx) {
+        ASTNode atom = new AtomNode(ctx.ATOM().getText());
+
+        List<MakeInstanceArgumentNode> arguments = new ArrayList<>();
+        for (MyParser.Initialization_argumentContext argCtx : ctx.initialization_argument()) {
+            arguments.add((MakeInstanceArgumentNode) visit(argCtx));
+        }
+
+        return new MakeInstanceNode(atom, arguments);
+    }
+
+    @Override
+    public ASTNode visitInitialization_argument(MyParser.Initialization_argumentContext ctx) {
+        ASTNode colon = new AtomNode(ctx.COLON().getText());
+        ASTNode atom = new AtomNode(ctx.ATOM().getText());
+        ASTNode value = visit(ctx.value());
+
+        return new MakeInstanceArgumentNode(atom, colon, value);
+    }
 
 
 
