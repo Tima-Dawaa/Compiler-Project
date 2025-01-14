@@ -1,3 +1,4 @@
+import expression.ASTNode;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -54,8 +55,12 @@ public class LexerTest {
             TreePrinter.print(tree);
 
             // Walking through the tree with the custom listener
-            ParseTreeWalker walker = new ParseTreeWalker();
-            walker.walk(new MyCustomListener(), tree);
+            // Build the AST
+            MyParserBaseVisitor<ASTNode> builder = new MyParserBaseVisitor();
+            ASTNode ast = builder.visit(tree);
+            System.out.println("Pretty-printed AST:");
+            System.out.println(ast.prettyPrint());
+
 
         } catch (Exception e) {
             System.err.println("Error during parsing: " + e.getMessage());

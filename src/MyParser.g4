@@ -24,14 +24,12 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
-<<<<<<< HEAD
     | defclass_expression
     | make_instance_expression
     | defmethod_expression
-=======
     | loop_expression
->>>>>>> hamza
     ;
+
 
 
 // Loop Expressions
