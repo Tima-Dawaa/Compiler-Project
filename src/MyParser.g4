@@ -109,10 +109,10 @@ loop_body
 
 // Operator Expressions
 operators_expression
-    : arithmetic_expression     #ArithmeticOpNode
-    | comparison_expression     #ComparisonOpNode
-    | logical_expression        #LogicalOpNode
-    | bitwise_expression        #BitwiseOpNode
+    : arithmetic_expression
+    | comparison_expression
+    | logical_expression
+    | bitwise_expression
     | make_array_expression
     | aref_expression
     | list_expression
