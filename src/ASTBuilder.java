@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     private List<String> vars;//store all the variable declared in the program so far
@@ -274,8 +275,6 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new MakeInstanceArgumentNode(atom, colon, value);
     }
 
-
-
     @Override
     public ASTNode visitDefun_expression(MyParser.Defun_expressionContext ctx) {
         AtomNode atom = new AtomNode(ctx.ATOM().getText());
@@ -316,11 +315,142 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new ArefNode((AtomNode) atomNode, parameterNodes);
     }
 
+    @Override
+    public ASTNode visitIf_expression(MyParser.If_expressionContext ctx) {
+        ASTNode condition = visit(ctx.condition_clause());
+        ASTNode action = visit(ctx.expression(0));
+        Optional<ASTNode> elsePart = ctx.expression().size() > 1 ? Optional.of(visit(ctx.expression(1))) : Optional.empty();
+        return new IfNode(condition, action, elsePart);
+    }
 
+    @Override
+    public ASTNode visitWhen_expression(MyParser.When_expressionContext ctx) {
+        ASTNode condition = visit(ctx.condition_clause());
+        List<ASTNode> expressions = new ArrayList<>();
+        for (int i = 1; i < ctx.expression().size(); i++) {
+            expressions.add(visit(ctx.expression(i)));
+        }
+        return new WhenNode(condition, expressions);
+    }
 
+    @Override
+    public ASTNode visitProgn_expression(MyParser.Progn_expressionContext ctx) {
+        List<ASTNode> expressions = new ArrayList<>();
+        for (int i = 0; i < ctx.expression().size()  ; i++) {
+            expressions.add(visit(ctx.expression(i)));
+        }
+        return new PrognNode(expressions);
+    }
 
+    @Override
+    public ASTNode visitUnless_expression(MyParser.Unless_expressionContext ctx) {
+        ASTNode condition = visit(ctx.condition_clause());
+        List<ASTNode> expressions = new ArrayList<>();
+        for (int i = 1; i < ctx.expression().size(); i++) {
+            expressions.add(visit(ctx.expression(i)));
+        }
+        return new UnlessNode(condition, expressions);
+    }
 
+    @Override
+    public ASTNode visitCond_expression(MyParser.Cond_expressionContext ctx) {
+        List<CondClause> clauses = new ArrayList<>();
+        for (MyParser.Cond_clauseContext clauseCtx : ctx.cond_clause()) {
+            clauses.add((CondClause) visit(clauseCtx));
+        }
+        return new CondNode(clauses);
+    }
 
+    @Override
+    public ASTNode visitCond_clause(MyParser.Cond_clauseContext ctx) {
+        ASTNode condition = visit(ctx.condition_clause());
+        List<ASTNode> expressions = new ArrayList<>();
+        for (int i = 1; i < ctx.expression().size(); i++) {
+            expressions.add(visit(ctx.expression(i)));
+        }
+        return new CondClause(condition, expressions);
+    }
 
+    @Override
+    public ASTNode visitCons_expression(MyParser.Cons_expressionContext ctx) {
+        ASTNode firstExpression = visit(ctx.expression(0));
+        ASTNode secondExpression = visit(ctx.expression(1));
+        return new ConsNode(firstExpression, secondExpression);
+    }
 
+    @Override
+    public ASTNode visitCar_expression(MyParser.Car_expressionContext ctx) {
+        ConsNode consExpression = (ConsNode) visit(ctx.cons_expression());
+        return new CarNode(consExpression);
+    }
+
+    @Override
+    public ASTNode visitCdr_expression(MyParser.Cdr_expressionContext ctx) {
+        ConsNode consExpression = (ConsNode) visit(ctx.cons_expression());
+        return new CdrNode(consExpression);
+    }
+
+@Override
+public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ctx) {
+    List<ASTNode> parameters = new ArrayList<>();
+    for (ParseTree child : ctx.children) {
+        if (child instanceof TerminalNode terminalNode) {
+            if (terminalNode.getSymbol().getType() == MyParser.ATOM) {
+                parameters.add(new AtomNode(terminalNode.getText()));
+            }
+        }
+    }
+    return new DefStructNode(parameters);
+}
+
+    @Override
+    public ASTNode visitMake_hash_table_expression(MyParser.Make_hash_table_expressionContext ctx) {
+        List<ASTNode> arguments = new ArrayList<>();
+        for (ParseTree child : ctx.children) {
+            if (child instanceof MyParser.Key_argumentContext ||
+                    child instanceof MyParser.Size_functionContext ||
+                    child instanceof MyParser.Test_functionContext ||
+                    child instanceof MyParser.Hash_functionContext) {
+                arguments.add(visit(child));
+            }
+        }
+        return new MakeHashTableNode(arguments);
+    }
+
+    @Override
+    public ASTNode visitGethash_expression(MyParser.Gethash_expressionContext ctx) {
+        ASTNode key = visit(ctx.key());
+        AtomNode tableName = new AtomNode(ctx.ATOM().getText());
+        return new GetHashNode(key, tableName);
+    }
+
+    @Override
+    public ASTNode visitRemhash_expression(MyParser.Remhash_expressionContext ctx) {
+        ASTNode key = visit(ctx.key());
+        AtomNode tableName = new AtomNode(ctx.ATOM().getText());
+        return new RemHashNode(key, tableName);
+    }
+
+    @Override
+    public ASTNode visitClrhash_expression(MyParser.Clrhash_expressionContext ctx) {
+        AtomNode tableName = new AtomNode(ctx.ATOM().getText());
+        return new ClrHashNode(tableName);
+    }
+
+    @Override
+    public ASTNode visitMaphash_expression(MyParser.Maphash_expressionContext ctx) {
+        LambdaNode function = (LambdaNode) visit(ctx.lambda_expression());
+        AtomNode tableName = new AtomNode(ctx.ATOM().getText());
+        return new MapHashNode(function, tableName);
+    }
+
+    @Override
+    public ASTNode visitDefclass_expression(MyParser.Defclass_expressionContext ctx) {
+        AtomNode className = new AtomNode(ctx.class_name().ATOM(0).getText());
+        List<ASTNode> parameters = new ArrayList<>();
+        for (MyParser.ParametersContext paramCtx : ctx.parameters()) {
+            parameters.add(visit(paramCtx));
+        }
+        return new DefClassNode(className, parameters);
+    }
 }
