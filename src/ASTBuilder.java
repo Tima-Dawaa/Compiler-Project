@@ -1,4 +1,5 @@
 import expression.*;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,14 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         this.semanticsErrors = new ArrayList<String>();
     }
 
+    @Override
     public ASTNode visitSetq_single_var(MyParser.Setq_single_varContext ctx) {
         TupleNode tupleNode = (TupleNode) visit(ctx.tuple_without_paran());
         ASTNode setqNode = (ASTNode) new SetqNode(List.of(tupleNode));
         return setqNode;
     }
 
+    @Override
     public ASTNode visitSetq_multi_var(MyParser.Setq_multi_varContext ctx) {
         List<TupleNode> tupleNodes = ctx.tuple_without_paran()
                 .stream()
@@ -28,6 +31,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return setqNode;
     }
 
+    @Override
     public ASTNode visitDefvar(MyParser.DefvarContext ctx) {
         String defvarToken = ctx.DEFVAR().getText();
         ASTNode tupleNode = visit(ctx.tuple_without_paran());
@@ -35,6 +39,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return defvarNode;
     }
 
+    @Override
     public ASTNode visitDefconstant(MyParser.DefconstantContext ctx) {
         String defconstantToken = ctx.DEFCONSTANT().getText();
         ASTNode tupleNode = visit(ctx.tuple_without_paran());
@@ -42,6 +47,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return defconstantNode;
     }
 
+    @Override
     public ASTNode visitProg(MyParser.ProgContext ctx) {
         List<AtomNode> atomNodes = ctx.ATOM()
                 .stream()
@@ -55,6 +61,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return progNode;
     }
 
+    @Override
     public ASTNode visitLet(MyParser.LetContext ctx) {
         List<TupleWithParanNode> tupleNodes = ctx.tuple_with_paran()
                 .stream()
@@ -67,92 +74,136 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         ASTNode letNode = new LetNode(tupleNodes, expressionNodes);
         return letNode;
     }
-    @Override public ASTNode visitArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         List<expression.ASTNode> operands = new ArrayList<>();
-        for(int i = 2; i<ctx.children.size() - 1; i++){
+        for (int i = 2; i < ctx.children.size() - 1; i++) {
             operands.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new ArithmeticOpNode(operation, operands);
     }
 
-
-    @Override public ASTNode visitComparison_expression(MyParser.Comparison_expressionContext ctx) {
+    @Override
+    public ASTNode visitComparison_expression(MyParser.Comparison_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         List<expression.ASTNode> operands = new ArrayList<>();
-        for(int i = 2; i<ctx.children.size() - 1; i++){
+        for (int i = 2; i < ctx.children.size() - 1; i++) {
             operands.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new ComparisonOpNode(operation, operands);
     }
-    @Override public ASTNode visitAnd_or_expression(MyParser.And_or_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitAnd_or_expression(MyParser.And_or_expressionContext ctx) {
         String operation = ctx.getChild(0).getText();
         List<expression.ASTNode> operands = new ArrayList<>();
-        for(int i = 1; i<ctx.children.size(); i++){
+        for (int i = 1; i < ctx.children.size(); i++) {
             operands.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new LogicalOpNode(operation, operands);
     }
-    @Override public ASTNode visitNot_expression(MyParser.Not_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitNot_expression(MyParser.Not_expressionContext ctx) {
         String operation = ctx.getChild(0).getText();
-        List<ASTNode> operand =  new ArrayList<>();
+        List<ASTNode> operand = new ArrayList<>();
         operand.add(visit(ctx.getChild(1)));
         return (ASTNode) new LogicalOpNode(operation, (List<expression.ASTNode>) operand);
     }
-    @Override public ASTNode visitBitwise_expression(MyParser.Bitwise_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitBitwise_expression(MyParser.Bitwise_expressionContext ctx) {
         String operation = ctx.getChild(1).getText();
         List<expression.ASTNode> operands = new ArrayList<>();
-        for(int i = 2; i<ctx.children.size() - 1; i++){
+        for (int i = 2; i < ctx.children.size() - 1; i++) {
             operands.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new BitwiseOpNode(operation, operands);
     }
-    @Override public ASTNode visitEq_expression(MyParser.Eq_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitEq_expression(MyParser.Eq_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         ASTNode operand1 = visit(ctx.getChild(2));
         ASTNode operand2 = visit(ctx.getChild(3));
         return (ASTNode) new EqualityOpNode(operation, operand1, operand2);
     }
-    @Override public ASTNode visitEql_expression(MyParser.Eql_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitEql_expression(MyParser.Eql_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         ASTNode operand1 = visit(ctx.getChild(2));
         ASTNode operand2 = visit(ctx.getChild(3));
         return (ASTNode) new EqualityOpNode(operation, operand1, operand2);
     }
-    @Override public ASTNode visitEqual_expression(MyParser.Equal_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitEqual_expression(MyParser.Equal_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         ASTNode operand1 = visit(ctx.getChild(2));
         ASTNode operand2 = visit(ctx.getChild(3));
         return (ASTNode) new EqualityOpNode(operation, operand1, operand2);
     }
-    @Override public ASTNode visitNot_equal_expression(MyParser.Not_equal_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitNot_equal_expression(MyParser.Not_equal_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         ASTNode operand1 = visit(ctx.getChild(2));
         ASTNode operand2 = visit(ctx.getChild(3));
         return (ASTNode) new EqualityOpNode(operation, operand1, operand2);
     }
-    @Override public ASTNode visitFuncall_expression(MyParser.Funcall_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitFuncall_expression(MyParser.Funcall_expressionContext ctx) {
         ASTNode funcName = visit(ctx.getChild(2));
         List<expression.ASTNode> funcParameters = new ArrayList<>();
-        for(int i = 3; i < ctx.children.size() - 1; i++){
+        for (int i = 3; i < ctx.children.size() - 1; i++) {
             funcParameters.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new FuncallNode(funcName, funcParameters);
     }
-    @Override public ASTNode visitApply_expression(MyParser.Apply_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitApply_expression(MyParser.Apply_expressionContext ctx) {
         ASTNode funcName = visit(ctx.getChild(2));
         List<expression.ASTNode> funcParameters = new ArrayList<>();
-        for(int i = 3; i < ctx.children.size() - 1; i++){
+        for (int i = 3; i < ctx.children.size() - 1; i++) {
             funcParameters.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new ApplyNode(funcName, funcParameters);
     }
-    @Override public ASTNode visitMapcar_expression(MyParser.Mapcar_expressionContext ctx) {
+
+    @Override
+    public ASTNode visitMapcar_expression(MyParser.Mapcar_expressionContext ctx) {
         ASTNode funcName = visit(ctx.getChild(2));
         List<expression.ASTNode> funcParameters = new ArrayList<>();
-        for(int i = 3; i < ctx.children.size() - 1; i++){
+        for (int i = 3; i < ctx.children.size() - 1; i++) {
             funcParameters.add((expression.ASTNode) visit(ctx.getChild(i)));
         }
         return (ASTNode) new ApplyNode(funcName, funcParameters);
+    }
+
+    @Override
+    public ASTNode visitFormat_expression(MyParser.Format_expressionContext ctx) {
+        ASTNode formatDestinationNode = visit(ctx.FORMAT_DESTINATION());
+        BooleanNode formatDestination = (BooleanNode) formatDestinationNode;
+
+        ASTNode formatStringNode = visit((ParseTree) ctx.FORMAT_STRING());
+        StringNode formatString = (StringNode) formatStringNode;
+
+        List<ASTNode> expressionNodes = new ArrayList<>();
+
+        for (int i = 0; i < ctx.children.size(); i++) {
+            ParseTree child = ctx.children.get(i);
+            if (child instanceof MyParser.ValueContext) {
+                expressionNodes.add(visit((MyParser.ValueContext) child));
+            } else if (child instanceof MyParser.ExpressionContext) {
+                expressionNodes.add(visit((MyParser.ExpressionContext) child));
+            }
+        }
+        FormatNode formatNode = new FormatNode(formatDestination, formatString, expressionNodes);
+        return formatNode;
     }
 }
