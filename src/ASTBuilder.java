@@ -184,6 +184,21 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         }
         return (ASTNode) new ApplyNode(funcName, funcParameters);
     }
+    @Override
+    public ASTNode visitList_expression(MyParser.List_expressionContext ctx) {
+        List<ASTNode> elements = new ArrayList<>();
+
+        for (ParseTree child : ctx.children) {
+            if (child instanceof MyParser.ValueContext) {
+                elements.add(visit((MyParser.ValueContext) child));
+            } else if (child instanceof MyParser.Operators_expressionContext) {
+                elements.add(visit((MyParser.Operators_expressionContext) child));
+            }
+        }
+
+        return new ListNode(elements);
+    }
+
 
     @Override
     public ASTNode visitFormat_expression(MyParser.Format_expressionContext ctx) {
@@ -206,4 +221,43 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         FormatNode formatNode = new FormatNode(formatDestination, formatString, expressionNodes);
         return formatNode;
     }
+
+
+
+    @Override
+    public ASTNode visitPush_expression(MyParser.Push_expressionContext ctx) {
+        ASTNode valueNode = visit(ctx.value());
+
+        List<ASTNode> listExpression = new ArrayList<>();
+        if (ctx.list_expression() != null) {
+            ASTNode listNode = visit(ctx.list_expression());
+            listExpression.add(listNode);
+        } else if (ctx.ATOM() != null) {
+            listExpression.add(new AtomNode(ctx.ATOM().getText()));
+        }
+
+        return new PushNode(valueNode, listExpression);
+    }
+
+    @Override
+    public ASTNode visitPop_expression(MyParser.Pop_expressionContext ctx) {
+        List<ASTNode> listPop = new ArrayList<>();
+        if (ctx.list_expression() != null) {
+            ASTNode listNode = visit(ctx.list_expression());
+            listPop.add(listNode);
+        } else if (ctx.ATOM() != null) {
+            listPop.add(new AtomNode(ctx.ATOM().getText()));
+        }
+
+        return new PopNode(listPop);
+    }
+
+
+
+
+
+
+
+
+
 }
