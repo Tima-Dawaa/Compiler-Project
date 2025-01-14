@@ -24,13 +24,10 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
-<<<<<<< HEAD
     | defclass_expression
     | make_instance_expression
     | defmethod_expression
-=======
     | loop_expression
->>>>>>> hamza
     ;
 
 
@@ -111,10 +108,10 @@ loop_body
 
 // Operator Expressions
 operators_expression
-    : arithmetic_expression     #ArithmeticOpNode
-    | comparison_expression     #ComparisonOpNode
-    | logical_expression        #LogicalOpNode
-    | bitwise_expression        #BitwiseOpNode
+    : arithmetic_expression
+    | comparison_expression
+    | logical_expression
+    | bitwise_expression
     | make_array_expression
     | aref_expression
     | list_expression
