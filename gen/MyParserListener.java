@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -966,6 +966,16 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_call(MyParser.Func_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_call(MyParser.Func_callContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#make_instance_expression}.
 	 * @param ctx the parse tree

@@ -28,6 +28,7 @@ expression
     | make_instance_expression
     | defmethod_expression
     | loop_expression
+    | func_call
     ;
 
 
@@ -58,7 +59,7 @@ dotimes_expression
     ;
 
 dolist_expression
-    : S_LPARAN DOLIST S_LPARAN variable list_expression S_RPARAN loop_body? S_RPARAN
+    : S_LPARAN DOLIST S_LPARAN variable (list_expression | atom) S_RPARAN loop_body? S_RPARAN
     ;
 
 variable
@@ -218,7 +219,7 @@ defstruct_expression
     : DEFSTRUCT atom+ ;
 
 defun_expression
-    : DEFUN atom parameter_list expression+
+    : DEFUN atom parameter_list string? expression+
     ;
 
 defun_body
@@ -339,6 +340,7 @@ condition_clause
     | OTHERWISE
     | string
     | atom
+    | expression
     ;
 
 if_expression
@@ -530,6 +532,10 @@ defmethod_parameters
       (atom atom | )
       S_RPARAN;
 
+func_call
+    : S_LPARAN
+      atom ((expression | atom | real_number)* | S_LPARAN (expression | atom | real_number)* S_RPARAN)
+      S_RPARAN;
 
 // Make-Instance Expression
 make_instance_expression

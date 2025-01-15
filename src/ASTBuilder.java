@@ -219,7 +219,11 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitFuncall_expression(MyParser.Funcall_expressionContext ctx) {
-        ASTNode funcName = visit(ctx.getChild(2));
+        ASTNode funcName = null;
+        if (ctx.function_name().lambda_expression() != null) {
+            funcName = visit(ctx.function_name().lambda_expression());
+        } else funcName = visit(ctx.getChild(2));
+
         List<expression.ASTNode> funcParameters = new ArrayList<>();
         for (int i = 3; i < ctx.children.size() - 1; i++) {
             funcParameters.add((expression.ASTNode) visit(ctx.getChild(i)));
@@ -354,8 +358,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
                     MyParser.Rest_parameterContext restCtx = paramCtx.rest_parameter();
                     AtomNode paramAtom = new AtomNode(restCtx.atom().getText());
                     parameters.add(new RestParameterNode(paramAtom));
-                }
-                else if (paramCtx.key_parameter() != null) {
+                } else if (paramCtx.key_parameter() != null) {
                     MyParser.Key_parameterContext keyCtx = paramCtx.key_parameter();
                     AtomNode paramAtom = new AtomNode(keyCtx.getText());
                     parameters.add(new KeyParameterNode(paramAtom));
@@ -371,9 +374,9 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
                 .map(this::visit)  // Visit each expression node
                 .collect(Collectors.toList());
 
-        return new
-
-                DefunNode(functionName, parameterListNode, body);
+        StringNode documentation = null;
+        if (ctx.string() != null) documentation = new StringNode(ctx.string().getText());
+        return new DefunNode(functionName, parameterListNode, documentation, body);
     }
 
     @Override
@@ -618,7 +621,12 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     public ASTNode visitDolist_expression(MyParser.Dolist_expressionContext ctx) {
         ASTNode variable = visit(ctx.variable());
 
-        ASTNode listExpression = visit(ctx.list_expression());
+        ASTNode value = null;
+        if (ctx.list_expression() != null) {
+            value = visit(ctx.list_expression());
+        } else if (ctx.atom() != null) {
+            value = visit(ctx.atom());
+        }
 
         List<ASTNode> loopBody = new ArrayList<>();
         if (ctx.loop_body() != null) {
@@ -628,7 +636,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
                 loopBody.add(bodyNode);
             }
         }
-        return new DolistNode(variable, listExpression, loopBody);
+        return new DolistNode(variable, value, loopBody);
     }
 
     @Override
@@ -675,5 +683,54 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     public ASTNode visitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) {
         ASTNode value = visit(ctx.getChild(1));
         return new SingleQuoteNode(value);
+    }
+
+    @Override
+    public ASTNode visitLambda_expression(MyParser.Lambda_expressionContext ctx) {
+        // Visit the parameter list and handle different types of parameters
+        List<ASTNode> parameters = new ArrayList<>();
+        MyParser.Parameter_listContext parameterListCtx = ctx.parameter_list();
+
+        // Iterate over the parameter markers and handle each type
+        for (ParseTree child : parameterListCtx.children) {
+            if (child instanceof MyParser.AtomContext) {
+                parameters.add(new AtomNode(child.getText()));
+            } else if (child instanceof MyParser.Parameter_markerContext) {
+                MyParser.Parameter_markerContext paramCtx = (MyParser.Parameter_markerContext) child;
+                if (paramCtx.optional_parameter() != null) {
+                    MyParser.Optional_parameterContext optionalCtx = paramCtx.optional_parameter();
+                    List<ParseTree> optChildren = optionalCtx.children;
+                    AtomNode paramAtom = new AtomNode(optChildren.get(2).getText());
+                    ASTNode defaultValue = null;
+                    if (optChildren.size() > 4) {
+                        defaultValue = new AtomNode(optChildren.get(3).getText());
+                    }
+                    parameters.add(new OptionalParameterNode(paramAtom, defaultValue));
+                } else if (paramCtx.rest_parameter() != null) {
+                    MyParser.Rest_parameterContext restCtx = paramCtx.rest_parameter();
+                    AtomNode paramAtom = new AtomNode(restCtx.atom().getText());
+                    parameters.add(new RestParameterNode(paramAtom));
+                } else if (paramCtx.key_parameter() != null) {
+                    MyParser.Key_parameterContext keyCtx = paramCtx.key_parameter();
+                    AtomNode paramAtom = new AtomNode(keyCtx.getText());
+                    parameters.add(new KeyParameterNode(paramAtom));
+                }
+            }
+        }
+
+        ParameterListNode parameterListNode = new ParameterListNode(parameters);
+        List<ASTNode> body = ctx.defun_body().expression()
+                .stream()
+                .map(this::visit)  // Visit each expression node
+                .collect(Collectors.toList());
+
+        return new LambdaNode(parameterListNode, body);
+    }
+
+    @Override
+    public ASTNode visitFunc_call(MyParser.Func_callContext ctx) {
+        AtomNode atom = new AtomNode(ctx.getChild(1).getText());
+        ASTNode expression = visit(ctx.expression(0));
+        return new FuncCallNode(atom, expression);
     }
 }

@@ -1,4 +1,4 @@
-// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
+// Generated from C:/Users/VISION/IdeaProjects/Compiler-Project/src/MyParser.g4 by ANTLR 4.13.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -585,6 +585,12 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDefmethod_parameters(MyParser.Defmethod_parametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#func_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_call(MyParser.Func_callContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#make_instance_expression}.
 	 * @param ctx the parse tree
