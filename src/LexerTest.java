@@ -1,3 +1,4 @@
+import expression.ASTNode;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -22,55 +23,35 @@ public class LexerTest {
     }
 
     public static void main(String[] args) {
-        String input = readLispFile("src/test.lisp");
-        if (input == null) {
-            System.err.println("No input to process.");
-            return;
-        }
+        String fileName = "src/test.lisp";
+        MyParser parser = getParser(fileName);
+        ParseTree programContext = parser.program();
 
+        // Step 2: Parse and Build AST
+        ASTBuilder visitor = new ASTBuilder();
+        System.out.println("ASTBuilder Ready");
+        ASTNode ast = visitor.visit(programContext);
+        // Step 3: Print the AST
+        System.out.println(ast.prettyPrint());
+        if (visitor.semanticsErrors.isEmpty()) {
+            System.out.println("No Semantic Errors");
+        } else {
+            for (String error : visitor.semanticsErrors) {
+                System.out.println(error);
+            }
+        }
+    }
+
+    private static MyParser getParser(String filename) {
+        MyParser parser = null;
         try {
-            MyLexer lexer = new MyLexer(CharStreams.fromString(input));
+            CharStream input = CharStreams.fromFileName(filename);
+            MyLexer lexer = new MyLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-            MyParser parser = new MyParser(tokens);
-
-            parser.removeErrorListeners();
-            parser.addErrorListener(new BaseErrorListener() {
-                @Override
-                public void syntaxError(Recognizer<?, ?> recognizer,
-                                        Object offendingSymbol,
-                                        int line,
-                                        int charPositionInLine,
-                                        String msg,
-                                        RecognitionException e) {
-                    System.err.println("Syntax error at line " + line + ":" + charPositionInLine + " - " + msg);
-                }
-            });
-
-            ParseTree tree = parser.program();
-
-            // Use TreePrinter to print the formatted parse tree
-            System.out.println("Formatted Parse Tree:");
-            TreePrinter.print(tree);
-
-            // Walking through the tree with the custom listener
-            ParseTreeWalker walker = new ParseTreeWalker();
-            walker.walk(new MyCustomListener(), tree);
-
-        } catch (Exception e) {
-            System.err.println("Error during parsing: " + e.getMessage());
+            parser = new MyParser(tokens);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-}
-
-class MyCustomListener extends MyParserBaseListener {
-    @Override
-    public void enterArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
-        System.out.println("Entering arithmetic expression: " + ctx.getText());
-    }
-
-    @Override
-    public void exitArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
-        System.out.println("Exiting arithmetic expression: " + ctx.getText());
+        return parser;
     }
 }

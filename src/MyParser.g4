@@ -24,14 +24,12 @@ expression
     | function_call_expression
     | hash_table_expressions
     | format_expression
-<<<<<<< HEAD
     | defclass_expression
     | make_instance_expression
     | defmethod_expression
-=======
     | loop_expression
->>>>>>> hamza
     ;
+
 
 
 // Loop Expressions
@@ -149,52 +147,44 @@ not_expression
 bitwise_expression
     : S_LPARAN
         (LOGNOR | LOGXOR | LOGAND | LOGEQV | LOGIOR)
-        (INT_NUMBER | ATOM | operators_expression)*
+        (INT_NUMBER | ATOM | operators_expression)+
       S_RPARAN
     ;
 
 
 // Comparing Expressions
 equality_expression
-    : eq_expression
-    | eql_expression
-    | equal_expression
-    | not_equal_expression;
+    : eq_expression     #EqNode
+    | eql_expression    #EqlNode
+    | equal_expression  #EqualNode
+    | not_equal_expression  #NotEqualNode;
 
 eq_expression:
     S_LPARAN
         EQ
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
     S_RPARAN;
 
 eql_expression:
     S_LPARAN
         EQL
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
     S_RPARAN;
 
 equal_expression:
     S_LPARAN
         KEY_EQUAL
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
     S_RPARAN;
 
 not_equal_expression:
     S_LPARAN
         NOT_EQUAL
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
-        SINGLE_QUOTE?
-        (ATOM | real_number | list_expression | STRING | T | NIL)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
+        (ATOM | real_number | list_expression | STRING | T | NIL | single_quote_expression)
     S_RPARAN;
 
 
@@ -412,7 +402,7 @@ single_quote_expression
 
 // Funcall, Apply, Mapcar Expressions
 funcall_expression
-    : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN;
+    : S_LPARAN FUNCALL function_name function_call_parameter* S_RPARAN ;
 
 apply_expression
     : S_LPARAN APPLY function_name (SINGLE_QUOTE list_expression | ATOM+) S_RPARAN;

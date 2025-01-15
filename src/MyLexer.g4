@@ -83,7 +83,7 @@ NOT_EQUAL : 'not-equal';
 // Arrays
 MAKE_ARRAY: 'make-array';
 AREF    : 'aref';
-LIST:'list';
+LIST:   'list';
 PUSH    : 'push';
 POP     : 'pop';
 SORT: 'sort';
@@ -144,8 +144,8 @@ MULTI_LINE_COMMENT: '#|'.*?'|#' -> skip;
 
 // Fragment
 fragment NUMBER: [-+]?[0-9]+;
-fragment DIGIT: [0-9];
 fragment POSITIVE : [1-9];
+fragment DIGIT: [0-9];
 fragment ALPHA: [a-zA-Z];
 fragment SYMBOL: [!#$%&*+/=?^_`'{|}~.-];
 fragment ESCAPE: '\\' [bfnrt"'\\];

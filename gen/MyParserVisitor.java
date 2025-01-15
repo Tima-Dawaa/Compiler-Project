@@ -22,6 +22,84 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(MyParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyParser#loop_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoop_expression(MyParser.Loop_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#loop_simple}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoop_simple(MyParser.Loop_simpleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#loop_for}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoop_for(MyParser.Loop_forContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#do_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDo_expression(MyParser.Do_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#dotimes_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDotimes_expression(MyParser.Dotimes_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#dolist_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDolist_expression(MyParser.Dolist_expressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable(MyParser.VariableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#variable_definitions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariable_definitions(MyParser.Variable_definitionsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#from_to_clause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFrom_to_clause(MyParser.From_to_clauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#init_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInit_value(MyParser.Init_valueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#step_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStep_value(MyParser.Step_valueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#limit_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLimit_value(MyParser.Limit_valueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#loop_body}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoop_body(MyParser.Loop_bodyContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyParser#operators_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -64,11 +142,33 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyParser#equality_expression}.
+	 * Visit a parse tree produced by the {@code EqNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEquality_expression(MyParser.Equality_expressionContext ctx);
+	T visitEqNode(MyParser.EqNodeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EqlNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqlNode(MyParser.EqlNodeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqualNode(MyParser.EqualNodeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NotEqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotEqualNode(MyParser.NotEqualNodeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#eq_expression}.
 	 * @param ctx the parse tree

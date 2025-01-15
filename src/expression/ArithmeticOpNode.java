@@ -5,16 +5,16 @@ import expression.ASTNode;
 import java.util.List;
 
 public class ArithmeticOpNode extends ASTNode {
-    private String operator;
+    private StringNode operator;
     private List<ASTNode> operands;
 
-    public ArithmeticOpNode(String operator, List<ASTNode> operands) {
+    public ArithmeticOpNode(StringNode operator, List<ASTNode> operands) {
         this.operator = operator;
         this.operands = operands;
     }
 
     public String getOperator() {
-        return operator;
+        return operator.getValue();
     }
 
     public List<ASTNode> getOperands() {
@@ -28,7 +28,7 @@ public class ArithmeticOpNode extends ASTNode {
 
     @Override
     public String toString() {
-        return "(" + operator + " " + operands.stream()
+        return "(" + operator.getValue() + " " + operands.stream()
                 .map(ASTNode::toString)
                 .reduce((a, b) -> a + " " + b)
                 .orElse("") + ")";

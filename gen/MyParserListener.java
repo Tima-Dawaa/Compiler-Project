@@ -27,6 +27,136 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitExpression(MyParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyParser#loop_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoop_expression(MyParser.Loop_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#loop_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoop_expression(MyParser.Loop_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#loop_simple}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoop_simple(MyParser.Loop_simpleContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#loop_simple}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoop_simple(MyParser.Loop_simpleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#loop_for}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoop_for(MyParser.Loop_forContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#loop_for}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoop_for(MyParser.Loop_forContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#do_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDo_expression(MyParser.Do_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#do_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDo_expression(MyParser.Do_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#dotimes_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDotimes_expression(MyParser.Dotimes_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#dotimes_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDotimes_expression(MyParser.Dotimes_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#dolist_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterDolist_expression(MyParser.Dolist_expressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#dolist_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitDolist_expression(MyParser.Dolist_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable(MyParser.VariableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable(MyParser.VariableContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#variable_definitions}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariable_definitions(MyParser.Variable_definitionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#variable_definitions}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariable_definitions(MyParser.Variable_definitionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#from_to_clause}.
+	 * @param ctx the parse tree
+	 */
+	void enterFrom_to_clause(MyParser.From_to_clauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#from_to_clause}.
+	 * @param ctx the parse tree
+	 */
+	void exitFrom_to_clause(MyParser.From_to_clauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#init_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterInit_value(MyParser.Init_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#init_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitInit_value(MyParser.Init_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#step_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterStep_value(MyParser.Step_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#step_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitStep_value(MyParser.Step_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#limit_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterLimit_value(MyParser.Limit_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#limit_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitLimit_value(MyParser.Limit_valueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#loop_body}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoop_body(MyParser.Loop_bodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#loop_body}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoop_body(MyParser.Loop_bodyContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyParser#operators_expression}.
 	 * @param ctx the parse tree
 	 */
@@ -97,15 +227,53 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyParser#equality_expression}.
+	 * Enter a parse tree produced by the {@code EqNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterEquality_expression(MyParser.Equality_expressionContext ctx);
+	void enterEqNode(MyParser.EqNodeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MyParser#equality_expression}.
+	 * Exit a parse tree produced by the {@code EqNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitEquality_expression(MyParser.Equality_expressionContext ctx);
+	void exitEqNode(MyParser.EqNodeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EqlNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqlNode(MyParser.EqlNodeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EqlNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqlNode(MyParser.EqlNodeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqualNode(MyParser.EqualNodeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqualNode(MyParser.EqualNodeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NotEqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotEqualNode(MyParser.NotEqualNodeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NotEqualNode}
+	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotEqualNode(MyParser.NotEqualNodeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#eq_expression}.
 	 * @param ctx the parse tree

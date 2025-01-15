@@ -5,16 +5,16 @@ import expression.ASTNode;
 import java.util.List;
 
 public class ComparisonOpNode extends ASTNode {
-    private String operator;
+    private StringNode operator;
     private List<ASTNode> operands;
 
-    public ComparisonOpNode(String operator, List<ASTNode> operands) {
+    public ComparisonOpNode(StringNode operator, List<ASTNode> operands) {
         this.operator = operator;
         this.operands = operands;
     }
 
     public String getOperator() {
-        return operator;
+        return operator.getValue();
     }
 
     public List<ASTNode> getOperands() {
@@ -41,7 +41,7 @@ public class ComparisonOpNode extends ASTNode {
             operandsString.append(operand.prettyPrint()).append(", ");
         }
         return "ComparisonOpNode{ " +
-                "operator = " + operator +
+                "operator = " + operator.getValue() +
                 "operands = " + operandsString +
                 "}";
     }
