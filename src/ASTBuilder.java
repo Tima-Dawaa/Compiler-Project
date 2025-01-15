@@ -17,9 +17,38 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     }
 
     @Override
+    public ASTNode visitProgram(MyParser.ProgramContext ctx) {
+        // Create a Program node to represent the root of the AST
+        Program programNode = new Program();
+
+        // Iterate over all children of the ProgramContext
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ParseTree child = ctx.getChild(i);
+
+            // Skip terminal nodes if they're not relevant
+            if (child instanceof TerminalNode) {
+                System.out.println("Skipping terminal node: " + child.getText());
+                continue;
+            }
+            // Visit the child node and get the corresponding ASTNode
+            ASTNode childNode = visit(child);
+
+            // If the visit returns a valid ASTNode, add it to the Program node
+            if (childNode != null) {
+                programNode.addChild(childNode);
+            } else {
+                System.out.println("Null ASTNode for child: " + child.getText());
+            }
+        }
+        // Return the constructed Program node
+        return programNode;
+    }
+
+
+    @Override
     public ASTNode visitSetq_single_var(MyParser.Setq_single_varContext ctx) {
         TupleNode tupleNode = (TupleNode) visit(ctx.tuple_without_paran());
-        ASTNode setqNode = (ASTNode) new SetqNode(List.of(tupleNode));
+        ASTNode setqNode = (ASTNode) new SetqNode((List<TupleNode>) tupleNode);
         return setqNode;
     }
 
@@ -35,15 +64,19 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitDefvar(MyParser.DefvarContext ctx) {
-        String defvarToken = ctx.DEFVAR().getText();
-        ASTNode tupleNode = visit(ctx.tuple_without_paran());
-        ASTNode defvarNode = (ASTNode) new DefvarNode((TupleNode) tupleNode);
-        return defvarNode;
+        TupleNode tupleNode = (TupleNode) visitChildren(ctx.tuple_without_paran());
+        return new DefvarNode(tupleNode);
+    }
+
+    @Override
+    public ASTNode visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx) {
+        String atomValue = String.valueOf(ctx.ATOM().get(0));
+        ASTNode expressionNode = visit(ctx.expression());
+        return new TupleNode(new AtomNode(atomValue), expressionNode);
     }
 
     @Override
     public ASTNode visitDefconstant(MyParser.DefconstantContext ctx) {
-        String defconstantToken = ctx.DEFCONSTANT().getText();
         ASTNode tupleNode = visit(ctx.tuple_without_paran());
         ASTNode defconstantNode = (ASTNode) new DefconstantNode((TupleNode) tupleNode);
         return defconstantNode;
