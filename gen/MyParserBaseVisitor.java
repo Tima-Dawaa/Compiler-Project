@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+import expression.ASTNode;
+=======
 // Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
+>>>>>>> origin/Tima
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -10,7 +15,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * operations with no return type.
  */
 @SuppressWarnings("CheckReturnValue")
-public class MyParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements MyParserVisitor<T> {
+public abstract class MyParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements MyParserVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *
@@ -718,6 +723,18 @@ public class MyParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitReal_number(MyParser.Real_numberContext ctx) { return visitChildren(ctx); }
+<<<<<<< HEAD
+
+	public abstract ASTNode visitLoopSimple(MyParser.Loop_simpleContext ctx);
+
+	public abstract ASTNode visitLoopFor(MyParser.Loop_forContext ctx);
+
+    public abstract ASTNode visitDoExpression(MyParser.Do_expressionContext ctx);
+
+    public abstract ASTNode visitDotimes(MyParser.Dotimes_expressionContext ctx);
+
+	public abstract ASTNode visitDolist(MyParser.Dolist_expressionContext ctx);
+=======
 	/**
 	 * {@inheritDoc}
 	 *
@@ -767,4 +784,5 @@ public class MyParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitNil(MyParser.NilContext ctx) { return visitChildren(ctx); }
+>>>>>>> origin/Tima
 }
