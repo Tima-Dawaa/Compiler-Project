@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -227,53 +227,15 @@ public interface MyParserListener extends ParseTreeListener {
 	 */
 	void exitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code EqNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * Enter a parse tree produced by {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterEqNode(MyParser.EqNodeContext ctx);
+	void enterEquality_expression(MyParser.Equality_expressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code EqNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * Exit a parse tree produced by {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitEqNode(MyParser.EqNodeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code EqlNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqlNode(MyParser.EqlNodeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code EqlNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqlNode(MyParser.EqlNodeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code EqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqualNode(MyParser.EqualNodeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code EqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqualNode(MyParser.EqualNodeContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code NotEqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNotEqualNode(MyParser.NotEqualNodeContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code NotEqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNotEqualNode(MyParser.NotEqualNodeContext ctx);
+	void exitEquality_expression(MyParser.Equality_expressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyParser#eq_expression}.
 	 * @param ctx the parse tree
@@ -1054,4 +1016,74 @@ public interface MyParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtom(MyParser.AtomContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtom(MyParser.AtomContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(MyParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(MyParser.StringContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#int_number}.
+	 * @param ctx the parse tree
+	 */
+	void enterInt_number(MyParser.Int_numberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#int_number}.
+	 * @param ctx the parse tree
+	 */
+	void exitInt_number(MyParser.Int_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#float_number}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloat_number(MyParser.Float_numberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#float_number}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloat_number(MyParser.Float_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#e_number}.
+	 * @param ctx the parse tree
+	 */
+	void enterE_number(MyParser.E_numberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#e_number}.
+	 * @param ctx the parse tree
+	 */
+	void exitE_number(MyParser.E_numberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#t}.
+	 * @param ctx the parse tree
+	 */
+	void enterT(MyParser.TContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#t}.
+	 * @param ctx the parse tree
+	 */
+	void exitT(MyParser.TContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyParser#nil}.
+	 * @param ctx the parse tree
+	 */
+	void enterNil(MyParser.NilContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyParser#nil}.
+	 * @param ctx the parse tree
+	 */
+	void exitNil(MyParser.NilContext ctx);
 }

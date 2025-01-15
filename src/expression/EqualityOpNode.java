@@ -13,7 +13,7 @@ public class EqualityOpNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return operation + "{" +
+        return operation.getValue() + "{" +
                  "operands = ["+ operand1.prettyPrint() + ',' + operand1.prettyPrint() + "]";
     }
 }

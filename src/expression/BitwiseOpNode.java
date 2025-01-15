@@ -42,7 +42,7 @@ public class BitwiseOpNode extends ASTNode {
         }
         return "BitwiseOpNode{ " +
                 "operator = " + operator +
-                "operands = " + operandsString +
+                "\t,operands = " + operandsString +
                 "}";
     }
 }

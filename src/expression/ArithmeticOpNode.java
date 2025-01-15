@@ -41,8 +41,8 @@ public class ArithmeticOpNode extends ASTNode {
             operandsString.append(operand.prettyPrint()).append(", ");
         }
         return "ArithmeticOpNode{ " +
-                "operator = " + operator +
-                "operands = " + operandsString +
+                "operator = " + operator.getValue() +
+                "\t,operands = " + operandsString +
                 "}";
     }
 }
