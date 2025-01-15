@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
@@ -80,11 +81,15 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     @Override
     public ASTNode visitArithmetic_expression(MyParser.Arithmetic_expressionContext ctx) {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
-        List<expression.ASTNode> operands = new ArrayList<>();
+        List<ASTNode> operands = new ArrayList<>();
         for (int i = 2; i < ctx.children.size() - 1; i++) {
-            operands.add((expression.ASTNode) visit(ctx.getChild(i)));
+            if(ctx.getChild(i) instanceof TerminalNode) {
+                if(Objects.equals(((TerminalNode) ctx.getChild(i)).getSymbol().getText(), "ATOM")) operands.add(new AtomNode(ctx.getChild(i).getText()));
+                else operands.add(new IntNumberNode(Integer.parseInt(ctx.getChild(i).getText())));
+            }
+            operands.add(visit(ctx.getChild(i)));
         }
-        return (ASTNode) new ArithmeticOpNode(operation, operands);
+        return new ArithmeticOpNode(operation, operands);
     }
 
     @Override
