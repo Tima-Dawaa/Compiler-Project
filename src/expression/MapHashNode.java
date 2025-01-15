@@ -1,15 +1,15 @@
 package expression;
 
 public class MapHashNode extends ASTNode {
-    private final LambdaNode function;
+    private final ASTNode function;
     private final AtomNode tableName;
 
-    public MapHashNode(LambdaNode function, AtomNode tableName) {
+    public MapHashNode(ASTNode function, AtomNode tableName) {
         this.function = function;
         this.tableName = tableName;
     }
 
-    public LambdaNode getFunction() {
+    public ASTNode getFunction() {
         return function;
     }
 

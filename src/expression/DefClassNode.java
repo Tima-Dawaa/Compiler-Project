@@ -22,7 +22,9 @@ public class DefClassNode extends ASTNode {
     public String prettyPrint() {
         StringBuilder parametersString = new StringBuilder();
         for (ASTNode exp : parameters) {
-            parametersString.append(exp.prettyPrint()).append(" ");
+            if(exp != null) {
+                parametersString.append(exp.prettyPrint()).append(" ");
+            }
         }
         return "Defclass Expression{" +
                 "class name =" + className.prettyPrint() +

@@ -1,13 +1,13 @@
 package expression;
 
 public class CdrNode extends ASTNode {
-    private final ConsNode consExpression;
+    private final ASTNode consExpression;
 
-    public CdrNode(ConsNode consExpression) {
+    public CdrNode(ASTNode consExpression) {
         this.consExpression = consExpression;
     }
 
-    public ConsNode getConsExpression() {
+    public ASTNode getConsExpression() {
         return consExpression;
     }
 
