@@ -5,6 +5,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     private List<String> vars;//store all the variable declared in the program so far
@@ -43,6 +44,10 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return programNode;
     }
 
+    @Override
+    public ASTNode visitDefining_expressions(MyParser.Defining_expressionsContext ctx) {
+        return visit(ctx.getChild(1));
+    }
 
     @Override
     public ASTNode visitSetq_single_var(MyParser.Setq_single_varContext ctx) {
@@ -72,14 +77,14 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx) {
-        String atomValue = String.valueOf(ctx.getChild(0));
+        String atomValue = ctx.getChild(0).getText();
         ASTNode expressionNode = visit(ctx.getChild(1));
         return new TupleNode(new AtomNode(atomValue), expressionNode);
     }
 
     @Override
     public ASTNode visitTuple_with_paran(MyParser.Tuple_with_paranContext ctx) {
-        String atomValue = String.valueOf(ctx.getChild(0));
+        String atomValue = ctx.getChild(0).getText();
         ASTNode expressionNode = visit(ctx.getChild(1));
         return new TupleWithParanNode(new AtomNode(atomValue), expressionNode);
     }
@@ -107,16 +112,22 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitLet(MyParser.LetContext ctx) {
+        // Visit the tuple_with_paran elements to collect all tuples
         List<TupleWithParanNode> tupleNodes = ctx.tuple_with_paran()
                 .stream()
-                .map(node -> (TupleWithParanNode) visit(node)) // Visit each tuple node
-                .toList();
+                .map(node -> (TupleWithParanNode) visit(node))  // Visit each tuple node
+                .collect(Collectors.toList());  // Collect them in a List
+
+        // Visit the expression or atom elements, these can either be expressions or atoms
         List<ASTNode> expressionNodes = ctx.expression()
                 .stream()
-                .map(this::visit) // Visit each expression node
-                .toList();
-        ASTNode letNode = new LetNode(tupleNodes, expressionNodes);
-        return letNode;
+                .map(this::visit)  // Visit each expression node
+                .collect(Collectors.toList());
+
+        // Create the LetNode from the collected tuples and expressions
+        LetNode letNode = new LetNode(tupleNodes, expressionNodes);
+
+        return letNode;  // Return the constructed LetNode
     }
 
     @Override
