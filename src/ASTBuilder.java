@@ -490,90 +490,89 @@ public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ct
         return new DefClassNode(className, parameters);
     }
 
-<<<<<<< HEAD
-   @Override
-   public ASTNode visitLoopSimple(MyParser.Loop_simpleContext ctx) {
-       List<ASTNode> loopBody = new ArrayList<>();
+//   @Override
+//   public ASTNode visitLoopSimple(MyParser.Loop_simpleContext ctx) {
+//       List<ASTNode> loopBody = new ArrayList<>();
+//
+//       if (ctx.loop_body() != null) {
+//           for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
+//               ASTNode node = visit(ctx.loop_body().expression(i));
+//               loopBody.add(node);
+//           }
+//       }
+//       return new LoopSimpleNode(loopBody);
+//   }
+//
+//    @Override
+//    public ASTNode visitLoopFor(MyParser.Loop_forContext ctx) {
+//        ASTNode variable = visit(ctx.variable());
+//        ASTNode initValue = visit(ctx.from_to_clause().init_value());
+//        ASTNode limitValue = visit(ctx.from_to_clause().limit_value());
+//
+//        List<ASTNode> loopBody = new ArrayList<>();
+//
+//        if (ctx.loop_body() != null) {
+//            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
+//                ASTNode node = visit(ctx.loop_body().expression(i));
+//                loopBody.add(node);
+//            }
+//        }
+//        return new LoopForNode(variable, initValue, limitValue, loopBody);
+//    }
+//
+//
+//    @Override
+//    public ASTNode visitDoExpression(MyParser.Do_expressionContext ctx) {
+//        List<VariableDefinitionNode> variableDefinitions = new ArrayList<>();
+//        for (int i = 0; i < ctx.variable_definitions().getChildCount(); i++) {
+//            MyParser.Variable_definitionsContext varDefCtx = ctx.variable_definitions();
+//
+//            ASTNode variable = visit((ParseTree) varDefCtx.variable());
+//
+//            ASTNode initValue = null;
+//            if (varDefCtx.init_value() != null) {
+//                initValue = visit((ParseTree) varDefCtx.init_value());
+//            }
+//
+//            ASTNode stepValue = null;
+//            if (varDefCtx.step_value() != null) {
+//                stepValue = visit((ParseTree) varDefCtx.step_value());
+//            }
+//
+//            VariableDefinitionNode varDefNode = new VariableDefinitionNode(variable, initValue, stepValue);
+//            variableDefinitions.add(varDefNode);
+//        }
+//
+//        ASTNode condition = visit(ctx.condition_clause());
+//
+//        List<ASTNode> loopBody = new ArrayList<>();
+//        if (ctx.loop_body() != null) {
+//            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
+//                ASTNode bodyNode = visit(ctx.loop_body().expression(i));
+//                loopBody.add(bodyNode);
+//            }
+//        }
+//
+//        return new DoExpressionNode(variableDefinitions, condition, loopBody);
+//    }
+//
+//    @Override
+//    public ASTNode visitDotimes(MyParser.Dotimes_expressionContext ctx) {
+//        ASTNode variable = visit(ctx.variable());
+//
+//        ASTNode loopCount = visit(ctx.real_number());
+//
+//        List<ASTNode> loopBody = new ArrayList<>();
+//        if (ctx.loop_body() != null) {
+//            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
+//                ASTNode bodyNode = visit(ctx.loop_body().expression(i));
+//                loopBody.add(bodyNode);
+//            }
+//        }
+//        return new DotimesNode(variable, loopCount, loopBody);
+//    }
 
-       if (ctx.loop_body() != null) {
-           for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
-               ASTNode node = visit(ctx.loop_body().expression(i));
-               loopBody.add(node);
-           }
-       }
-       return new LoopSimpleNode(loopBody);
-   }
-
-    @Override
-    public ASTNode visitLoopFor(MyParser.Loop_forContext ctx) {
-        ASTNode variable = visit(ctx.variable());
-        ASTNode initValue = visit(ctx.from_to_clause().init_value());
-        ASTNode limitValue = visit(ctx.from_to_clause().limit_value());
-
-        List<ASTNode> loopBody = new ArrayList<>();
-
-        if (ctx.loop_body() != null) {
-            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
-                ASTNode node = visit(ctx.loop_body().expression(i));
-                loopBody.add(node);
-            }
-        }
-        return new LoopForNode(variable, initValue, limitValue, loopBody);
-    }
-
-
-    @Override
-    public ASTNode visitDoExpression(MyParser.Do_expressionContext ctx) {
-        List<VariableDefinitionNode> variableDefinitions = new ArrayList<>();
-        for (int i = 0; i < ctx.variable_definitions().getChildCount(); i++) {
-            MyParser.Variable_definitionsContext varDefCtx = ctx.variable_definitions();
-
-            ASTNode variable = visit((ParseTree) varDefCtx.variable());
-
-            ASTNode initValue = null;
-            if (varDefCtx.init_value() != null) {
-                initValue = visit((ParseTree) varDefCtx.init_value());
-            }
-
-            ASTNode stepValue = null;
-            if (varDefCtx.step_value() != null) {
-                stepValue = visit((ParseTree) varDefCtx.step_value());
-            }
-
-            VariableDefinitionNode varDefNode = new VariableDefinitionNode(variable, initValue, stepValue);
-            variableDefinitions.add(varDefNode);
-        }
-
-        ASTNode condition = visit(ctx.condition_clause());
-
-        List<ASTNode> loopBody = new ArrayList<>();
-        if (ctx.loop_body() != null) {
-            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
-                ASTNode bodyNode = visit(ctx.loop_body().expression(i));
-                loopBody.add(bodyNode);
-            }
-        }
-
-        return new DoExpressionNode(variableDefinitions, condition, loopBody);
-    }
-
-    @Override
-    public ASTNode visitDotimes(MyParser.Dotimes_expressionContext ctx) {
-        ASTNode variable = visit(ctx.variable());
-
-        ASTNode loopCount = visit(ctx.real_number());
-
-        List<ASTNode> loopBody = new ArrayList<>();
-        if (ctx.loop_body() != null) {
-            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
-                ASTNode bodyNode = visit(ctx.loop_body().expression(i));
-                loopBody.add(bodyNode);
-            }
-        }
-        return new DotimesNode(variable, loopCount, loopBody);
-    }
-
-    @Override
+//    @Override
     public ASTNode visitDolist(MyParser.Dolist_expressionContext ctx) {
         ASTNode variable = visit(ctx.variable());
 
@@ -590,7 +589,6 @@ public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ct
         return new DolistNode(variable, listExpression, loopBody);
     }
 
-=======
     @Override public ASTNode visitReal_number(MyParser.Real_numberContext ctx) {
         return new RealNumberNode(ctx.getChild(0).getText());
     }
@@ -622,5 +620,9 @@ public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ct
     @Override public ASTNode visitNil(MyParser.NilContext ctx) {
         return new NILNode(ctx.NIL().getText());
     }
->>>>>>> origin/Tima
+
+    @Override public ASTNode visitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) {
+        ASTNode value = visit(ctx.getChild(1));
+        return new SingleQuoteNode(value);
+    }
 }
