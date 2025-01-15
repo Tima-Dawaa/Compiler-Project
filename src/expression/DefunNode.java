@@ -2,34 +2,28 @@ package expression;
 
 import java.util.List;
 
-public class DefunNode extends ASTNode{
-    private  final AtomNode atom;
-    private  final List<ASTNode> listparameters;
-    private  final List<ASTNode> listbody;
+public class DefunNode extends ASTNode {
+    private final AtomNode functionName;
+    private final ParameterListNode parameterList;
+    private final List<ASTNode> body;
 
-
-    public DefunNode(AtomNode atom, List<ASTNode> listparameters, List<ASTNode> listbody) {
-        this.atom = atom;
-        this.listparameters = listparameters;
-        this.listbody = listbody;
+    public DefunNode(AtomNode functionName, ParameterListNode parameterList, List<ASTNode> body) {
+        this.functionName = functionName;
+        this.parameterList = parameterList;
+        this.body = body;
     }
 
     @Override
     public String prettyPrint() {
-        StringBuilder parameters = new StringBuilder();
-        for (ASTNode param : listparameters) {
-            parameters.append(param.prettyPrint()).append(" ");
-        }
-
-        StringBuilder body = new StringBuilder();
-        for (ASTNode expr : listbody) {
-            body.append(expr.prettyPrint()).append(" ");
+        StringBuilder bodyStr = new StringBuilder();
+        for (ASTNode expr : body) {
+            bodyStr.append(expr.prettyPrint()).append(" ");
         }
 
         return "Defun{" +
-                "atom=" + atom.prettyPrint() +
-                ", parameters=[" + parameters.toString().trim() + "]" +
-                ", body=[" + body.toString().trim() + "]" +
+                "functionName=" + functionName.prettyPrint() +
+                ", parameters=" + parameterList.prettyPrint() +
+                ", body=[" + bodyStr.toString().trim() + "]" +
                 "}";
     }
 }

@@ -218,7 +218,7 @@ defstruct_expression
     : DEFSTRUCT atom+ ;
 
 defun_expression
-    : DEFUN atom parameter_list defun_body
+    : DEFUN atom parameter_list expression+
     ;
 
 defun_body
@@ -246,7 +246,7 @@ value
     | atom
     | t
     | nil
-    |keyword
+    | keyword
     | operators_expression
     | real_number
     | list_expression

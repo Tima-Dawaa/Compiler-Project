@@ -150,7 +150,8 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new ComparisonOpNode(operation, operands);
     }
 
-    @Override public ASTNode visitLogical_expression(MyParser.Logical_expressionContext ctx) {
+    @Override
+    public ASTNode visitLogical_expression(MyParser.Logical_expressionContext ctx) {
         return visit(ctx.getChild(1));
     }
 
@@ -245,6 +246,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         }
         return new ApplyNode(funcName, funcParameters);
     }
+
     @Override
     public ASTNode visitList_expression(MyParser.List_expressionContext ctx) {
         List<ASTNode> elements = new ArrayList<>();
@@ -263,7 +265,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitFormat_expression(MyParser.Format_expressionContext ctx) {
-        BooleanNode formatDestination =  new BooleanNode(ctx.FORMAT_DESTINATION().toString());
+        BooleanNode formatDestination = new BooleanNode(ctx.FORMAT_DESTINATION().toString());
         StringNode formatString = new StringNode(ctx.FORMAT_STRING().toString());
         List<ASTNode> expressions = new ArrayList<>();
         for (ParseTree child : ctx.children) {
@@ -324,26 +326,55 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new MakeInstanceArgumentNode(atom, colon, value);
     }
 
-//    @Override
-//    public ASTNode visitDefun_expression(MyParser.Defun_expressionContext ctx) {
-//        AtomNode atom = new AtomNode(ctx.atom().getText());
-//
-//        List<ASTNode> listParameters = new ArrayList<>();
-//        if (ctx.parameter_list() != null) {
-//            for (TerminalNode param : ctx.parameter_list().atom()) {
-//                listParameters.add(new AtomNode(param.getText()));
-//            }
-//        }
-//
-//        List<ASTNode> listBody = new ArrayList<>();
-//        if (ctx.defun_body() != null) {
-//            for (MyParser.ExpressionContext exprCtx : ctx.defun_body().expression()) {
-//                listBody.add(visit(exprCtx));
-//            }
-//        }
-//
-//        return new DefunNode(atom, listParameters, listBody);
-//    }
+    @Override
+    public ASTNode visitDefun_expression(MyParser.Defun_expressionContext ctx) {
+        // Visit the function name (atom)
+        AtomNode functionName = (AtomNode) visit(ctx.atom());
+
+        // Visit the parameter list and handle different types of parameters
+        List<ASTNode> parameters = new ArrayList<>();
+        MyParser.Parameter_listContext parameterListCtx = ctx.parameter_list();
+
+        // Iterate over the parameter markers and handle each type
+        for (ParseTree child : parameterListCtx.children) {
+            if (child instanceof MyParser.AtomContext) {
+                parameters.add(new AtomNode(child.getText()));
+            } else if (child instanceof MyParser.Parameter_markerContext) {
+                MyParser.Parameter_markerContext paramCtx = (MyParser.Parameter_markerContext) child;
+                if (paramCtx.optional_parameter() != null) {
+                    MyParser.Optional_parameterContext optionalCtx = paramCtx.optional_parameter();
+                    List<ParseTree> optChildren = optionalCtx.children;
+                    AtomNode paramAtom = new AtomNode(optChildren.get(2).getText());
+                    ASTNode defaultValue = null;
+                    if (optChildren.size() > 4) {
+                        defaultValue = new AtomNode(optChildren.get(3).getText());
+                    }
+                    parameters.add(new OptionalParameterNode(paramAtom, defaultValue));
+                } else if (paramCtx.rest_parameter() != null) {
+                    MyParser.Rest_parameterContext restCtx = paramCtx.rest_parameter();
+                    AtomNode paramAtom = new AtomNode(restCtx.atom().getText());
+                    parameters.add(new RestParameterNode(paramAtom));
+                }
+                else if (paramCtx.key_parameter() != null) {
+                    MyParser.Key_parameterContext keyCtx = paramCtx.key_parameter();
+                    AtomNode paramAtom = new AtomNode(keyCtx.getText());
+                    parameters.add(new KeyParameterNode(paramAtom));
+                }
+            }
+        }
+
+
+        ParameterListNode parameterListNode = new ParameterListNode(parameters);
+
+        List<ASTNode> body = ctx.expression()
+                .stream()
+                .map(this::visit)  // Visit each expression node
+                .collect(Collectors.toList());
+
+        return new
+
+                DefunNode(functionName, parameterListNode, body);
+    }
 
     @Override
     public ASTNode visitAref_expression(MyParser.Aref_expressionContext ctx) {
@@ -383,7 +414,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     @Override
     public ASTNode visitProgn_expression(MyParser.Progn_expressionContext ctx) {
         List<ASTNode> expressions = new ArrayList<>();
-        for (int i = 0; i < ctx.expression().size()  ; i++) {
+        for (int i = 0; i < ctx.expression().size(); i++) {
             expressions.add(visit(ctx.expression(i)));
         }
         return new PrognNode(expressions);
@@ -437,18 +468,18 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new CdrNode(consExpression);
     }
 
-@Override
-public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ctx) {
-    List<ASTNode> parameters = new ArrayList<>();
-    for (ParseTree child : ctx.children) {
-        if (child instanceof TerminalNode terminalNode) {
-            if (terminalNode.getSymbol().getType() == MyParser.ATOM) {
-                parameters.add(new AtomNode(terminalNode.getText()));
+    @Override
+    public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ctx) {
+        List<ASTNode> parameters = new ArrayList<>();
+        for (ParseTree child : ctx.children) {
+            if (child instanceof TerminalNode terminalNode) {
+                if (terminalNode.getSymbol().getType() == MyParser.ATOM) {
+                    parameters.add(new AtomNode(terminalNode.getText()));
+                }
             }
         }
+        return new DefStructNode(parameters);
     }
-    return new DefStructNode(parameters);
-}
 
     @Override
     public ASTNode visitMake_hash_table_expression(MyParser.Make_hash_table_expressionContext ctx) {
@@ -501,18 +532,18 @@ public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ct
         return new DefClassNode(className, parameters);
     }
 
-   @Override
-   public ASTNode visitLoop_simple(MyParser.Loop_simpleContext ctx) {
-       List<ASTNode> loopBody = new ArrayList<>();
+    @Override
+    public ASTNode visitLoop_simple(MyParser.Loop_simpleContext ctx) {
+        List<ASTNode> loopBody = new ArrayList<>();
 
-       if (ctx.loop_body() != null) {
-           for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
-               ASTNode node = visit(ctx.loop_body().expression(i));
-               loopBody.add(node);
-           }
-       }
-       return new LoopSimpleNode(loopBody);
-   }
+        if (ctx.loop_body() != null) {
+            for (int i = 0; i < ctx.loop_body().expression().size(); i++) {
+                ASTNode node = visit(ctx.loop_body().expression(i));
+                loopBody.add(node);
+            }
+        }
+        return new LoopSimpleNode(loopBody);
+    }
 
     @Override
     public ASTNode visitLoop_for(MyParser.Loop_forContext ctx) {
@@ -600,39 +631,48 @@ public ASTNode visitDefstruct_expression(MyParser.Defstruct_expressionContext ct
         return new DolistNode(variable, listExpression, loopBody);
     }
 
-    @Override public ASTNode visitReal_number(MyParser.Real_numberContext ctx) {
+    @Override
+    public ASTNode visitReal_number(MyParser.Real_numberContext ctx) {
         return new RealNumberNode(ctx.getChild(0).getText());
     }
 
-    @Override public ASTNode visitAtom(MyParser.AtomContext ctx) {
+    @Override
+    public ASTNode visitAtom(MyParser.AtomContext ctx) {
         return new AtomNode(ctx.ATOM().getText());
     }
 
-    @Override public ASTNode visitString(MyParser.StringContext ctx) {
+    @Override
+    public ASTNode visitString(MyParser.StringContext ctx) {
         return new StringNode(ctx.STRING().getText());
     }
 
-    @Override public ASTNode visitInt_number(MyParser.Int_numberContext ctx) {
+    @Override
+    public ASTNode visitInt_number(MyParser.Int_numberContext ctx) {
         return new IntNumberNode(Integer.parseInt(ctx.INT_NUMBER().getText()));
     }
 
-    @Override public ASTNode visitFloat_number(MyParser.Float_numberContext ctx) {
+    @Override
+    public ASTNode visitFloat_number(MyParser.Float_numberContext ctx) {
         return new FloatNumberNode(Float.parseFloat(ctx.FLOAT_NUMBER().getText()));
     }
 
-    @Override public ASTNode visitE_number(MyParser.E_numberContext ctx) {
+    @Override
+    public ASTNode visitE_number(MyParser.E_numberContext ctx) {
         return new ENumberNode(ctx.E_NUMBER().getText());
     }
 
-    @Override public ASTNode visitT(MyParser.TContext ctx) {
+    @Override
+    public ASTNode visitT(MyParser.TContext ctx) {
         return new TNode(ctx.T().getText());
     }
 
-    @Override public ASTNode visitNil(MyParser.NilContext ctx) {
+    @Override
+    public ASTNode visitNil(MyParser.NilContext ctx) {
         return new NILNode(ctx.NIL().getText());
     }
 
-    @Override public ASTNode visitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) {
+    @Override
+    public ASTNode visitSingle_quote_expression(MyParser.Single_quote_expressionContext ctx) {
         ASTNode value = visit(ctx.getChild(1));
         return new SingleQuoteNode(value);
     }
