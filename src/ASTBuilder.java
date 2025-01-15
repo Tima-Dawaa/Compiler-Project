@@ -116,11 +116,12 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         List<ASTNode> operands = new ArrayList<>();
         for (int i = 2; i < ctx.children.size() - 1; i++) {
+            System.out.println(ctx.getChild(i).getText());
             if(ctx.getChild(i) instanceof TerminalNode) {
                 if(Objects.equals(((TerminalNode) ctx.getChild(i)).getSymbol().getText(), "ATOM")) operands.add(new AtomNode(ctx.getChild(i).getText()));
                 else operands.add(new IntNumberNode(Integer.parseInt(ctx.getChild(i).getText())));
             }
-            operands.add(visit(ctx.getChild(i)));
+            else operands.add(visit(ctx.getChild(i)));
         }
         return new ArithmeticOpNode(operation, operands);
     }
