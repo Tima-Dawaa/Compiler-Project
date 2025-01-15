@@ -24,7 +24,7 @@ public class FormatNode extends ASTNode{
         return "FormatNode{" +
                 "format_destination=" + format_destination.prettyPrint() +
                 ", format_string=" + format_string.prettyPrint() +
-                ", expressions=" + expressions.toString().trim() +
+                ", expressions=" + body.toString().trim() +
                 "}";
     }
 }
