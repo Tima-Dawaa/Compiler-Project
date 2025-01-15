@@ -49,7 +49,9 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     @Override
     public ASTNode visitSetq_single_var(MyParser.Setq_single_varContext ctx) {
         TupleNode tupleNode = (TupleNode) visit(ctx.tuple_without_paran());
-        ASTNode setqNode = (ASTNode) new SetqNode((List<TupleNode>) tupleNode);
+        List<TupleNode> tupleList = new ArrayList<>();
+        tupleList.add(tupleNode);
+        ASTNode setqNode = (ASTNode) new SetqNode(tupleList);
         return setqNode;
     }
 
@@ -65,14 +67,15 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitDefvar(MyParser.DefvarContext ctx) {
-        TupleNode tupleNode = (TupleNode) visitChildren(ctx.tuple_without_paran());
-        return new DefvarNode(tupleNode);
+        TupleNode tupleNode = (TupleNode) visit(ctx.tuple_without_paran());
+        DefvarNode defvarNode = new DefvarNode(tupleNode);
+        return (ASTNode) defvarNode;
     }
 
     @Override
     public ASTNode visitTuple_without_paran(MyParser.Tuple_without_paranContext ctx) {
         String atomValue = String.valueOf(ctx.getChild(0));
-        ASTNode expressionNode = visit(ctx.expression());
+        ASTNode expressionNode = visit(ctx.getChild(1));
         return new TupleNode(new AtomNode(atomValue), expressionNode);
     }
 
