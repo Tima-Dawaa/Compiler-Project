@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyLexer.g4 by ANTLR 4.13.2
+=======
+// Generated from C:/Users/Hamza.Tinawi/IdeaProjects/Compiler-Project/src/MyLexer.g4 by ANTLR 4.13.1
+>>>>>>> Stashed changes
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
