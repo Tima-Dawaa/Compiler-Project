@@ -13,6 +13,6 @@ public class AtomNode extends ASTNode {
 
     @Override
     public String prettyPrint() {
-        return value;
+        return value.toString();
     }
 }
