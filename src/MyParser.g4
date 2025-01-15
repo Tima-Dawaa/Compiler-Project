@@ -133,7 +133,7 @@ comparison_expression
     ;
 
 logical_expression
-    : S_LPARAN (not_expression | and_or_expression)+ S_RPARAN
+    : S_LPARAN (not_expression | and_or_expression) S_RPARAN
     ;
 
 and_or_expression

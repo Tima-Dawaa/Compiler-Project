@@ -16,11 +16,11 @@ public class FuncallNode extends ASTNode{
     public String prettyPrint() {
         StringBuilder funcParametersString = new StringBuilder();
         for (ASTNode param : funcParameters) {
-            funcParametersString.append(param.prettyPrint()).append(" ");
+            funcParametersString.append(param.prettyPrint()).append(" ,");
         }
         return "Funcall{" +
                 "Func name = " + funcName.prettyPrint() +
-                "Func parameters = " + funcParametersString +
+                "\t,Func parameters =[" + funcParametersString + "]" +
                 "}";
     }
 }

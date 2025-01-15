@@ -134,14 +134,18 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         return new ComparisonOpNode(operation, operands);
     }
 
+    @Override public ASTNode visitLogical_expression(MyParser.Logical_expressionContext ctx) {
+        return visit(ctx.getChild(1));
+    }
+
     @Override
     public ASTNode visitAnd_or_expression(MyParser.And_or_expressionContext ctx) {
         String operation = ctx.getChild(0).getText();
-        List<expression.ASTNode> operands = new ArrayList<>();
+        List<ASTNode> operands = new ArrayList<>();
         for (int i = 1; i < ctx.children.size(); i++) {
-            operands.add((expression.ASTNode) visit(ctx.getChild(i)));
+            operands.add(visit(ctx.getChild(i)));
         }
-        return (ASTNode) new LogicalOpNode(operation, operands);
+        return new LogicalOpNode(operation, operands);
     }
 
     @Override
@@ -149,7 +153,7 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         String operation = ctx.getChild(0).getText();
         List<ASTNode> operand = new ArrayList<>();
         operand.add(visit(ctx.getChild(1)));
-        return (ASTNode) new LogicalOpNode(operation, (List<expression.ASTNode>) operand);
+        return new LogicalOpNode(operation, (List<expression.ASTNode>) operand);
     }
 
     @Override
@@ -167,6 +171,8 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         StringNode operation = new StringNode(ctx.getChild(1).getText());
         ASTNode operand1 = visit(ctx.getChild(2));
         ASTNode operand2 = visit(ctx.getChild(3));
+        System.out.println(operand1);
+        System.out.println(operand2);
         return new EqualityOpNode(operation, operand1, operand2);
     }
 
@@ -207,9 +213,9 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
     @Override
     public ASTNode visitApply_expression(MyParser.Apply_expressionContext ctx) {
         ASTNode funcName = visit(ctx.getChild(2));
-        List<expression.ASTNode> funcParameters = new ArrayList<>();
+        List<ASTNode> funcParameters = new ArrayList<>();
         for (int i = 3; i < ctx.children.size() - 1; i++) {
-            funcParameters.add((expression.ASTNode) visit(ctx.getChild(i)));
+            funcParameters.add(visit(ctx.getChild(i)));
         }
         return new ApplyNode(funcName, funcParameters);
     }
