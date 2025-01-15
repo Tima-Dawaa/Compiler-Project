@@ -28,7 +28,6 @@ expression
     | make_instance_expression
     | defmethod_expression
     | loop_expression
-    | basics
     ;
 
 
@@ -552,16 +551,6 @@ tuple_without_paran
 
 real_number
     : (int_number | float_number | e_number)
-    ;
-
-basics :
-    atom
-    | string
-    |int_number
-    | float_number
-    | e_number
-    | t
-    |nil
     ;
 
 atom : ATOM;
