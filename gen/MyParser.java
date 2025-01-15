@@ -1,14 +1,12 @@
 // Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+import jdk.internal.icu.text.UnicodeSet;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
+import java.util.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue", "this-escape"})
 public class MyParser extends Parser {
@@ -883,6 +881,7 @@ public class MyParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Dolist_expressionContext extends ParserRuleContext {
+
 		public List<TerminalNode> S_LPARAN() { return getTokens(MyParser.S_LPARAN); }
 		public TerminalNode S_LPARAN(int i) {
 			return getToken(MyParser.S_LPARAN, i);
@@ -918,6 +917,8 @@ public class MyParser extends Parser {
 			if ( visitor instanceof MyParserVisitor ) return ((MyParserVisitor<? extends T>)visitor).visitDolist_expression(this);
 			else return visitor.visitChildren(this);
 		}
+
+
 	}
 
 	public final Dolist_expressionContext dolist_expression() throws RecognitionException {
