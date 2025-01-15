@@ -1,4 +1,4 @@
-// Generated from C:/Users/lenovo/IdeaProjects/CompilerProject/src/MyParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/khalid/IdeaProjects/LispCompilerProject/src/MyParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -142,33 +142,11 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBitwise_expression(MyParser.Bitwise_expressionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code EqNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
+	 * Visit a parse tree produced by {@link MyParser#equality_expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEqNode(MyParser.EqNodeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code EqlNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEqlNode(MyParser.EqlNodeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code EqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEqualNode(MyParser.EqualNodeContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code NotEqualNode}
-	 * labeled alternative in {@link MyParser#equality_expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNotEqualNode(MyParser.NotEqualNodeContext ctx);
+	T visitEquality_expression(MyParser.Equality_expressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyParser#eq_expression}.
 	 * @param ctx the parse tree
@@ -637,4 +615,46 @@ public interface MyParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReal_number(MyParser.Real_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAtom(MyParser.AtomContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(MyParser.StringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#int_number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInt_number(MyParser.Int_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#float_number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloat_number(MyParser.Float_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#e_number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitE_number(MyParser.E_numberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#t}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitT(MyParser.TContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyParser#nil}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNil(MyParser.NilContext ctx);
 }

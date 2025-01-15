@@ -1,9 +1,11 @@
 package expression;
 
-public class ENumberNode extends ASTNode {
+import expression.ASTNode;
+
+public class NILNode extends ASTNode {
     private final String value;
 
-    public ENumberNode(String value) {
+    public NILNode(String value) {
         this.value = value;
     }
 

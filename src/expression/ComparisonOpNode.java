@@ -42,7 +42,7 @@ public class ComparisonOpNode extends ASTNode {
         }
         return "ComparisonOpNode{ " +
                 "operator = " + operator.getValue() +
-                "operands = " + operandsString +
+                "\t,operands = " + operandsString +
                 "}";
     }
 }

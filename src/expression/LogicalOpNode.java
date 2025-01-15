@@ -42,7 +42,7 @@ public class LogicalOpNode extends ASTNode {
         }
         return "LogicalOpNode{ " +
                 "operator = " + operator +
-                "operands = " + operandsString +
+                "\t,operands = " + operandsString +
                 "}";
     }
 }
