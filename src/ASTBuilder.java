@@ -4,7 +4,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
@@ -33,7 +32,6 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
             }
             // Visit the child node and get the corresponding ASTNode
             ASTNode childNode = visit(child);
-
             // If the visit returns a valid ASTNode, add it to the Program node
             if (childNode != null) {
                 programNode.addChild(childNode);
@@ -77,6 +75,13 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
         String atomValue = String.valueOf(ctx.getChild(0));
         ASTNode expressionNode = visit(ctx.getChild(1));
         return new TupleNode(new AtomNode(atomValue), expressionNode);
+    }
+
+    @Override
+    public ASTNode visitTuple_with_paran(MyParser.Tuple_with_paranContext ctx) {
+        String atomValue = String.valueOf(ctx.getChild(0));
+        ASTNode expressionNode = visit(ctx.getChild(1));
+        return new TupleWithParanNode(new AtomNode(atomValue), expressionNode);
     }
 
     @Override
@@ -241,26 +246,17 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitFormat_expression(MyParser.Format_expressionContext ctx) {
-        ASTNode formatDestinationNode = visit(ctx.FORMAT_DESTINATION());
-        BooleanNode formatDestination = (BooleanNode) formatDestinationNode;
-
-        ASTNode formatStringNode = visit((ParseTree) ctx.FORMAT_STRING());
-        StringNode formatString = (StringNode) formatStringNode;
-
-        List<ASTNode> expressionNodes = new ArrayList<>();
-
-        for (int i = 0; i < ctx.children.size(); i++) {
-            ParseTree child = ctx.children.get(i);
-            if (child instanceof MyParser.ValueContext) {
-                expressionNodes.add(visit((MyParser.ValueContext) child));
-            } else if (child instanceof MyParser.ExpressionContext) {
-                expressionNodes.add(visit((MyParser.ExpressionContext) child));
+        BooleanNode formatDestination =  new BooleanNode(ctx.FORMAT_DESTINATION().toString());
+        StringNode formatString = new StringNode(ctx.FORMAT_STRING().toString());
+        List<ASTNode> expressions = new ArrayList<>();
+        for (ParseTree child : ctx.children) {
+            if (child instanceof MyParser.ValueContext || child instanceof MyParser.ExpressionContext) {
+                ASTNode expression = visit(child);
+                expressions.add(expression);
             }
         }
-        FormatNode formatNode = new FormatNode(formatDestination, formatString, expressionNodes);
-        return formatNode;
+        return new FormatNode(formatDestination, formatString, expressions);
     }
-
 
     @Override
     public ASTNode visitPush_expression(MyParser.Push_expressionContext ctx) {
@@ -340,14 +336,12 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
         for (int i = 1; i < ctx.children.size() - 1; i++) {
             ParseTree child = ctx.getChild(i);
-
             if (child instanceof MyParser.Real_numberContext) {
                 parameterNodes.add(visit(child));
             } else if (child != null) {
                 parameterNodes.add(new AtomNode(child.getText()));
             }
         }
-
         return new ArefNode((AtomNode) atomNode, parameterNodes);
     }
 
