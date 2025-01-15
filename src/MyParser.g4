@@ -28,6 +28,7 @@ expression
     | make_instance_expression
     | defmethod_expression
     | loop_expression
+    | basics
     ;
 
 
@@ -378,11 +379,11 @@ cons_expression
     ;
 
 car_expression
-    : S_LPARAN CAR cons_expression S_RPARAN
+    : S_LPARAN CAR (cons_expression | atom) S_RPARAN
     ;
 
 cdr_expression
-    : S_LPARAN CDR cons_expression S_RPARAN
+    : S_LPARAN CDR (cons_expression | atom) S_RPARAN
     ;
 
 
@@ -481,7 +482,7 @@ clrhash_expression
     ;
 
 maphash_expression
-    : S_LPARAN MAPHASH S_LPARAN lambda_expression S_RPARAN atom S_RPARAN
+    : S_LPARAN MAPHASH (S_LPARAN lambda_expression S_RPARAN | atom) atom S_RPARAN
     ;
 
 key
@@ -552,7 +553,17 @@ tuple_without_paran
 real_number
     : (int_number | float_number | e_number)
     ;
-    
+
+basics :
+    atom
+    | string
+    |int_number
+    | float_number
+    | e_number
+    | t
+    |nil
+    ;
+
 atom : ATOM;
 string: STRING;
 int_number: INT_NUMBER;

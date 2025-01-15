@@ -517,8 +517,8 @@ public class ASTBuilder extends MyParserBaseVisitor<ASTNode> {
 
     @Override
     public ASTNode visitMaphash_expression(MyParser.Maphash_expressionContext ctx) {
-        LambdaNode function = (LambdaNode) visit(ctx.lambda_expression());
-        AtomNode tableName = new AtomNode(ctx.atom().getText());
+        ASTNode function = (ASTNode) visit(ctx.getChild(0));
+        AtomNode tableName = new AtomNode(ctx.atom(1).getText());
         return new MapHashNode(function, tableName);
     }
 
